@@ -16,5 +16,21 @@ namespace Mökkihöperö
         {
             InitializeComponent();
         }
+
+        private void asiakasNappi_Click(object sender, EventArgs e)
+        {
+            Asiakkaat asiakkaat = new Asiakkaat();
+
+            asiakkaat.Show();
+
+        }
+
+        private void varausNappi_Click(object sender, EventArgs e)
+        {
+            Varaukset varaukset = new Varaukset();
+            
+            varaukset.Show();
+
+        }
     }
 }

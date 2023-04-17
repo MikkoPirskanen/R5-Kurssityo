@@ -46,5 +46,19 @@ namespace Mökkihöperö
             laskutus.Show();
 
         }
+
+        private void tietoaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tietoa tietoa = new Tietoa();
+            tietoa.Show();
+
+        }
+
+        private void lopetusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            this.Close();
+
+        }
     }
 }

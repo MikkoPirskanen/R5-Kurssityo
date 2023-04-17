@@ -1,6 +1,6 @@
 ﻿namespace Mökkihöperö
 {
-    partial class Laskutus
+    partial class Asiakkaat
     {
         /// <summary>
         /// Required designer variable.
@@ -28,34 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             SuspendLayout();
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(379, 79);
-            label1.Name = "label1";
-            label1.Size = new Size(163, 50);
-            label1.TabIndex = 0;
-            label1.Text = "Laskutus";
-            // 
-            // Laskutus
+            // Asiakkaat
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonShadow;
             ClientSize = new Size(984, 761);
-            Controls.Add(label1);
-            Name = "Laskutus";
-            Text = "Laskutus";
+            Name = "Asiakkaat";
+            Text = "Asiakkaat";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
     }
 }

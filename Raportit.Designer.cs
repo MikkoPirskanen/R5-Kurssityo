@@ -34,9 +34,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(94, 72);
+            label1.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(378, 81);
             label1.Name = "label1";
-            label1.Size = new Size(49, 15);
+            label1.Size = new Size(155, 50);
             label1.TabIndex = 0;
             label1.Text = "Raportit";
             label1.Click += label1_Click;
@@ -45,7 +46,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(428, 405);
+            BackColor = SystemColors.ButtonShadow;
+            ClientSize = new Size(984, 761);
             Controls.Add(label1);
             Name = "Raportit";
             Text = "Raportit";
