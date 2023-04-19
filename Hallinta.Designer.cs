@@ -31,6 +31,8 @@
             label1 = new Label();
             asiakasNappi = new Button();
             varausNappi = new Button();
+            button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -45,9 +47,10 @@
             // 
             // asiakasNappi
             // 
-            asiakasNappi.Location = new Point(373, 276);
+            asiakasNappi.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            asiakasNappi.Location = new Point(332, 354);
             asiakasNappi.Name = "asiakasNappi";
-            asiakasNappi.Size = new Size(206, 40);
+            asiakasNappi.Size = new Size(342, 72);
             asiakasNappi.TabIndex = 1;
             asiakasNappi.Text = "Hallitse asiakkaita";
             asiakasNappi.UseVisualStyleBackColor = true;
@@ -55,13 +58,34 @@
             // 
             // varausNappi
             // 
-            varausNappi.Location = new Point(373, 362);
+            varausNappi.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            varausNappi.Location = new Point(332, 567);
             varausNappi.Name = "varausNappi";
-            varausNappi.Size = new Size(206, 39);
+            varausNappi.Size = new Size(342, 82);
             varausNappi.TabIndex = 2;
             varausNappi.Text = "Hallitse varauksia";
             varausNappi.UseVisualStyleBackColor = true;
             varausNappi.Click += varausNappi_Click;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(278, 242);
+            button1.Name = "button1";
+            button1.Size = new Size(448, 74);
+            button1.TabIndex = 3;
+            button1.Text = "Hallitse alueita ja mökkejä";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Location = new Point(332, 457);
+            button2.Name = "button2";
+            button2.Size = new Size(342, 72);
+            button2.TabIndex = 4;
+            button2.Text = "Hallitse palveluita";
+            button2.UseVisualStyleBackColor = true;
             // 
             // Hallinta
             // 
@@ -69,6 +93,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonShadow;
             ClientSize = new Size(984, 761);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(varausNappi);
             Controls.Add(asiakasNappi);
             Controls.Add(label1);
@@ -83,5 +109,7 @@
         private Label label1;
         private Button asiakasNappi;
         private Button varausNappi;
+        private Button button1;
+        private Button button2;
     }
 }

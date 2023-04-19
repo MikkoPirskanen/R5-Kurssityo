@@ -39,9 +39,10 @@ namespace Mökkihöperö
             // 
             // haeNappi
             // 
-            haeNappi.Location = new Point(159, 59);
+            haeNappi.Location = new Point(139, 44);
+            haeNappi.Margin = new Padding(3, 2, 3, 2);
             haeNappi.Name = "haeNappi";
-            haeNappi.Size = new Size(94, 29);
+            haeNappi.Size = new Size(82, 22);
             haeNappi.TabIndex = 0;
             haeNappi.Text = "Hae";
             haeNappi.UseVisualStyleBackColor = true;
@@ -49,9 +50,10 @@ namespace Mökkihöperö
             // 
             // lisääNappi
             // 
-            lisääNappi.Location = new Point(28, 119);
+            lisääNappi.Location = new Point(24, 89);
+            lisääNappi.Margin = new Padding(3, 2, 3, 2);
             lisääNappi.Name = "lisääNappi";
-            lisääNappi.Size = new Size(94, 29);
+            lisääNappi.Size = new Size(82, 22);
             lisääNappi.TabIndex = 1;
             lisääNappi.Text = "Lisää";
             lisääNappi.UseVisualStyleBackColor = true;
@@ -59,9 +61,10 @@ namespace Mökkihöperö
             // 
             // päivitäNappi
             // 
-            päivitäNappi.Location = new Point(28, 154);
+            päivitäNappi.Location = new Point(24, 116);
+            päivitäNappi.Margin = new Padding(3, 2, 3, 2);
             päivitäNappi.Name = "päivitäNappi";
-            päivitäNappi.Size = new Size(94, 29);
+            päivitäNappi.Size = new Size(82, 22);
             päivitäNappi.TabIndex = 2;
             päivitäNappi.Text = "Päivitä";
             päivitäNappi.UseVisualStyleBackColor = true;
@@ -69,9 +72,10 @@ namespace Mökkihöperö
             // 
             // poistaNappi
             // 
-            poistaNappi.Location = new Point(28, 189);
+            poistaNappi.Location = new Point(24, 142);
+            poistaNappi.Margin = new Padding(3, 2, 3, 2);
             poistaNappi.Name = "poistaNappi";
-            poistaNappi.Size = new Size(94, 29);
+            poistaNappi.Size = new Size(82, 22);
             poistaNappi.TabIndex = 3;
             poistaNappi.Text = "Poista";
             poistaNappi.UseVisualStyleBackColor = true;
@@ -79,36 +83,40 @@ namespace Mökkihöperö
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(28, 59);
+            textBox1.Location = new Point(24, 44);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
+            textBox1.Size = new Size(110, 23);
             textBox1.TabIndex = 4;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(268, 59);
+            dataGridView1.Location = new Point(234, 44);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(658, 331);
+            dataGridView1.Size = new Size(576, 248);
             dataGridView1.TabIndex = 5;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Asiakkaat
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonShadow;
-            ClientSize = new Size(1125, 1015);
+            ClientSize = new Size(984, 761);
             Controls.Add(dataGridView1);
             Controls.Add(textBox1);
             Controls.Add(poistaNappi);
             Controls.Add(päivitäNappi);
             Controls.Add(lisääNappi);
             Controls.Add(haeNappi);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Asiakkaat";
             Text = "Asiakkaat";
+            Load += Asiakkaat_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

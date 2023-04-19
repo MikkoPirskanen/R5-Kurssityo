@@ -28,7 +28,7 @@ namespace Mökkihöperö
         private void varausNappi_Click(object sender, EventArgs e)
         {
             Varaukset varaukset = new Varaukset();
-            
+
             varaukset.Show();
 
         }
