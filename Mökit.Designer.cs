@@ -1,16 +1,9 @@
-﻿namespace Mökkihöperö
+namespace Mökit
 {
-    partial class Mökit
+    partial class Form1
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,42 +13,76 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            btnHae = new Button();
+            btnLisaa = new Button();
+            btnMuokkaa = new Button();
+            btnPoista = new Button();
             SuspendLayout();
             // 
-            // label1
+            // btnHae
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(273, 86);
-            label1.Name = "label1";
-            label1.Size = new Size(426, 45);
-            label1.TabIndex = 0;
-            label1.Text = "Hallitse mökkejä ja varauksia";
+            btnHae.Location = new Point(16, 18);
+            btnHae.Margin = new Padding(4, 5, 4, 5);
+            btnHae.Name = "btnHae";
+            btnHae.Size = new Size(100, 35);
+            btnHae.TabIndex = 0;
+            btnHae.Text = "Hae";
+            btnHae.UseVisualStyleBackColor = true;
+            btnHae.Click += btnHae_Click;
             // 
-            // Mökit
+            // btnLisaa
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            btnLisaa.Location = new Point(124, 18);
+            btnLisaa.Margin = new Padding(4, 5, 4, 5);
+            btnLisaa.Name = "btnLisaa";
+            btnLisaa.Size = new Size(100, 35);
+            btnLisaa.TabIndex = 1;
+            btnLisaa.Text = "Lisää";
+            btnLisaa.UseVisualStyleBackColor = true;
+            btnLisaa.Click += btnLisaa_Click;
+            // 
+            // btnMuokkaa
+            // 
+            btnMuokkaa.Location = new Point(232, 18);
+            btnMuokkaa.Margin = new Padding(4, 5, 4, 5);
+            btnMuokkaa.Name = "btnMuokkaa";
+            btnMuokkaa.Size = new Size(100, 35);
+            btnMuokkaa.TabIndex = 2;
+            btnMuokkaa.Text = "Muokkaa";
+            btnMuokkaa.UseVisualStyleBackColor = true;
+            btnMuokkaa.Click += btnMuokkaa_Click;
+            // 
+            // btnPoista
+            // 
+            btnPoista.Location = new Point(340, 18);
+            btnPoista.Margin = new Padding(4, 5, 4, 5);
+            btnPoista.Name = "btnPoista";
+            btnPoista.Size = new Size(100, 35);
+            btnPoista.TabIndex = 3;
+            btnPoista.Text = "Poista";
+            btnPoista.UseVisualStyleBackColor = true;
+            btnPoista.Click += btnPoista_Click;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonShadow;
-            ClientSize = new Size(984, 761);
-            Controls.Add(label1);
-            Name = "Mökit";
+            ClientSize = new Size(656, 480);
+            Controls.Add(btnPoista);
+            Controls.Add(btnMuokkaa);
+            Controls.Add(btnLisaa);
+            Controls.Add(btnHae);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "Form1";
             Text = "Mökit";
             ResumeLayout(false);
-            PerformLayout();
         }
 
-        #endregion
-
-        private Label label1;
+        private System.Windows.Forms.Button btnHae;
+        private System.Windows.Forms.Button btnLisaa;
+        private System.Windows.Forms.Button btnMuokkaa;
+        private System.Windows.Forms.Button btnPoista;
     }
 }
