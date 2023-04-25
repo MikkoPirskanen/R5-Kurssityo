@@ -1,9 +1,16 @@
-namespace Mökit
+namespace Mökkihöperö
 {
-    partial class Form1
+    partial class Mokit
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -15,74 +22,99 @@ namespace Mökit
 
         private void InitializeComponent()
         {
-            btnHae = new Button();
-            btnLisaa = new Button();
-            btnMuokkaa = new Button();
-            btnPoista = new Button();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            hakuNappi = new Button();
+            lisaaNappi = new Button();
+            muokkaaNappi = new Button();
+            poistaNappi = new Button();
+            textBox1 = new TextBox();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // btnHae
-            // 
-            btnHae.Location = new Point(16, 18);
-            btnHae.Margin = new Padding(4, 5, 4, 5);
-            btnHae.Name = "btnHae";
-            btnHae.Size = new Size(100, 35);
-            btnHae.TabIndex = 0;
-            btnHae.Text = "Hae";
-            btnHae.UseVisualStyleBackColor = true;
-            btnHae.Click += btnHae_Click;
-            // 
-            // btnLisaa
-            // 
-            btnLisaa.Location = new Point(124, 18);
-            btnLisaa.Margin = new Padding(4, 5, 4, 5);
-            btnLisaa.Name = "btnLisaa";
-            btnLisaa.Size = new Size(100, 35);
-            btnLisaa.TabIndex = 1;
-            btnLisaa.Text = "Lisää";
-            btnLisaa.UseVisualStyleBackColor = true;
-            btnLisaa.Click += btnLisaa_Click;
-            // 
-            // btnMuokkaa
-            // 
-            btnMuokkaa.Location = new Point(232, 18);
-            btnMuokkaa.Margin = new Padding(4, 5, 4, 5);
-            btnMuokkaa.Name = "btnMuokkaa";
-            btnMuokkaa.Size = new Size(100, 35);
-            btnMuokkaa.TabIndex = 2;
-            btnMuokkaa.Text = "Muokkaa";
-            btnMuokkaa.UseVisualStyleBackColor = true;
-            btnMuokkaa.Click += btnMuokkaa_Click;
-            // 
-            // btnPoista
-            // 
-            btnPoista.Location = new Point(340, 18);
-            btnPoista.Margin = new Padding(4, 5, 4, 5);
-            btnPoista.Name = "btnPoista";
-            btnPoista.Size = new Size(100, 35);
-            btnPoista.TabIndex = 3;
-            btnPoista.Text = "Poista";
-            btnPoista.UseVisualStyleBackColor = true;
-            btnPoista.Click += btnPoista_Click;
-            // 
-            // Form1
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(656, 480);
-            Controls.Add(btnPoista);
-            Controls.Add(btnMuokkaa);
-            Controls.Add(btnLisaa);
-            Controls.Add(btnHae);
-            Margin = new Padding(4, 5, 4, 5);
-            Name = "Form1";
-            Text = "Mökit";
-            ResumeLayout(false);
-        }
+            hakuNappi.Click += hakuNappi_Click;
 
-        private System.Windows.Forms.Button btnHae;
-        private System.Windows.Forms.Button btnLisaa;
-        private System.Windows.Forms.Button btnMuokkaa;
-        private System.Windows.Forms.Button btnPoista;
+            // 
+            // hakuNappi
+            // 
+            hakuNappi.Location = new Point(170, 12);
+            hakuNappi.Name = "button1";
+            hakuNappi.Size = new Size(94, 29);
+            hakuNappi.TabIndex = 0;
+            hakuNappi.Text = "Haku";
+            hakuNappi.UseVisualStyleBackColor = true;
+            // 
+            // lisaaNappi
+            // 
+            lisaaNappi.Location = new Point(270, 12);
+            lisaaNappi.Name = "button2";
+            lisaaNappi.Size = new Size(94, 29);
+            lisaaNappi.TabIndex = 1;
+            lisaaNappi.Text = "Lisää";
+            lisaaNappi.UseVisualStyleBackColor = true;
+            // 
+            // muokkaaNappi
+            // 
+            muokkaaNappi.Location = new Point(370, 12);
+            muokkaaNappi.Name = "button3";
+            muokkaaNappi.Size = new Size(94, 29);
+            muokkaaNappi.TabIndex = 2;
+            muokkaaNappi.Text = "Muokkaa";
+            muokkaaNappi.UseVisualStyleBackColor = true;
+            // 
+            // poistaNappi
+            // 
+            poistaNappi.Location = new Point(470, 12);
+            poistaNappi.Name = "button4";
+            poistaNappi.Size = new Size(94, 29);
+            poistaNappi.TabIndex = 3;
+            poistaNappi.Text = "Poista";
+            poistaNappi.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(19, 13);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 4;
+            textBox1.Text = "Hakukenttä";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 59);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(1124, 240);
+            dataGridView1.TabIndex = 5;
+            // 
+            // Mokit
+            // 
+            ClientSize = new Size(1148, 406);
+            Controls.Add(dataGridView1);
+            Controls.Add(textBox1);
+            Controls.Add(poistaNappi);
+            Controls.Add(muokkaaNappi);
+            Controls.Add(lisaaNappi);
+            Controls.Add(hakuNappi);
+            Name = "Mokit";
+            Load += Mokit_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
     }
+
+    private SqlConnection connection;
+    private string connectionString = "Data Source=myServerAddress;Initial Catalog=myDataBase;User ID=myUsername;Password=myPassword;";
+    private SqlDataAdapter dataAdapter;
+    private DataTable table;
+    private System.ComponentModel.BackgroundWorker backgroundWorker1;
+    private Button hakuNappi;
+    private Button lisaaNappi;
+    private Button muokkaaNappi;
+    private Button poistaNappi;
+    private TextBox textBox1;
+    private DataGridView dataGridView1;
+    
 }
