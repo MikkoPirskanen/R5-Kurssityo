@@ -120,33 +120,7 @@ namespace Mökkihöperö
             }
         }
 
-        private void ShowPalvelut()
-        {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                // Avaa yhteys tietokantaan
-                connection.Open();
 
-                // SQL-kysely alueen palvelujen hakemiseksi
-                string query = @"SELECT *
-                             FROM palvelu
-                             WHERE alue_id = @alue_id";
-
-                // Luo SQL-komento ja yhdistä se tietokantayhteyteen
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    // Lisää alue_id parametriin
-                    command.Parameters.AddWithValue("@alue_id", textBox1.Text);
-
-                    // Luo DataTable, joka sisältää tietokannasta haetut tiedot
-                    DataTable table = new DataTable();
-                    table.Load(command.ExecuteReader());
-
-                    // Aseta DataGridView näyttämään tietokannasta haetut tiedot
-                    dataGridView1.DataSource = table;
-                }
-            }
-        }
         private void ShowAlueenPalvelut()
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -175,6 +149,63 @@ namespace Mökkihöperö
                 }
             }
         }
+        //
+        // Hakukone
+        //
+        private void btnHaku_Click(object sender, EventArgs e)
+        {
+            string searchText = textBox1.Text;
+
+            foreach (Control control in Controls)
+            {
+                if (control is TextBox)
+                {
+                    TextBox textBox = (TextBox)control;
+                    if (textBox.Text.Contains(searchText))
+                    {
+                        textBox.BackColor = Color.Yellow;
+                    }
+                    else
+                    {
+                        textBox.BackColor = Color.White;
+                    }
+                }
+                else if (control is DataGridView)
+                {
+                    DataGridView dataGridView = (DataGridView)control;
+                    foreach (DataGridViewRow row in dataGridView.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            if (cell.Value != null && cell.Value.ToString().Contains(searchText))
+                            {
+                                cell.Style.BackColor = Color.Yellow;
+                            }
+                            else
+                            {
+                                cell.Style.BackColor = Color.White;
+                            }
+                        }
+                    }
+                }
+                else if (control is ListView)
+                {
+                    ListView listView = (ListView)control;
+                    foreach (ListViewItem item in listView.Items)
+                    {
+                        if (item.Text.Contains(searchText))
+                        {
+                            item.BackColor = Color.Yellow;
+                        }
+                        else
+                        {
+                            item.BackColor = Color.White;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+
 
