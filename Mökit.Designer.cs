@@ -29,10 +29,10 @@ namespace Mökkihöperö
         private void InitializeComponent()
         {
             textBox1 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            btnHaku = new Button();
+            btnPerustiedot = new Button();
+            btnOsoitetiedot = new Button();
+            btnKuvausJaVarustelu = new Button();
             dataGridView1 = new DataGridView();
             monthCalendar1 = new MonthCalendar();
             label1 = new Label();
@@ -43,6 +43,7 @@ namespace Mökkihöperö
             button9 = new Button();
             button10 = new Button();
             button11 = new Button();
+            btnAlueenPalvelut = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -53,43 +54,47 @@ namespace Mökkihöperö
             textBox1.Size = new Size(225, 27);
             textBox1.TabIndex = 0;
             textBox1.Text = "Hakukenttä";
-            textBox1.TextChanged += textBox1_TextChanged;
+            
             // 
             // button1
             // 
-            button1.Location = new Point(268, 33);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 1;
-            button1.Text = "Haku";
-            button1.UseVisualStyleBackColor = true;
+            btnHaku.Location = new Point(268, 33);
+            btnHaku.Name = "btnHaku";
+            btnHaku.Size = new Size(94, 29);
+            btnHaku.TabIndex = 1;
+            btnHaku.Text = "Haku";
+            btnHaku.UseVisualStyleBackColor = true;
+            btnHaku.Click += btnHaku_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(521, 31);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 2;
-            button2.Text = "Perustiedot";
-            button2.UseVisualStyleBackColor = true;
+            btnPerustiedot.Location = new Point(451, 31);
+            btnPerustiedot.Name = "btnPerustiedot";
+            btnPerustiedot.Size = new Size(94, 29);
+            btnPerustiedot.TabIndex = 2;
+            btnPerustiedot.Text = "Perustiedot";
+            btnPerustiedot.UseVisualStyleBackColor = true;
+            btnPerustiedot.Click += btnPerustiedot_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(621, 31);
-            button3.Name = "button3";
-            button3.Size = new Size(130, 29);
-            button3.TabIndex = 3;
-            button3.Text = "Osoitetiedot";
-            button3.UseVisualStyleBackColor = true;
+            btnOsoitetiedot.Location = new Point(551, 33);
+            btnOsoitetiedot.Name = "btnOsoitetiedot";
+            btnOsoitetiedot.Size = new Size(130, 29);
+            btnOsoitetiedot.TabIndex = 3;
+            btnOsoitetiedot.Text = "Osoitetiedot";
+            btnOsoitetiedot.UseVisualStyleBackColor = true;
+            btnOsoitetiedot.Click += btnOsoitetiedot_Click;
             // 
             // button4
             // 
-            button4.Location = new Point(757, 31);
-            button4.Name = "button4";
-            button4.Size = new Size(196, 29);
-            button4.TabIndex = 4;
-            button4.Text = "Kuvaus ja varustelu";
-            button4.UseVisualStyleBackColor = true;
+            btnKuvausJaVarustelu.Location = new Point(687, 33);
+            btnKuvausJaVarustelu.Name = "btnKuvausJaVarustelu";
+            btnKuvausJaVarustelu.Size = new Size(196, 29);
+            btnKuvausJaVarustelu.TabIndex = 4;
+            btnKuvausJaVarustelu.Text = "Kuvaus ja varustelu";
+            btnKuvausJaVarustelu.UseVisualStyleBackColor = true;
+            btnKuvausJaVarustelu.Click += btnKuvausJaVarustelu_Click;
             // 
             // dataGridView1
             // 
@@ -179,9 +184,19 @@ namespace Mökkihöperö
             button11.Text = "Poista alue";
             button11.UseVisualStyleBackColor = true;
             // 
+            // button12
+            // 
+            btnAlueenPalvelut.Location = new Point(889, 33);
+            btnAlueenPalvelut.Name = "btnAlueenPalvelut";
+            btnAlueenPalvelut.Size = new Size(156, 29);
+            btnAlueenPalvelut.TabIndex = 15;
+            btnAlueenPalvelut.Text = "Alueen palvelut";
+            btnAlueenPalvelut.UseVisualStyleBackColor = true;
+            // 
             // Mokit
             // 
             ClientSize = new Size(1353, 636);
+            Controls.Add(btnAlueenPalvelut);
             Controls.Add(button11);
             Controls.Add(button10);
             Controls.Add(button9);
@@ -192,10 +207,10 @@ namespace Mökkihöperö
             Controls.Add(label1);
             Controls.Add(monthCalendar1);
             Controls.Add(dataGridView1);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnKuvausJaVarustelu);
+            Controls.Add(btnOsoitetiedot);
+            Controls.Add(btnPerustiedot);
+            Controls.Add(btnHaku);
             Controls.Add(textBox1);
             Name = "Mokit";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -204,10 +219,10 @@ namespace Mökkihöperö
         }
 
         private TextBox textBox1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button btnHaku;
+        private Button btnPerustiedot;
+        private Button btnOsoitetiedot;
+        private Button btnKuvausJaVarustelu;
         private DataGridView dataGridView1;
         private MonthCalendar monthCalendar1;
         private Label label1;
@@ -218,5 +233,6 @@ namespace Mökkihöperö
         private Button button9;
         private Button button10;
         private Button button11;
+        private Button btnAlueenPalvelut;
     }
 }
