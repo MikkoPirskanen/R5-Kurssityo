@@ -37,9 +37,9 @@ namespace Mökkihöperö
             monthCalendar1 = new MonthCalendar();
             label1 = new Label();
             button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            button8 = new Button();
+            btnLisaaMokki = new Button();
+            btnMuokkaaMokki = new Button();
+            btnPoistaMokki = new Button();
             button9 = new Button();
             button10 = new Button();
             button11 = new Button();
@@ -132,30 +132,33 @@ namespace Mökkihöperö
             // 
             // button6
             // 
-            button6.Location = new Point(12, 568);
-            button6.Name = "button6";
-            button6.Size = new Size(128, 29);
-            button6.TabIndex = 9;
-            button6.Text = "Lisää mökki";
-            button6.UseVisualStyleBackColor = true;
+            btnLisaaMokki.Location = new Point(12, 568);
+            btnLisaaMokki.Name = "btnLisaaMokki";
+            btnLisaaMokki.Size = new Size(128, 29);
+            btnLisaaMokki.TabIndex = 9;
+            btnLisaaMokki.Text = "Lisää mökki";
+            btnLisaaMokki.UseVisualStyleBackColor = true;
+            btnLisaaMokki.Click += btnLisaaMokki_Click;
             // 
             // button7
             // 
-            button7.Location = new Point(146, 568);
-            button7.Name = "button7";
-            button7.Size = new Size(166, 29);
-            button7.TabIndex = 10;
-            button7.Text = "Muokkaa mökkiä";
-            button7.UseVisualStyleBackColor = true;
+            btnMuokkaaMokki.Location = new Point(146, 568);
+            btnMuokkaaMokki.Name = "btnMuokkaaMokki";
+            btnMuokkaaMokki.Size = new Size(166, 29);
+            btnMuokkaaMokki.TabIndex = 10;
+            btnMuokkaaMokki.Text = "Muokkaa mökkiä";
+            btnMuokkaaMokki.UseVisualStyleBackColor = true;
+            btnMuokkaaMokki.Click += btnMuokkaaMokki_Click;
             // 
             // button8
             // 
-            button8.Location = new Point(318, 568);
-            button8.Name = "button8";
-            button8.Size = new Size(134, 29);
-            button8.TabIndex = 11;
-            button8.Text = "Poista mökki";
-            button8.UseVisualStyleBackColor = true;
+            btnPoistaMokki.Location = new Point(318, 568);
+            btnPoistaMokki.Name = "btnPoistaMokki";
+            btnPoistaMokki.Size = new Size(134, 29);
+            btnPoistaMokki.TabIndex = 11;
+            btnPoistaMokki.Text = "Poista mökki";
+            btnPoistaMokki.UseVisualStyleBackColor = true;
+            btnPoistaMokki.Click += btnPoistaMokki_Click;
             // 
             // button9
             // 
@@ -200,9 +203,9 @@ namespace Mökkihöperö
             Controls.Add(button11);
             Controls.Add(button10);
             Controls.Add(button9);
-            Controls.Add(button8);
-            Controls.Add(button7);
-            Controls.Add(button6);
+            Controls.Add(btnPoistaMokki);
+            Controls.Add(btnMuokkaaMokki);
+            Controls.Add(btnLisaaMokki);
             Controls.Add(button5);
             Controls.Add(label1);
             Controls.Add(monthCalendar1);
@@ -227,12 +230,13 @@ namespace Mökkihöperö
         private MonthCalendar monthCalendar1;
         private Label label1;
         private Button button5;
-        private Button button6;
-        private Button button7;
-        private Button button8;
+        private Button btnLisaaMokki;
+        private Button btnMuokkaaMokki;
+        private Button btnPoistaMokki;
         private Button button9;
         private Button button10;
         private Button button11;
         private Button btnAlueenPalvelut;
     }
 }
+
