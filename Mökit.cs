@@ -205,7 +205,37 @@ namespace Mökkihöperö
                 }
             }
         }
+        // Mökkien hallintaa: mökin lisäys
+        private void btnLisaaMokki_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                // TODO: suorita lisäys SQL-kysely
+            }
+        }
+        // Mökin muokkaus
+        private void btnMuokkaaMokki_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                // TODO: suorita muokkaus SQL-kysely
+            }
+        }
+        // Mökin poisto
+        private void btnPoistaMokki_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                // TODO: suorita poisto SQL-kysely
+            }
+        }
     }
 }
+
+
+
 
 
