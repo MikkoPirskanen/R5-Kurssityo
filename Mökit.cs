@@ -567,7 +567,7 @@ namespace Mökkihöperö
         {
             List<Mokki> mokit = new List<Mokki>();
 
-            string query = "SELECT mokki_id, alue_id, postinro, mokkinimi, katuosoite, hinta, kuvaus FROM mokit";
+            string query = "SELECT mokki_id, alue_id, postinro, mokkinimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu FROM mokit";
 
             try
             {
@@ -618,6 +618,16 @@ namespace Mökkihöperö
 
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
