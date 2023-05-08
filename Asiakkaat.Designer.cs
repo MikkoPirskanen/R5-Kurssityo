@@ -39,7 +39,7 @@ namespace Mökkihöperö
             // 
             // haeNappi
             // 
-            haeNappi.Location = new Point(139, 44);
+            haeNappi.Location = new Point(334, 204);
             haeNappi.Margin = new Padding(3, 2, 3, 2);
             haeNappi.Name = "haeNappi";
             haeNappi.Size = new Size(82, 22);
@@ -50,7 +50,7 @@ namespace Mökkihöperö
             // 
             // lisääNappi
             // 
-            lisääNappi.Location = new Point(24, 89);
+            lisääNappi.Location = new Point(64, 299);
             lisääNappi.Margin = new Padding(3, 2, 3, 2);
             lisääNappi.Name = "lisääNappi";
             lisääNappi.Size = new Size(82, 22);
@@ -61,7 +61,7 @@ namespace Mökkihöperö
             // 
             // päivitäNappi
             // 
-            päivitäNappi.Location = new Point(24, 116);
+            päivitäNappi.Location = new Point(64, 371);
             päivitäNappi.Margin = new Padding(3, 2, 3, 2);
             päivitäNappi.Name = "päivitäNappi";
             päivitäNappi.Size = new Size(82, 22);
@@ -72,7 +72,7 @@ namespace Mökkihöperö
             // 
             // poistaNappi
             // 
-            poistaNappi.Location = new Point(24, 142);
+            poistaNappi.Location = new Point(64, 447);
             poistaNappi.Margin = new Padding(3, 2, 3, 2);
             poistaNappi.Name = "poistaNappi";
             poistaNappi.Size = new Size(82, 22);
@@ -83,7 +83,7 @@ namespace Mökkihöperö
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(24, 44);
+            textBox1.Location = new Point(182, 203);
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(110, 23);
@@ -93,12 +93,12 @@ namespace Mökkihöperö
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(234, 44);
+            dataGridView1.Location = new Point(182, 260);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(576, 248);
+            dataGridView1.Size = new Size(753, 258);
             dataGridView1.TabIndex = 5;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 

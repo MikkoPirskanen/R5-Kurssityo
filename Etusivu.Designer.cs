@@ -33,8 +33,8 @@
             laskutusNappi = new Button();
             paneeli = new Panel();
             menuStrip1 = new MenuStrip();
-            tietoaToolStripMenuItem = new ToolStripMenuItem();
             lopetusToolStripMenuItem = new ToolStripMenuItem();
+            tietoaToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -91,19 +91,19 @@
             menuStrip1.TabIndex = 4;
             menuStrip1.Text = "menuStrip1";
             // 
-            // tietoaToolStripMenuItem
-            // 
-            tietoaToolStripMenuItem.Name = "tietoaToolStripMenuItem";
-            tietoaToolStripMenuItem.Size = new Size(51, 20);
-            tietoaToolStripMenuItem.Text = "Tietoa";
-            tietoaToolStripMenuItem.Click += tietoaToolStripMenuItem_Click;
-            // 
             // lopetusToolStripMenuItem
             // 
             lopetusToolStripMenuItem.Name = "lopetusToolStripMenuItem";
             lopetusToolStripMenuItem.Size = new Size(61, 20);
             lopetusToolStripMenuItem.Text = "Lopetus";
             lopetusToolStripMenuItem.Click += lopetusToolStripMenuItem_Click;
+            // 
+            // tietoaToolStripMenuItem
+            // 
+            tietoaToolStripMenuItem.Name = "tietoaToolStripMenuItem";
+            tietoaToolStripMenuItem.Size = new Size(51, 20);
+            tietoaToolStripMenuItem.Text = "Tietoa";
+            tietoaToolStripMenuItem.Click += tietoaToolStripMenuItem_Click;
             // 
             // Etusivu
             // 

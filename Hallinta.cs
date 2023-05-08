@@ -32,5 +32,14 @@ namespace Mökkihöperö
             varaukset.Show();
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Mokit mokit = new Mokit();
+
+            mokit.Show();
+
+
+        }
     }
 }

@@ -30,9 +30,7 @@
         {
             label1 = new Label();
             asiakasNappi = new Button();
-            varausNappi = new Button();
-            button1 = new Button();
-            button2 = new Button();
+            alueetjamokitNappi = new Button();
             SuspendLayout();
             // 
             // label1
@@ -56,36 +54,16 @@
             asiakasNappi.UseVisualStyleBackColor = true;
             asiakasNappi.Click += asiakasNappi_Click;
             // 
-            // varausNappi
+            // alueetjamokitNappi
             // 
-            varausNappi.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            varausNappi.Location = new Point(332, 567);
-            varausNappi.Name = "varausNappi";
-            varausNappi.Size = new Size(342, 82);
-            varausNappi.TabIndex = 2;
-            varausNappi.Text = "Hallitse varauksia";
-            varausNappi.UseVisualStyleBackColor = true;
-            varausNappi.Click += varausNappi_Click;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(278, 242);
-            button1.Name = "button1";
-            button1.Size = new Size(448, 74);
-            button1.TabIndex = 3;
-            button1.Text = "Hallitse alueita ja mökkejä";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(332, 457);
-            button2.Name = "button2";
-            button2.Size = new Size(342, 72);
-            button2.TabIndex = 4;
-            button2.Text = "Hallitse palveluita";
-            button2.UseVisualStyleBackColor = true;
+            alueetjamokitNappi.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            alueetjamokitNappi.Location = new Point(278, 242);
+            alueetjamokitNappi.Name = "alueetjamokitNappi";
+            alueetjamokitNappi.Size = new Size(448, 74);
+            alueetjamokitNappi.TabIndex = 3;
+            alueetjamokitNappi.Text = "Hallitse alueita ja mökkejä";
+            alueetjamokitNappi.UseVisualStyleBackColor = true;
+            alueetjamokitNappi.Click += button1_Click;
             // 
             // Hallinta
             // 
@@ -93,9 +71,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonShadow;
             ClientSize = new Size(984, 761);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(varausNappi);
+            Controls.Add(alueetjamokitNappi);
             Controls.Add(asiakasNappi);
             Controls.Add(label1);
             Name = "Hallinta";
@@ -108,8 +84,6 @@
 
         private Label label1;
         private Button asiakasNappi;
-        private Button varausNappi;
-        private Button button1;
-        private Button button2;
+        private Button alueetjamokitNappi;
     }
 }

@@ -33,57 +33,50 @@ namespace Mökkihöperö
             textBox1.Text = cmd.ExecuteScalar().ToString();
             connection.Close();
 
-            
+
 
 
         }
 
         private void lisääNappi_Click(object sender, EventArgs e)
         {
+
             
-
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open ();
-            MySqlCommand cmd = new MySqlCommand(
-                "INSERT INTO posti (postinro, toimipaikka) VALUES (66666,'kuopio')", connection);
-           
-
-            cmd.ExecuteNonQuery();
-            connection.Close();
-
-
 
         }
 
         private void päivitäNappi_Click(object sender, EventArgs e)
         {
-            /*
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("UPDATE Asiakkaat SET postinumero = @postinumero, etunimi = @etunimi, sukunimi = @sukunimi, lahiosoite = @lahiosoite, email = @email, puhelinnumero = @puhelinnumero WHERE asiakas_id = @asiakas_id", connection);
-                command.Parameters.AddWithValue("@postinumero", PostinumeroTextBox.Text);
-                command.Parameters.AddWithValue("@etunimi", EtunimiTextBox.Text);
-                command.Parameters.AddWithValue("@sukunimi", SukunimiTextBox.Text);
-                command.Parameters.AddWithValue("@lahiosoite", LahiosoiteTextBox.Text);
-                command.Parameters.AddWithValue("@email", EmailTextBox.Text);
-                command.Parameters.AddWithValue("@puhelinnumero", PuhelinnumeroTextBox.Text);
-                command.Parameters.AddWithValue("@asiakas_id", AsiakasIdTextBox.Text);
-                command.ExecuteNonQuery();
-            }
-            */
+
+
+            // Luodaan yhteys tietokantaan
+            MySqlConnection sqlConnection = new MySqlConnection(connectionString);
+
+            // Avataan yhteys
+            sqlConnection.Open();
+
+            // Määritellään SQL-kysely
+            string sqlQuery = "SELECT * FROM asiakas";
+
+            // Luodaan SqlDataAdapter-olio
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(sqlQuery, sqlConnection);
+
+            // Luodaan DataSet-olio
+            DataSet dataSet = new DataSet();
+
+            // Täytetään DataSet-olio SqlDataAdapter-olion avulla
+            dataAdapter.Fill(dataSet);
+
+            // Asetetaan DataSet-olion taulu DataGridView:n DataSource-ominaisuudeksi
+            dataGridView1.DataSource = dataSet.Tables[0];
+
+            // Suljetaan yhteys
+            sqlConnection.Close();
+
         }
         private void poistaNappi_Click(object sender, EventArgs e)
         {
-            /*
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("DELETE FROM Asiakkaat WHERE asiakas_id = @asiakas_id", connection);
-                command.Parameters.AddWithValue("@asiakas_id", AsiakasIdTextBox.Text);
-                command.ExecuteNonQuery();
-            }
-            */
+
         }
 
         private void Asiakkaat_Load(object sender, EventArgs e)
