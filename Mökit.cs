@@ -41,7 +41,7 @@ namespace Mökkihöperö
         }
 
         // Näytä alueen palvelut-näkymä
-        private void btnAlueenPalvelut_Click(object sender, EventArgs e)
+        private void BtnAlueenPalvelut_Click(object sender, EventArgs e)
         {
             ShowAlueenPalvelut();
         }
@@ -558,11 +558,11 @@ namespace Mökkihöperö
         }
 
 
-       
-
-
-
         
+
+
+
+
         private List<Mokki> haeMokit()
         {
             List<Mokki> mokit = new List<Mokki>();
@@ -615,21 +615,31 @@ namespace Mökkihöperö
             public string Varustelu { get; set; }
             public int Henkilomaara { get; set; }
         }
+        
 
+        ////
+        /// Tehdään pohja lopuille napeille, johon täytetään toiminnallisuudet myöhemmin
+        
+
+
+        private void BtnPoistaAlue_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BtnLisaaAlue_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnMuokkaaAluetta_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnTeeVaraus_Click(object sender, EventArgs e)
+        {
+            // Tähän linkki varauksien hallintaan
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
