@@ -36,13 +36,13 @@ namespace Mökkihöperö
             dataGridView1 = new DataGridView();
             monthCalendar1 = new MonthCalendar();
             label1 = new Label();
-            button5 = new Button();
+            btnTeeVaraus = new Button();
             btnLisaaMokki = new Button();
             btnMuokkaaMokki = new Button();
             btnPoistaMokki = new Button();
-            button9 = new Button();
-            button10 = new Button();
-            button11 = new Button();
+            btnLisaaAlue = new Button();
+            btnMuokkaaAluetta = new Button();
+            btnPoistaAlue = new Button();
             btnAlueenPalvelut = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -122,12 +122,12 @@ namespace Mökkihöperö
             // 
             // button5
             // 
-            button5.Location = new Point(1086, 355);
-            button5.Name = "button5";
-            button5.Size = new Size(220, 29);
-            button5.TabIndex = 8;
-            button5.Text = "Tee varaus";
-            button5.UseVisualStyleBackColor = true;
+            btnTeeVaraus.Location = new Point(1086, 355);
+            btnTeeVaraus.Name = "btnTeeVaraus";
+            btnTeeVaraus.Size = new Size(220, 29);
+            btnTeeVaraus.TabIndex = 8;
+            btnTeeVaraus.Text = "Tee varaus";
+            btnTeeVaraus.UseVisualStyleBackColor = true;
             // 
             // btnLisaaMokki
             // 
@@ -161,30 +161,30 @@ namespace Mökkihöperö
             // 
             // button9
             // 
-            button9.Location = new Point(669, 568);
-            button9.Name = "button9";
-            button9.Size = new Size(120, 29);
-            button9.TabIndex = 12;
-            button9.Text = "Lisää alue";
-            button9.UseVisualStyleBackColor = true;
+            btnLisaaAlue.Location = new Point(669, 568);
+            btnLisaaAlue.Name = "btnLisaaAlue";
+            btnLisaaAlue.Size = new Size(120, 29);
+            btnLisaaAlue.TabIndex = 12;
+            btnLisaaAlue.Text = "Lisää alue";
+            btnLisaaAlue.UseVisualStyleBackColor = true;
             // 
             // button10
             // 
-            button10.Location = new Point(795, 568);
-            button10.Name = "button10";
-            button10.Size = new Size(140, 29);
-            button10.TabIndex = 13;
-            button10.Text = "Muokkaa aluetta";
-            button10.UseVisualStyleBackColor = true;
+            btnMuokkaaAluetta.Location = new Point(795, 568);
+            btnMuokkaaAluetta.Name = "btnMuokkaaAluetta";
+            btnMuokkaaAluetta.Size = new Size(140, 29);
+            btnMuokkaaAluetta.TabIndex = 13;
+            btnMuokkaaAluetta.Text = "Muokkaa aluetta";
+            btnMuokkaaAluetta.UseVisualStyleBackColor = true;
             // 
             // button11
             // 
-            button11.Location = new Point(941, 568);
-            button11.Name = "button11";
-            button11.Size = new Size(104, 29);
-            button11.TabIndex = 14;
-            button11.Text = "Poista alue";
-            button11.UseVisualStyleBackColor = true;
+            btnPoistaAlue.Location = new Point(941, 568);
+            btnPoistaAlue.Name = "button11";
+            btnPoistaAlue.Size = new Size(104, 29);
+            btnPoistaAlue.TabIndex = 14;
+            btnPoistaAlue.Text = "Poista alue";
+            btnPoistaAlue.UseVisualStyleBackColor = true;
             // 
             // btnAlueenPalvelut
             // 
@@ -199,13 +199,13 @@ namespace Mökkihöperö
             // 
             ClientSize = new Size(1353, 636);
             Controls.Add(btnAlueenPalvelut);
-            Controls.Add(button11);
-            Controls.Add(button10);
-            Controls.Add(button9);
+            Controls.Add(btnPoistaAlue);
+            Controls.Add(btnMuokkaaAluetta);
+            Controls.Add(btnLisaaAlue);
             Controls.Add(btnPoistaMokki);
             Controls.Add(btnMuokkaaMokki);
             Controls.Add(btnLisaaMokki);
-            Controls.Add(button5);
+            Controls.Add(btnTeeVaraus);
             Controls.Add(label1);
             Controls.Add(monthCalendar1);
             Controls.Add(dataGridView1);
@@ -228,13 +228,14 @@ namespace Mökkihöperö
         private DataGridView dataGridView1;
         private MonthCalendar monthCalendar1;
         private Label label1;
-        private Button button5;
+        private Button btnTeeVaraus;
         private Button btnLisaaMokki;
         private Button btnMuokkaaMokki;
         private Button btnPoistaMokki;
-        private Button button9;
-        private Button button10;
-        private Button button11;
+        private Button btnLisaaAlue;
+        private Button btnMuokkaaAluetta;
+        private Button btnPoistaAlue;
         private Button btnAlueenPalvelut;
     }
 }
+
