@@ -615,26 +615,146 @@ namespace Mökkihöperö
             public string Varustelu { get; set; }
             public int Henkilomaara { get; set; }
         }
-        
+
 
         ////
         /// Tehdään pohja lopuille napeille, johon täytetään toiminnallisuudet myöhemmin
-        
-
-
-        private void BtnPoistaAlue_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private void BtnLisaaAlue_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            using (var lisaaAluePopup = new Form())
+            {
+                // Luo kontrollit popup-ikkunaan
+                var label = new Label();
+                label.Text = "Anna uuden alueen nimi:";
+                label.Location = new Point(10, 10);
+                var textBox = new TextBox();
+                textBox.Location = new Point(10, 30);
+                var okButton = new Button();
+                okButton.Text = "OK";
+                okButton.DialogResult = DialogResult.OK;
+                okButton.Location = new Point(10, 60);
+                var cancelButton = new Button();
+                cancelButton.Text = "Peruuta";
+                cancelButton.DialogResult = DialogResult.Cancel;
+                cancelButton.Location = new Point(80, 60);
+
+                // Lisää kontrollit popup-ikkunaan
+                lisaaAluePopup.Text = "Lisää uusi alue";
+                lisaaAluePopup.AcceptButton = okButton;
+                lisaaAluePopup.CancelButton = cancelButton;
+                lisaaAluePopup.ClientSize = new Size(200, 100);
+                lisaaAluePopup.Controls.Add(label);
+                lisaaAluePopup.Controls.Add(textBox);
+                lisaaAluePopup.Controls.Add(okButton);
+                lisaaAluePopup.Controls.Add(cancelButton);
+
+                // Näytä popup-ikkuna ja käsittele tulos
+                if (lisaaAluePopup.ShowDialog() == DialogResult.OK)
+                {
+                    // Lisää uusi alue tietokantaan
+                    string nimi = textBox.Text;
+                    string query = "INSERT INTO alue (nimi) VALUES (@nimi)";
+                    using (var connection = new SqlConnection("connection_string_here"))
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@nimi", nimi);
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
         }
+
+        private void BtnPoistaAlue_Click(object sender, EventArgs e)
+        {
+            if (dgvAlueet.SelectedRows.Count > 0)
+            {
+                int alueId = Convert.ToInt32(dgvAlueet.SelectedRows[0].Cells["alue_id"].Value);
+                string nimi = dgvAlueet.SelectedRows[0].Cells["nimi"].Value.ToString();
+                string vahvistusviesti = $"Haluatko varmasti poistaa alueen \"{nimi}\"?";
+
+                DialogResult result = MessageBox.Show(vahvistusviesti, "Vahvista poisto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    string sql = $"DELETE FROM alue WHERE alue_id = {alueId}";
+
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    using (MySqlCommand command = new MySqlCommand(sql, connection))
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Alue poistettu onnistuneesti.", "Poisto onnistui", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Valitse ensin poistettava alue.", "Virhe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
 
         private void btnMuokkaaAluetta_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (dgvAlueet.SelectedRows.Count > 0)
+            {
+                // Haetaan valitun alueen tiedot
+                int alueId = Convert.ToInt32(dgvAlueet.SelectedRows[0].Cells["alue_id"].Value);
+                string nykyinenNimi = dgvAlueet.SelectedRows[0].Cells["nimi"].Value.ToString();
+
+                // Luodaan uusi ikkuna, jossa käyttäjä voi muokata alueen nimeä
+                using (var muokkaaAluePopup = new Form())
+                {
+                    var label = new Label();
+                    label.Text = "Anna uusi nimi:";
+                    label.Location = new Point(10, 10);
+                    var textBox = new TextBox();
+                    textBox.Text = nykyinenNimi;
+                    textBox.Location = new Point(10, 30);
+                    var okButton = new Button();
+                    okButton.Text = "OK";
+                    okButton.DialogResult = DialogResult.OK;
+                    okButton.Location = new Point(10, 60);
+                    var cancelButton = new Button();
+                    cancelButton.Text = "Peruuta";
+                    cancelButton.DialogResult = DialogResult.Cancel;
+                    cancelButton.Location = new Point(80, 60);
+
+                    muokkaaAluePopup.Text = "Muokkaa alueen nimeä";
+                    muokkaaAluePopup.AcceptButton = okButton;
+                    muokkaaAluePopup.CancelButton = cancelButton;
+                    muokkaaAluePopup.ClientSize = new Size(200, 100);
+                    muokkaaAluePopup.Controls.Add(label);
+                    muokkaaAluePopup.Controls.Add(textBox);
+                    muokkaaAluePopup.Controls.Add(okButton);
+                    muokkaaAluePopup.Controls.Add(cancelButton);
+
+                    // Näytä popup-ikkuna ja käsittele tulos
+                    if (muokkaaAluePopup.ShowDialog() == DialogResult.OK)
+                    {
+                        string uusiNimi = textBox.Text;
+
+                        // Päivitä alueen nimi tietokantaan
+                        string query = "UPDATE alue SET nimi = @uusiNimi WHERE alue_id = @alueId";
+                        using (var connection = new SqlConnection("connection_string_here"))
+                        using (var command = new SqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@alueId", alueId);
+                            command.Parameters.AddWithValue("@uusiNimi", uusiNimi);
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Valitse ensin muokattava alue.", "Virhe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnTeeVaraus_Click(object sender, EventArgs e)
@@ -643,3 +763,6 @@ namespace Mökkihöperö
         }
     }
 }
+
+
+
