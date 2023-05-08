@@ -28,7 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Laskutus));
             label1 = new Label();
+            tulostusnappi = new Button();
+            textBox1 = new TextBox();
+            printPreviewDialog1 = new PrintPreviewDialog();
+            dokumenttiPrint = new System.Drawing.Printing.PrintDocument();
             SuspendLayout();
             // 
             // label1
@@ -41,12 +46,46 @@
             label1.TabIndex = 0;
             label1.Text = "Laskutus";
             // 
+            // tulostusnappi
+            // 
+            tulostusnappi.Location = new Point(420, 493);
+            tulostusnappi.Margin = new Padding(2);
+            tulostusnappi.Name = "tulostusnappi";
+            tulostusnappi.Size = new Size(92, 33);
+            tulostusnappi.TabIndex = 4;
+            tulostusnappi.Text = "Tulosta";
+            tulostusnappi.UseVisualStyleBackColor = true;
+            tulostusnappi.Click += tulostusnappi_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(331, 148);
+            textBox1.Margin = new Padding(2);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(268, 310);
+            textBox1.TabIndex = 5;
+            textBox1.TextChanged += textBox1_TextChanged_1;
+            // 
+            // printPreviewDialog1
+            // 
+            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog1.ClientSize = new Size(400, 300);
+            printPreviewDialog1.Document = dokumenttiPrint;
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
+            // 
             // Laskutus
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonShadow;
-            ClientSize = new Size(984, 761);
+            ClientSize = new Size(984, 629);
+            Controls.Add(textBox1);
+            Controls.Add(tulostusnappi);
             Controls.Add(label1);
             Name = "Laskutus";
             Text = "Laskutus";
@@ -57,5 +96,9 @@
         #endregion
 
         private Label label1;
+        private Button tulostusnappi;
+        private TextBox textBox1;
+        private PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument dokumenttiPrint;
     }
 }
