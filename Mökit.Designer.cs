@@ -54,9 +54,8 @@ namespace Mökkihöperö
             textBox1.Size = new Size(225, 27);
             textBox1.TabIndex = 0;
             textBox1.Text = "Hakukenttä";
-            
             // 
-            // button1
+            // btnHaku
             // 
             btnHaku.Location = new Point(268, 33);
             btnHaku.Name = "btnHaku";
@@ -66,9 +65,9 @@ namespace Mökkihöperö
             btnHaku.UseVisualStyleBackColor = true;
             btnHaku.Click += btnHaku_Click;
             // 
-            // button2
+            // btnPerustiedot
             // 
-            btnPerustiedot.Location = new Point(451, 31);
+            btnPerustiedot.Location = new Point(451, 33);
             btnPerustiedot.Name = "btnPerustiedot";
             btnPerustiedot.Size = new Size(94, 29);
             btnPerustiedot.TabIndex = 2;
@@ -76,7 +75,7 @@ namespace Mökkihöperö
             btnPerustiedot.UseVisualStyleBackColor = true;
             btnPerustiedot.Click += btnPerustiedot_Click;
             // 
-            // button3
+            // btnOsoitetiedot
             // 
             btnOsoitetiedot.Location = new Point(551, 33);
             btnOsoitetiedot.Name = "btnOsoitetiedot";
@@ -86,7 +85,7 @@ namespace Mökkihöperö
             btnOsoitetiedot.UseVisualStyleBackColor = true;
             btnOsoitetiedot.Click += btnOsoitetiedot_Click;
             // 
-            // button4
+            // btnKuvausJaVarustelu
             // 
             btnKuvausJaVarustelu.Location = new Point(687, 33);
             btnKuvausJaVarustelu.Name = "btnKuvausJaVarustelu";
@@ -130,7 +129,7 @@ namespace Mökkihöperö
             button5.Text = "Tee varaus";
             button5.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btnLisaaMokki
             // 
             btnLisaaMokki.Location = new Point(12, 568);
             btnLisaaMokki.Name = "btnLisaaMokki";
@@ -140,7 +139,7 @@ namespace Mökkihöperö
             btnLisaaMokki.UseVisualStyleBackColor = true;
             btnLisaaMokki.Click += btnLisaaMokki_Click;
             // 
-            // button7
+            // btnMuokkaaMokki
             // 
             btnMuokkaaMokki.Location = new Point(146, 568);
             btnMuokkaaMokki.Name = "btnMuokkaaMokki";
@@ -150,7 +149,7 @@ namespace Mökkihöperö
             btnMuokkaaMokki.UseVisualStyleBackColor = true;
             btnMuokkaaMokki.Click += btnMuokkaaMokki_Click;
             // 
-            // button8
+            // btnPoistaMokki
             // 
             btnPoistaMokki.Location = new Point(318, 568);
             btnPoistaMokki.Name = "btnPoistaMokki";
@@ -187,7 +186,7 @@ namespace Mökkihöperö
             button11.Text = "Poista alue";
             button11.UseVisualStyleBackColor = true;
             // 
-            // button12
+            // btnAlueenPalvelut
             // 
             btnAlueenPalvelut.Location = new Point(889, 33);
             btnAlueenPalvelut.Name = "btnAlueenPalvelut";
@@ -239,4 +238,3 @@ namespace Mökkihöperö
         private Button btnAlueenPalvelut;
     }
 }
-
