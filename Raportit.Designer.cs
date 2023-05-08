@@ -28,19 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            button1 = new Button();
+            Raportti = new ListBox();
+            label3 = new Label();
+            startDatePicker = new DateTimePicker();
+            endDatePicker = new DateTimePicker();
             SuspendLayout();
             // 
-            // label1
+            // button1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(378, 81);
-            label1.Name = "label1";
-            label1.Size = new Size(155, 50);
-            label1.TabIndex = 0;
-            label1.Text = "Raportit";
-            label1.Click += label1_Click;
+            button1.Location = new Point(118, 265);
+            button1.Name = "button1";
+            button1.Size = new Size(114, 43);
+            button1.TabIndex = 0;
+            button1.Text = "Hae";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // Raportti
+            // 
+            Raportti.FormattingEnabled = true;
+            Raportti.ItemHeight = 15;
+            Raportti.Location = new Point(463, 143);
+            Raportti.Name = "Raportti";
+            Raportti.Size = new Size(324, 349);
+            Raportti.TabIndex = 1;
+
+            // 
+            // label3
+            // 
+            label3.Location = new Point(0, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(100, 23);
+            label3.TabIndex = 0;
+            // 
+            // startDatePicker
+            // 
+            startDatePicker.Location = new Point(118, 143);
+            startDatePicker.Name = "startDatePicker";
+            startDatePicker.Size = new Size(200, 23);
+            startDatePicker.TabIndex = 2;
+            // 
+            // endDatePicker
+            // 
+            endDatePicker.Location = new Point(118, 192);
+            endDatePicker.Name = "endDatePicker";
+            endDatePicker.Size = new Size(200, 23);
+            endDatePicker.TabIndex = 3;
             // 
             // Raportit
             // 
@@ -48,15 +82,22 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonShadow;
             ClientSize = new Size(984, 761);
-            Controls.Add(label1);
+            Controls.Add(endDatePicker);
+            Controls.Add(startDatePicker);
+            Controls.Add(label3);
+            Controls.Add(Raportti);
+            Controls.Add(button1);
             Name = "Raportit";
             Text = "Raportit";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private Button button1;
+        private ListBox Raportti;
+        private Label label3;
+        private DateTimePicker startDatePicker;
+        private DateTimePicker endDatePicker;
     }
 }
