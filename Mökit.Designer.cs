@@ -128,6 +128,7 @@ namespace Mökkihöperö
             btnTeeVaraus.TabIndex = 8;
             btnTeeVaraus.Text = "Tee varaus";
             btnTeeVaraus.UseVisualStyleBackColor = true;
+            btnTeeVaraus.Click += btnTeeVaraus_Click;
             // 
             // btnLisaaMokki
             // 
@@ -167,6 +168,7 @@ namespace Mökkihöperö
             btnLisaaAlue.TabIndex = 12;
             btnLisaaAlue.Text = "Lisää alue";
             btnLisaaAlue.UseVisualStyleBackColor = true;
+            btnLisaaAlue.Click += BtnLisaaAlue_Click;
             // 
             // button10
             // 
@@ -176,15 +178,19 @@ namespace Mökkihöperö
             btnMuokkaaAluetta.TabIndex = 13;
             btnMuokkaaAluetta.Text = "Muokkaa aluetta";
             btnMuokkaaAluetta.UseVisualStyleBackColor = true;
+            btnMuokkaaAluetta.Click += btnMuokkaaAluetta_Click;
+
+
             // 
             // button11
             // 
             btnPoistaAlue.Location = new Point(941, 568);
-            btnPoistaAlue.Name = "button11";
+            btnPoistaAlue.Name = "btnPoistaAlue";
             btnPoistaAlue.Size = new Size(104, 29);
             btnPoistaAlue.TabIndex = 14;
             btnPoistaAlue.Text = "Poista alue";
             btnPoistaAlue.UseVisualStyleBackColor = true;
+            btnPoistaAlue.Click += BtnPoistaAlue_Click;
             // 
             // btnAlueenPalvelut
             // 
@@ -194,6 +200,7 @@ namespace Mökkihöperö
             btnAlueenPalvelut.TabIndex = 15;
             btnAlueenPalvelut.Text = "Alueen palvelut";
             btnAlueenPalvelut.UseVisualStyleBackColor = true;
+            btnAlueenPalvelut.Click += BtnAlueenPalvelut_Click;
             // 
             // Mokit
             // 
@@ -220,6 +227,8 @@ namespace Mökkihöperö
             PerformLayout();
         }
 
+        
+
         private TextBox textBox1;
         private Button btnHaku;
         private Button btnPerustiedot;
@@ -238,4 +247,5 @@ namespace Mökkihöperö
         private Button btnAlueenPalvelut;
     }
 }
+
 
