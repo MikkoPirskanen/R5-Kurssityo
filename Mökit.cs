@@ -6,7 +6,7 @@ using System.Data;
 
 namespace Mökkihöperö
 {
-    public partial class Mokit : Form
+    public partial class Mokit : Form 
     {
         // Muuta tähän tietokannan yhteysasetukset
         private const string ConnectionString = "server=127.0.0.1; database=vn;uid=root;pwd=VillageNewbies;";
@@ -500,7 +500,10 @@ namespace Mökkihöperö
                 this.Controls.Add(labelKuvaus);
                 this.Controls.Add(textBoxKuvaus);
                 this.Controls.Add(buttonLisaa);
-
+                this.Controls.Add(labelVarustelu);
+                this.Controls.Add(txtVarustelu);
+                this.Controls.Add(labelHenkilomaara);
+                this.Controls.Add(txtHenkilomaara);
 
 
                 form.Controls.Add(labelMokkiId);
@@ -521,7 +524,7 @@ namespace Mökkihöperö
 
                 // Haetaan tietokannasta valitun mökin tiedot
                 string mokkiId = txtMokkiId.Text;
-                string query = "SELECT alue_id, postinro, mokkinimi, katuosoite, hinta, kuvaus FROM mokit WHERE mokki_id = " + mokkiId;
+                string query = "SELECT alue_id, postinro, mokkinimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu FROM mokit WHERE mokki_id = " + mokkiId;
 
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
@@ -531,35 +534,25 @@ namespace Mökkihöperö
 
                     if (reader.Read())
                     {
+                        txtMokkiId.Text = reader["mokki_id"].ToString();
                         txtAlueId.Text = reader["alue_id"].ToString();
                         txtPostinro.Text = reader["postinro"].ToString();
                         txtMokkinimi.Text = reader["mokkinimi"].ToString();
                         txtKatuosoite.Text = reader["katuosoite"].ToString();
                         txtHinta.Text = reader["hinta"].ToString();
                         textBoxKuvaus.Text = reader["kuvaus"].ToString();
+                        txtHenkilomaara.Text = reader["henkilomaara"].ToString();
+                        txtVarustelu.Text = reader["varustelu"].ToString();
+
                     }
 
                     reader.Close();
                 }
 
-                // show the form
+                // Näytetään ikkuna
                 form.ShowDialog();
 
-                // Tähän voidaan lisätä koodia, joka tuo listan mökeistä ja niiden tiedoista,
-                // josta käyttäjä voi valita muokattavan mökin ja jonka tiedot haetaan tietokannasta
-                // ja asetetaan TextBox-kenttiin käyttäjän muokattavaksi. Kun muokkaus on tehty
-                // ja tallennettu tietokantaan, ne näytetään listassa.
-
-                // Esimerkiksi:
-
-                // ListBox listBoxMokit = new ListBox();
-                // listBoxMokit.DataSource = haeMokit(); // haeMokit()-funktio palauttaa mökkilistan tietokannasta
-                // listBoxMokit.DisplayMember = "Nimi"; // Listassa näytetään mökkien nimet
-                // listBoxMokit.ValueMember = "Id"; // Listan arvot ovat mökkien ID:t
-                // listBoxMokit.Location = new Point(10, buttonLisaa.Bottom + 10);
-                // listBoxMokit.SelectedIndexChanged += new EventHandler(listBoxMokit_SelectedIndexChanged);
-
-                // this.Controls.Add(listBoxMokit);
+                
 
             }
         }
@@ -625,7 +618,6 @@ namespace Mökkihöperö
 
     }
 }
-
 
 
 
