@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Data;
+using MySqlX.XDevAPI.Common;
 
 namespace Mökkihöperö
 {
@@ -23,19 +24,23 @@ namespace Mökkihöperö
         }
 
         // Navigointi napit
-        private void BtnAsiakkaat_Click(object sender, EventArgs e)
+        private void BtnLaskutus_Click(object sender, EventArgs e)
         {
-
+            Laskutus laskutus = new Laskutus();
+            laskutus.Show();
         }
 
         private void BtnHallinta_Click(object sender, EventArgs e)
         {
-
+            Hallinta hallinta = new Hallinta();
+            hallinta.Show();
         }
 
-        private void BtnLaskutus_Click(object sender, EventArgs e) 
+        private void BtnAsiakkaat_Click(object sender, EventArgs e)
         {
-            
+            Asiakkaat asiakkaat = new Asiakkaat();
+
+            asiakkaat.Show();
         }
 
 
@@ -778,7 +783,8 @@ namespace Mökkihöperö
 
         private void btnTeeVaraus_Click(object sender, EventArgs e)
         {
-            // Tähän linkki varauksien hallintaan
+            Varaukset varaus = new Varaukset();
+            varaus.Show();
         }
     }
 }
