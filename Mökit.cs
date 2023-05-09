@@ -679,7 +679,7 @@ namespace Mökkihöperö
                     // Lisää uusi alue tietokantaan
                     string nimi = textBox.Text;
                     string query = "INSERT INTO alue (nimi) VALUES (@nimi)";
-                    using (var connection = new SqlConnection("connection_string_here"))
+                    using (var connection = new SqlConnection(ConnectionString))
                     using (var command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@nimi", nimi);
