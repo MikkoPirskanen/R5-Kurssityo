@@ -89,6 +89,7 @@
             Controls.Add(label1);
             Name = "Laskutus";
             Text = "Laskutus";
+            Load += Laskutus_Load;
             ResumeLayout(false);
             PerformLayout();
         }

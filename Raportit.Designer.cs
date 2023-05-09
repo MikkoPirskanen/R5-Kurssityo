@@ -29,31 +29,22 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            Raportti = new ListBox();
             label3 = new Label();
             startDatePicker = new DateTimePicker();
             endDatePicker = new DateTimePicker();
+            majoituksetDgv = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)majoituksetDgv).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(118, 265);
+            button1.Location = new Point(410, 233);
             button1.Name = "button1";
             button1.Size = new Size(114, 43);
             button1.TabIndex = 0;
             button1.Text = "Hae";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-            // 
-            // Raportti
-            // 
-            Raportti.FormattingEnabled = true;
-            Raportti.ItemHeight = 15;
-            Raportti.Location = new Point(463, 143);
-            Raportti.Name = "Raportti";
-            Raportti.Size = new Size(324, 349);
-            Raportti.TabIndex = 1;
-
             // 
             // label3
             // 
@@ -64,17 +55,26 @@
             // 
             // startDatePicker
             // 
-            startDatePicker.Location = new Point(118, 143);
+            startDatePicker.Location = new Point(374, 142);
             startDatePicker.Name = "startDatePicker";
             startDatePicker.Size = new Size(200, 23);
             startDatePicker.TabIndex = 2;
             // 
             // endDatePicker
             // 
-            endDatePicker.Location = new Point(118, 192);
+            endDatePicker.Location = new Point(374, 183);
             endDatePicker.Name = "endDatePicker";
             endDatePicker.Size = new Size(200, 23);
             endDatePicker.TabIndex = 3;
+            // 
+            // majoituksetDgv
+            // 
+            majoituksetDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            majoituksetDgv.Location = new Point(12, 316);
+            majoituksetDgv.Name = "majoituksetDgv";
+            majoituksetDgv.RowTemplate.Height = 25;
+            majoituksetDgv.Size = new Size(960, 433);
+            majoituksetDgv.TabIndex = 8;
             // 
             // Raportit
             // 
@@ -82,22 +82,24 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonShadow;
             ClientSize = new Size(984, 761);
+            Controls.Add(majoituksetDgv);
             Controls.Add(endDatePicker);
             Controls.Add(startDatePicker);
             Controls.Add(label3);
-            Controls.Add(Raportti);
             Controls.Add(button1);
             Name = "Raportit";
             Text = "Raportit";
+            Load += Raportit_Load;
+            ((System.ComponentModel.ISupportInitialize)majoituksetDgv).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button button1;
-        private ListBox Raportti;
         private Label label3;
         private DateTimePicker startDatePicker;
         private DateTimePicker endDatePicker;
+        private DataGridView majoituksetDgv;
     }
 }

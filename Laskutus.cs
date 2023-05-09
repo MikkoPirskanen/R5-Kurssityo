@@ -89,5 +89,10 @@ namespace Mökkihöperö
         {
 
         }
+
+        private void Laskutus_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
