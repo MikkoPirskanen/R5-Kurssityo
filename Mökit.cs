@@ -703,8 +703,8 @@ namespace Mökkihöperö
                 {
                     string sql = $"DELETE FROM alue WHERE alue_id = {alueId}";
 
-                    using (MySqlConnection connection = new MySqlConnection(connectionString))
-                    using (MySqlCommand command = new MySqlCommand(sql, connection))
+                    using (SqlConnection connection = new SqlConnection(ConnectionString))
+                    using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
