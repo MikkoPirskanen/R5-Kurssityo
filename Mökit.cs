@@ -692,10 +692,10 @@ namespace Mökkihöperö
 
         private void BtnPoistaAlue_Click(object sender, EventArgs e)
         {
-            if (dgvAlueet.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                int alueId = Convert.ToInt32(dgvAlueet.SelectedRows[0].Cells["alue_id"].Value);
-                string nimi = dgvAlueet.SelectedRows[0].Cells["nimi"].Value.ToString();
+                int alueId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["alue_id"].Value);
+                string nimi = dataGridView1.SelectedRows[0].Cells["nimi"].Value.ToString();
                 string vahvistusviesti = $"Haluatko varmasti poistaa alueen \"{nimi}\"?";
 
                 DialogResult result = MessageBox.Show(vahvistusviesti, "Vahvista poisto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -724,11 +724,11 @@ namespace Mökkihöperö
 
         private void btnMuokkaaAluetta_Click(object sender, EventArgs e)
         {
-            if (dgvAlueet.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
                 // Haetaan valitun alueen tiedot
-                int alueId = Convert.ToInt32(dgvAlueet.SelectedRows[0].Cells["alue_id"].Value);
-                string nykyinenNimi = dgvAlueet.SelectedRows[0].Cells["nimi"].Value.ToString();
+                int alueId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["alue_id"].Value);
+                string nykyinenNimi = dataGridView1.SelectedRows[0].Cells["nimi"].Value.ToString();
 
                 // Luodaan uusi ikkuna, jossa käyttäjä voi muokata alueen nimeä
                 using (var muokkaaAluePopup = new Form())
