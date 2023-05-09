@@ -22,6 +22,23 @@ namespace Mökkihöperö
             ShowPerustiedot();
         }
 
+        // Navigointi napit
+        private void BtnAsiakkaat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnHallinta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnLaskutus_Click(object sender, EventArgs e) 
+        {
+            
+        }
+
+
         // Näytä perustiedot-näkymä
         private void btnPerustiedot_Click(object sender, EventArgs e)
         {
@@ -45,6 +62,8 @@ namespace Mökkihöperö
         {
             ShowAlueenPalvelut();
         }
+
+
 
         // Näytä perustiedot
         private void ShowPerustiedot()
