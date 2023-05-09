@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Data;
 using MySqlX.XDevAPI.Common;
+using MySql.Data.MySqlClient;
+
 
 namespace Mökkihöperö
 {
@@ -32,8 +34,9 @@ namespace Mökkihöperö
 
         private void BtnHallinta_Click(object sender, EventArgs e)
         {
-            Hallinta hallinta = new Hallinta();
-            hallinta.Show();
+            Raportit raportit = new Raportit();
+            raportit.Show();
+
         }
 
         private void BtnAsiakkaat_Click(object sender, EventArgs e)
@@ -73,27 +76,47 @@ namespace Mökkihöperö
         // Näytä perustiedot
         private void ShowPerustiedot()
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                // Avaa yhteys tietokantaan
-                connection.Open();
 
-                // SQL-kysely mökkien perustietojen hakemiseksi
-                string query = @"SELECT A.nimi AS alue, M.mokkinimi, M.henkilomaara, M.hinta, M.alue_id, M.mokki_id
-                                 FROM mokki M
-                                 JOIN alue A ON A.alue_id = M.alue_id";
 
-                // Luo SQL-komento ja yhdistä se tietokantayhteyteen
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    // Luo uusi DataTable ja täytä se SQL-komennon tuloksilla
-                    DataTable table = new DataTable();
-                    table.Load(command.ExecuteReader());
 
-                    // Aseta taulukko datagridview-kontrolliin
-                    dataGridView1.DataSource = table;
-                }
-            }
+
+            MySqlConnection sqlConnection = new MySqlConnection(ConnectionString);
+            sqlConnection.Open();
+
+
+            string sqlQuery = @"SELECT A.nimi, M.mokkinimi, M.katuosoite, M.henkilomaara, M.hinta, M.Kuvaus, M.varustelu FROM mokki M JOIN alue A ON A.alue_id = M.alue_id";
+
+
+
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, sqlConnection);
+
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet, "mokit");
+
+            dataGridView1.DataSource = dataSet.Tables["mokit"];
+            dataGridView1.Columns[0].Width = 120;
+            dataGridView1.Columns[1].Width = 120;
+            dataGridView1.Columns[2].Width = 120;
+            dataGridView1.Columns[3].Width = 50;
+            dataGridView1.Columns[4].Width = 50;
+            dataGridView1.Columns[5].Width = 300;
+            dataGridView1.Columns[6].Width = 300;
+
+            dataGridView1.Columns[0].HeaderText = "Alue";
+            dataGridView1.Columns[1].HeaderText = "Mökin nimi";
+            dataGridView1.Columns[2].HeaderText = "Katuosoite";
+            dataGridView1.Columns[3].HeaderText = "Hlö";
+            dataGridView1.Columns[4].HeaderText = "Hinta";
+            dataGridView1.Columns[5].HeaderText = "Kuvaus";
+            dataGridView1.Columns[6].HeaderText = "Varustelu";
+
+
+
+
+
+            sqlConnection.Close();
+
         }
 
         private void ShowOsoitetiedot()

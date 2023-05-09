@@ -43,7 +43,7 @@ namespace Mökkihöperö
             btnPoistaAlue = new Button();
             btnAlueenPalvelut = new Button();
             btnAsiakkaat = new Button();
-            btnHallinta = new Button();
+            btnRaportointi = new Button();
             btnLaskutus = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -52,7 +52,7 @@ namespace Mökkihöperö
             // 
             textBox1.Location = new Point(37, 33);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(225, 27);
+            textBox1.Size = new Size(225, 23);
             textBox1.TabIndex = 0;
             textBox1.Text = "Hakukenttä";
             // 
@@ -103,12 +103,12 @@ namespace Mökkihöperö
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1033, 494);
+            dataGridView1.Size = new Size(1101, 494);
             dataGridView1.TabIndex = 5;
             // 
             // btnTeeVaraus
             // 
-            btnTeeVaraus.Location = new Point(1099, 68);
+            btnTeeVaraus.Location = new Point(1228, 157);
             btnTeeVaraus.Name = "btnTeeVaraus";
             btnTeeVaraus.Size = new Size(220, 29);
             btnTeeVaraus.TabIndex = 8;
@@ -186,9 +186,9 @@ namespace Mökkihöperö
             btnAlueenPalvelut.UseVisualStyleBackColor = true;
             btnAlueenPalvelut.Click += BtnAlueenPalvelut_Click;
             // 
-            // button1
+            // btnAsiakkaat
             // 
-            btnAsiakkaat.Location = new Point(1099, 192);
+            btnAsiakkaat.Location = new Point(1228, 335);
             btnAsiakkaat.Name = "btnAsiakkaat";
             btnAsiakkaat.Size = new Size(220, 31);
             btnAsiakkaat.TabIndex = 16;
@@ -196,19 +196,19 @@ namespace Mökkihöperö
             btnAsiakkaat.UseVisualStyleBackColor = true;
             btnAsiakkaat.Click += BtnAsiakkaat_Click;
             // 
-            // button2
+            // btnRaportointi
             // 
-            btnHallinta.Location = new Point(1099, 229);
-            btnHallinta.Name = "btnHallinta";
-            btnHallinta.Size = new Size(220, 29);
-            btnHallinta.TabIndex = 17;
-            btnHallinta.Text = "Hallinta";
-            btnHallinta.UseVisualStyleBackColor = true;
-            btnHallinta.Click += BtnHallinta_Click;
+            btnRaportointi.Location = new Point(1228, 372);
+            btnRaportointi.Name = "btnRaportointi";
+            btnRaportointi.Size = new Size(220, 29);
+            btnRaportointi.TabIndex = 17;
+            btnRaportointi.Text = "Raportointi";
+            btnRaportointi.UseVisualStyleBackColor = true;
+            btnRaportointi.Click += BtnHallinta_Click;
             // 
-            // button3
+            // btnLaskutus
             // 
-            btnLaskutus.Location = new Point(1099, 264);
+            btnLaskutus.Location = new Point(1228, 407);
             btnLaskutus.Name = "btnLaskutus";
             btnLaskutus.Size = new Size(220, 29);
             btnLaskutus.TabIndex = 18;
@@ -218,9 +218,9 @@ namespace Mökkihöperö
             // 
             // Mokit
             // 
-            ClientSize = new Size(1353, 636);
+            ClientSize = new Size(1528, 684);
             Controls.Add(btnLaskutus);
-            Controls.Add(btnHallinta);
+            Controls.Add(btnRaportointi);
             Controls.Add(btnAsiakkaat);
             Controls.Add(btnAlueenPalvelut);
             Controls.Add(btnPoistaAlue);
@@ -237,12 +237,11 @@ namespace Mökkihöperö
             Controls.Add(btnHaku);
             Controls.Add(textBox1);
             Name = "Mokit";
+            StartPosition = FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
-
-        
 
         private TextBox textBox1;
         private Button btnHaku;
@@ -259,7 +258,7 @@ namespace Mökkihöperö
         private Button btnPoistaAlue;
         private Button btnAlueenPalvelut;
         private Button btnAsiakkaat;
-        private Button btnHallinta;
+        private Button btnRaportointi;
         private Button btnLaskutus;
     }
 }
