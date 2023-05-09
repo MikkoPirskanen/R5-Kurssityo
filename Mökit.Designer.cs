@@ -242,20 +242,7 @@ namespace Mökkihöperö
             PerformLayout();
         }
 
-        private void BtnLaskutus_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void BtnHallinta_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void BtnAsiakkaat_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         private TextBox textBox1;
         private Button btnHaku;
