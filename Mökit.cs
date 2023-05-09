@@ -6,7 +6,7 @@ using System.Data;
 
 namespace Mökkihöperö
 {
-    public partial class Mokit : Form 
+    public partial class Mokit : Form
     {
         // Muuta tähän tietokannan yhteysasetukset
         private const string ConnectionString = "server=127.0.0.1; database=vn;uid=root;pwd=VillageNewbies;";
@@ -234,7 +234,7 @@ namespace Mökkihöperö
                             deleteMokkiCommand.Parameters.AddWithValue("@mokki_id", mokkiId);
                             deleteMokkiCommand.ExecuteNonQuery();
 
-                            
+
 
                             // Päivitetään näkymä
                             dataGridView1.DataSource = haeMokit();
@@ -252,7 +252,7 @@ namespace Mökkihöperö
             }
         }
 
-        
+
 
 
         // Mökkien hallintaa: mökin lisäys
@@ -492,7 +492,7 @@ namespace Mökkihöperö
                 };
 
 
-                
+
                 this.Controls.Add(labelMokkinimi);
                 this.Controls.Add(txtMokkinimi);
                 this.Controls.Add(labelHinta);
@@ -552,13 +552,13 @@ namespace Mökkihöperö
                 // Näytetään ikkuna
                 form.ShowDialog();
 
-                
+
 
             }
         }
 
 
-        
+
 
 
 
@@ -763,6 +763,16 @@ namespace Mökkihöperö
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
