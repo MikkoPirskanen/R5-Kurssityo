@@ -194,6 +194,7 @@ namespace Mökkihöperö
             btnAsiakkaat.TabIndex = 16;
             btnAsiakkaat.Text = "Asiakkaat";
             btnAsiakkaat.UseVisualStyleBackColor = true;
+            btnAsiakkaat.Click += BtnAsiakkaat_Click;
             // 
             // button2
             // 
@@ -203,6 +204,7 @@ namespace Mökkihöperö
             btnHallinta.TabIndex = 17;
             btnHallinta.Text = "Hallinta";
             btnHallinta.UseVisualStyleBackColor = true;
+            btnHallinta.Click += BtnHallinta_Click;
             // 
             // button3
             // 
@@ -212,6 +214,7 @@ namespace Mökkihöperö
             btnLaskutus.TabIndex = 18;
             btnLaskutus.Text = "Laskutus";
             btnLaskutus.UseVisualStyleBackColor = true;
+            btnLaskutus.Click += BtnLaskutus_Click;
             // 
             // Mokit
             // 
@@ -237,6 +240,21 @@ namespace Mökkihöperö
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void BtnLaskutus_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BtnHallinta_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BtnAsiakkaat_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private TextBox textBox1;
