@@ -42,9 +42,9 @@ namespace Mökkihöperö
             btnMuokkaaAluetta = new Button();
             btnPoistaAlue = new Button();
             btnAlueenPalvelut = new Button();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            btnAsiakkaat = new Button();
+            btnHallinta = new Button();
+            btnLaskutus = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -188,37 +188,37 @@ namespace Mökkihöperö
             // 
             // button1
             // 
-            button1.Location = new Point(1099, 192);
-            button1.Name = "button1";
-            button1.Size = new Size(220, 31);
-            button1.TabIndex = 16;
-            button1.Text = "Asiakkaat";
-            button1.UseVisualStyleBackColor = true;
+            btnAsiakkaat.Location = new Point(1099, 192);
+            btnAsiakkaat.Name = "btnAsiakkaat";
+            btnAsiakkaat.Size = new Size(220, 31);
+            btnAsiakkaat.TabIndex = 16;
+            btnAsiakkaat.Text = "Asiakkaat";
+            btnAsiakkaat.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(1099, 229);
-            button2.Name = "button2";
-            button2.Size = new Size(220, 29);
-            button2.TabIndex = 17;
-            button2.Text = "Hallinta";
-            button2.UseVisualStyleBackColor = true;
+            btnHallinta.Location = new Point(1099, 229);
+            btnHallinta.Name = "btnHallinta";
+            btnHallinta.Size = new Size(220, 29);
+            btnHallinta.TabIndex = 17;
+            btnHallinta.Text = "Hallinta";
+            btnHallinta.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            button3.Location = new Point(1099, 264);
-            button3.Name = "button3";
-            button3.Size = new Size(220, 29);
-            button3.TabIndex = 18;
-            button3.Text = "Laskutus";
-            button3.UseVisualStyleBackColor = true;
+            btnLaskutus.Location = new Point(1099, 264);
+            btnLaskutus.Name = "btnLaskutus";
+            btnLaskutus.Size = new Size(220, 29);
+            btnLaskutus.TabIndex = 18;
+            btnLaskutus.Text = "Laskutus";
+            btnLaskutus.UseVisualStyleBackColor = true;
             // 
             // Mokit
             // 
             ClientSize = new Size(1353, 636);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnLaskutus);
+            Controls.Add(btnHallinta);
+            Controls.Add(btnAsiakkaat);
             Controls.Add(btnAlueenPalvelut);
             Controls.Add(btnPoistaAlue);
             Controls.Add(btnMuokkaaAluetta);
@@ -253,8 +253,8 @@ namespace Mökkihöperö
         private Button btnMuokkaaAluetta;
         private Button btnPoistaAlue;
         private Button btnAlueenPalvelut;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btnAsiakkaat;
+        private Button btnHallinta;
+        private Button btnLaskutus;
     }
 }
