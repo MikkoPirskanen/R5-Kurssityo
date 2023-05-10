@@ -121,70 +121,66 @@ namespace Mökkihöperö
 
         private void ShowOsoitetiedot()
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                // Avaa yhteys tietokantaan
-                connection.Open();
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+            string query = @"SELECT m.mokki_id, m.mokkinimi, m.katuosoite, m.hinta, m.kuvaus, m.henkilomaara, m.varustelu, a.nimi AS alue, p.toimipaikka AS postitoimipaikka
+                FROM mokki m
+                JOIN alue a ON a.alue_id = m.alue_id
+                JOIN posti p ON p.postinro = m.postinro";
 
-                // SQL-kysely mökkien osoitetietojen hakemiseksi
-                string query = @"SELECT mokkinimi, katuosoite, postinro, postitoimipaikka
-                                 FROM mokki M
-                                 JOIN posti P ON P.postinro = M.postinro";
+            MySqlCommand command = new MySqlCommand(query, connection);
+            DataTable table = new DataTable();
+            table.Load(command.ExecuteReader());
+            dataGridView1.DataSource = table;
 
-                // Luo SQL-komento ja yhdistä se tietokantayhteyteen
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    // Luo DataTable, joka sisältää tietokannasta haetut tiedot
-                    DataTable table = new DataTable();
-                    table.Load(command.ExecuteReader());
+            dataGridView1.Columns["mokki_id"].HeaderText = "Mökin ID";
+            dataGridView1.Columns["mokkinimi"].HeaderText = "Mökin nimi";
+            dataGridView1.Columns["katuosoite"].HeaderText = "Katuosoite";
+            dataGridView1.Columns["hinta"].HeaderText = "Hinta";
+            dataGridView1.Columns["kuvaus"].HeaderText = "Kuvaus";
+            dataGridView1.Columns["henkilomaara"].HeaderText = "Henkilömäärä";
+            dataGridView1.Columns["varustelu"].HeaderText = "Varustelu";
+            dataGridView1.Columns["alue"].HeaderText = "Alue";
+            dataGridView1.Columns["postitoimipaikka"].HeaderText = "Postitoimipaikka";
 
-                    // Aseta DataGridView näyttämään tietokannasta haetut tiedot
-                    dataGridView1.DataSource = table;
-                }
-                connection.Close();
-            }
+            connection.Close();
         }
         private void ShowKuvausJaVarustelu()
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                // Avaa yhteys tietokantaan
-                connection.Open();
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            // Avaa yhteys tietokantaan
+            connection.Open();// SQL-kysely mökkien kuvauksen ja varustelun hakemiseksi
+            string query = @"SELECT kuvaus, varustelu FROM mokki";
 
-                // SQL-kysely mökkien kuvauksen ja varustelun hakemiseksi
-                string query = @"SELECT kuvaus, varustelu
-                             FROM mokki";
+            // Luo SQL-komento ja yhdistä se tietokantayhteyteen
+            MySqlCommand command = new MySqlCommand(query, connection);
 
-                // Luo SQL-komento ja yhdistä se tietokantayhteyteen
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    // Luo DataTable, joka sisältää tietokannasta haetut tiedot
-                    DataTable table = new DataTable();
-                    table.Load(command.ExecuteReader());
+            // Luo DataTable, joka sisältää tietokannasta haetut tiedot
+            DataTable table = new DataTable();
+            table.Load(command.ExecuteReader());
 
-                    // Aseta DataGridView näyttämään tietokannasta haetut tiedot
-                    dataGridView1.DataSource = table;
-                }
-                connection.Close();
-            }
+            // Aseta DataGridView näyttämään tietokannasta haetut tiedot
+            dataGridView1.DataSource = table;
+
+            connection.Close();
         }
 
 
         private void ShowAlueenPalvelut()
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (MySqlConnection connection = new MySqlConnection(ConnectionString))
             {
                 // Avaa yhteys tietokantaan
                 connection.Open();
 
                 // SQL-kysely alueen palvelujen hakemiseksi
                 string query = @"SELECT p.nimi, p.kuvaus
-                         FROM palvelu p
-                         JOIN alue a ON a.alue_id = p.alue_id
-                         WHERE a.alue_id = @alue_id";
+                 FROM palvelu p
+                 JOIN alue a ON a.alue_id = p.alue_id
+                 WHERE a.alue_id = @alue_id";
 
                 // Luo SQL-komento ja yhdistä se tietokantayhteyteen
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     // Lisää alue_id parametriin
                     command.Parameters.AddWithValue("@alue_id", textBox1.Text);
