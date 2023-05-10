@@ -31,12 +31,10 @@
             label1 = new Label();
             Mökit = new Label();
             alueenMokit = new ListBox();
-            varausKalenteri = new MonthCalendar();
             alueet = new ComboBox();
             dataGridView1 = new DataGridView();
             label2 = new Label();
             uusiVarausBtn = new Button();
-            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -68,18 +66,6 @@
             alueenMokit.TabIndex = 4;
             alueenMokit.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
-            // varausKalenteri
-            // 
-            varausKalenteri.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            varausKalenteri.ForeColor = SystemColors.WindowText;
-            varausKalenteri.Location = new Point(57, 436);
-            varausKalenteri.MaxDate = new DateTime(2028, 12, 31, 0, 0, 0, 0);
-            varausKalenteri.MinDate = new DateTime(2023, 1, 1, 0, 0, 0, 0);
-            varausKalenteri.Name = "varausKalenteri";
-            varausKalenteri.TabIndex = 5;
-            varausKalenteri.DateChanged += varausKalenteri_DateChanged;
-            varausKalenteri.DateSelected += varausKalenteri_DateSelected;
-            // 
             // alueet
             // 
             alueet.FormattingEnabled = true;
@@ -93,7 +79,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(249, 145);
+            dataGridView1.Location = new Point(252, 190);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(708, 178);
@@ -111,7 +97,7 @@
             // uusiVarausBtn
             // 
             uusiVarausBtn.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            uusiVarausBtn.Location = new Point(519, 611);
+            uusiVarausBtn.Location = new Point(450, 520);
             uusiVarausBtn.Name = "uusiVarausBtn";
             uusiVarausBtn.Size = new Size(183, 42);
             uusiVarausBtn.TabIndex = 9;
@@ -119,26 +105,15 @@
             uusiVarausBtn.UseVisualStyleBackColor = true;
             uusiVarausBtn.Click += uusiVarausBtn_Click;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(433, 508);
-            label3.Name = "label3";
-            label3.Size = new Size(38, 15);
-            label3.TabIndex = 10;
-            label3.Text = "label3";
-            // 
             // Varaukset
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 761);
-            Controls.Add(label3);
             Controls.Add(uusiVarausBtn);
             Controls.Add(label2);
             Controls.Add(dataGridView1);
             Controls.Add(alueet);
-            Controls.Add(varausKalenteri);
             Controls.Add(alueenMokit);
             Controls.Add(Mökit);
             Controls.Add(label1);
@@ -155,11 +130,9 @@
         private Label label1;
         private Label Mökit;
         private ListBox alueenMokit;
-        private MonthCalendar varausKalenteri;
         private ComboBox alueet;
         private DataGridView dataGridView1;
         private Label label2;
         private Button uusiVarausBtn;
-        private Label label3;
     }
 }
