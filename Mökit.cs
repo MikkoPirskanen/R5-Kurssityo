@@ -12,7 +12,7 @@ namespace Mökkihöperö
     public partial class Mokit : Form
     {
         // Muuta tähän tietokannan yhteysasetukset
-        private const string ConnectionString = "server=127.0.0.1; database=vn;uid=root;pwd=VillageNewbies;";
+        private const string ConnectionString = "server=127.0.0.1; database=vn;uid=root;pwd=eemeli93;";
 
         public Mokit()
         {
@@ -71,24 +71,37 @@ namespace Mökkihöperö
             ShowAlueenPalvelut();
         }
 
-
-
+        // Alueet näkymä
+        private void btnAlueet_Click(object sender, EventArgs e)
+        {
+            ShowAlueet();
+        }
         // Näytä perustiedot
+
+        private void ShowAlueet()
+        {
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+
+            string sqlQuery = @"SELECT * FROM alue";
+
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+
+            dataGridView1.DataSource = dataTable;
+        }
+
         private void ShowPerustiedot()
         {
-
-
-
-
-            MySqlConnection sqlConnection = new MySqlConnection(ConnectionString);
-            sqlConnection.Open();
-
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
 
             string sqlQuery = @"SELECT A.nimi, M.mokkinimi, M.katuosoite, M.henkilomaara, M.hinta, M.Kuvaus, M.varustelu FROM mokki M JOIN alue A ON A.alue_id = M.alue_id";
 
-
-
-            MySqlCommand cmd = new MySqlCommand(sqlQuery, sqlConnection);
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
 
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
             DataSet dataSet = new DataSet();
@@ -111,13 +124,9 @@ namespace Mökkihöperö
             dataGridView1.Columns[5].HeaderText = "Kuvaus";
             dataGridView1.Columns[6].HeaderText = "Varustelu";
 
-
-
-
-
-            sqlConnection.Close();
-
+            connection.Close();
         }
+
 
         private void ShowOsoitetiedot()
         {
@@ -270,17 +279,15 @@ namespace Mökkihöperö
                     DialogResult result = MessageBox.Show("Haluatko varmasti poistaa valitun mökin?", "Vahvista poisto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        using (SqlConnection connection = new SqlConnection(ConnectionString))
+                        using (MySqlConnection connection = new MySqlConnection(ConnectionString))
                         {
                             connection.Open();
 
                             // Poistetaan mökki taulusta
                             string deleteMokkiQuery = "DELETE FROM mokki WHERE mokki_id = @mokki_id";
-                            SqlCommand deleteMokkiCommand = new SqlCommand(deleteMokkiQuery, connection);
+                            MySqlCommand deleteMokkiCommand = new MySqlCommand(deleteMokkiQuery, connection);
                             deleteMokkiCommand.Parameters.AddWithValue("@mokki_id", mokkiId);
                             deleteMokkiCommand.ExecuteNonQuery();
-
-
 
                             // Päivitetään näkymä
                             dataGridView1.DataSource = haeMokit();
@@ -300,7 +307,6 @@ namespace Mökkihöperö
 
 
 
-
         // Mökkien hallintaa: mökin lisäys
 
 
@@ -310,7 +316,7 @@ namespace Mökkihöperö
             var formPopup = new Form();
             var alueLabel = new Label() { Text = "Alueen nimi:" };
             var alueDropdown = new ComboBox() { DataSource = GetAlueet(), DisplayMember = "nimi", ValueMember = "alue_id" };
-            var postiLabel = new Label() { Text = "Postinumero ja -toimipaikka:" };
+            var postiLabel = new Label() { Text = "Postinumero:" };
             var postiTextbox = new TextBox();
             var mokkiNimiLabel = new Label() { Text = "Mökin nimi:" };
             var mokkiNimiTextbox = new TextBox();
@@ -371,13 +377,13 @@ namespace Mökkihöperö
             {
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(ConnectionString))
+                    using (MySqlConnection connection = new MySqlConnection(ConnectionString))
                     {
                         connection.Open();
-                        SqlCommand cmd = new SqlCommand("INSERT INTO Mokit (alue_id, postinro, postitmp, nimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu) VALUES (@alue_id, @postinro, @postitmp, @nimi, @katuosoite, @hinta, @kuvaus, @henkilomaara, @varustelu)", connection);
+                        MySqlCommand cmd = new MySqlCommand("INSERT INTO Mokit (mokki_id, alue_id, postinro, nimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu) VALUES (@mokki_id, @alue_id, @postinro, @nimi, @katuosoite, @hinta, @kuvaus, @henkilomaara, @varustelu)", connection);
+                        cmd.Parameters.AddWithValue("@mokki_id", null); // Set to null to allow the database to auto-generate the ID
                         cmd.Parameters.AddWithValue("@alue_id", alueDropdown.SelectedValue);
                         cmd.Parameters.AddWithValue("@postinro", postiTextbox.Text);
-                        cmd.Parameters.AddWithValue("@postitmp", postiTextbox.Text);
                         cmd.Parameters.AddWithValue("@nimi", mokkiNimiTextbox.Text);
                         cmd.Parameters.AddWithValue("@katuosoite", katuosoiteTextbox.Text);
                         cmd.Parameters.AddWithValue("@hinta", hintaTextbox.Text);
@@ -718,7 +724,6 @@ namespace Mökkihöperö
                 }
             }
         }
-
         private void BtnPoistaAlue_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -732,8 +737,8 @@ namespace Mökkihöperö
                 {
                     string sql = $"DELETE FROM alue WHERE alue_id = {alueId}";
 
-                    using (SqlConnection connection = new SqlConnection(ConnectionString))
-                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+                    using (MySqlCommand command = new MySqlCommand(sql, connection))
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
@@ -817,7 +822,6 @@ namespace Mökkihöperö
         }
     }
 }
-
 
 
 
