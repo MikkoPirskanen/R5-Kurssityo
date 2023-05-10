@@ -56,23 +56,7 @@ namespace Mökkihöperö
         {
             ShowAlueet();
         }
-        // Näytä alueet
 
-        private void ShowAlueet()
-        {
-            MySqlConnection connection = new MySqlConnection(ConnectionString);
-            connection.Open();
-
-            string sqlQuery = @"SELECT * FROM alue";
-
-            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-            DataTable dataTable = new DataTable();
-            adapter.Fill(dataTable);
-
-            dataGridView1.DataSource = dataTable;
-        }
 
         // Näytä perustiedot-näkymä
         private void btnPerustiedot_Click(object sender, EventArgs e)
