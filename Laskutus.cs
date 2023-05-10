@@ -56,34 +56,48 @@ namespace Mökkihöperö
         {
             string tekstinotto1 = textBox1.Text; tekstinotto1.Trim();
 
+            if (tekstinotto1 == "")
+            {
+                MessageBox.Show("Syötä laskutettava teksti");
+                return;
+            }
+
             ExportToPdf(tekstinotto1);
         }
 
         private void ExportToPdf(string textBox1Text)
         {
+            string outputPath = "Cf:\\temp\\output.pdf";
 
-            MessageBox.Show(textBox1Text);
+            
 
-            // Create a new PDF document
-            iTextSharp.text.Document document = new iTextSharp.text.Document();
+            try {
+                // Create a new PDF document
+                iTextSharp.text.Document document = new iTextSharp.text.Document();
 
-            // Set the output file path and create a new file in that location
-            string outputPath = "C:\\Users\\eetuh\\OneDrive\\Desktop\\OHI\\R5-Kurssityo-main\\juu\\output.pdf";
-            using (FileStream outputFileStream = new FileStream(outputPath, FileMode.Create))
-            {
-                // Create a new PDF writer
-                PdfWriter.GetInstance(document, outputFileStream);
+                // Set the output file path and create a new file in that location
+                using (FileStream outputFileStream = new FileStream(outputPath, FileMode.Create))
+                {
+                    // Create a new PDF writer
+                    PdfWriter.GetInstance(document, outputFileStream);
 
-                // Open the PDF document
-                document.Open();
+                    // Open the PDF document
+                    document.Open();
 
-                // Add the contents of textBox1, textBox2, and textBox3 to the PDF document
-                document.Add(new Paragraph(textBox1Text));
+                    // Add the contents of textBox1, textBox2, and textBox3 to the PDF document
+                    document.Add(new Paragraph(textBox1Text));
 
-                // Close the PDF document
-                document.Close();
+                    // Close the PDF document
+                    document.Close();
+                }
+                MessageBox.Show("Lomake tulostettu: " + outputPath);
             }
-        }
+             catch
+            {
+                MessageBox.Show("Tiedostoa ei voitu luoda");
+                return;
+            }
+            }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
