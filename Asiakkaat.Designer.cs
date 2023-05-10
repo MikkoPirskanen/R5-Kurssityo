@@ -31,7 +31,6 @@ namespace Mökkihöperö
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Asiakkaat));
             lisääNappi = new Button();
             poistaNappi = new Button();
-            hakukentta = new TextBox();
             dataGridView1 = new DataGridView();
             button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -61,26 +60,19 @@ namespace Mökkihöperö
             poistaNappi.UseVisualStyleBackColor = true;
             poistaNappi.Click += poistaNappi_Click;
             // 
-            // hakukentta
-            // 
-            hakukentta.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            hakukentta.Location = new Point(431, 548);
-            hakukentta.Margin = new Padding(3, 2, 3, 2);
-            hakukentta.Name = "hakukentta";
-            hakukentta.Size = new Size(244, 35);
-            hakukentta.TabIndex = 4;
-            hakukentta.TextChanged += textBox1_TextChanged;
-            // 
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.ButtonFace;
+            dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
+            dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.Location = new Point(182, 260);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(753, 258);
             dataGridView1.TabIndex = 5;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
@@ -107,7 +99,6 @@ namespace Mökkihöperö
             ClientSize = new Size(984, 761);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
-            Controls.Add(hakukentta);
             Controls.Add(poistaNappi);
             Controls.Add(lisääNappi);
             DoubleBuffered = true;
@@ -117,13 +108,11 @@ namespace Mökkihöperö
             Load += Asiakkaat_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
         private Button lisääNappi;
         private Button poistaNappi;
-        private TextBox hakukentta;
         private DataGridView dataGridView1;
         private Button button1;
     }

@@ -53,20 +53,6 @@ namespace Mökkihöperö
 
         }
 
-        private void haeNappi_Click(object sender, EventArgs e)
-        {
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-            MySqlCommand cmd = new MySqlCommand(
-                "SELECT * from posti", connection);
-
-            hakukentta.Text = cmd.ExecuteScalar().ToString();
-            connection.Close();
-
-
-
-
-        }
 
         private void lisääNappi_Click(object sender, EventArgs e)
         {
@@ -83,7 +69,6 @@ namespace Mökkihöperö
             dataAdapter.Fill(dataSet);
             dataGridView1.DataSource = dataSet.Tables[0];
             sqlConnection.Close();
-
 
 
 
@@ -140,41 +125,6 @@ namespace Mökkihöperö
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            string hakusana = hakukentta.Text;
-            if (hakusana.Length > 3)
-            {
-                // Etsi DataGridViewistä hakusanalla
-                try
-                {
-
-
-                    foreach (DataGridViewRow rivi in dataGridView1.Rows)
-                    {
-                        if (rivi.Cells[1].Value.ToString().Equals(hakusana))
-
-                        {
-
-
-
-                            dataGridView1.CurrentCell = dataGridView1.Rows[rivi.Index].Cells[0];
-                            dataGridView1.Rows[rivi.Index].Selected = true;
-                            dataGridView1.FirstDisplayedScrollingRowIndex = rivi.Index;
-
-                            return;
-                        }
-
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("Ei löytynyt.");
-                    return;
-                }
-            }
-
-        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

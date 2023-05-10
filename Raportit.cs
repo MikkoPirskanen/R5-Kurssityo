@@ -22,13 +22,13 @@ namespace Mökkihöperö
         private void button1_Click(object sender, EventArgs e)
         {
 
-           if (majoituksetDgv != null)
+            if (majoituksetDgv != null)
             {
                 majoituksetDgv.DataSource = null;
                 majoituksetDgv.Rows.Clear();
                 majoituksetDgv.Columns.Clear();
             }
-            
+
             DateTime startDate = startDatePicker.Value;
             DateTime endDate = endDatePicker.Value;
 

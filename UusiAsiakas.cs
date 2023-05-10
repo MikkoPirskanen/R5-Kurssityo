@@ -44,13 +44,13 @@ namespace Mökkihöperö
                 MessageBox.Show("Kaikki kentät ovat pakollisia. Täytä puuttuvat kentät ennen tietojen tallentamista.");
                 return;
 
-                }
+            }
             if (postinroBox.Text.Length != 5)
             {
                 MessageBox.Show("Postinumeron on oltava juuri 5 merkkiä. Tarkista postinumero ja yritä uudelleen.");
                 return;
             }
-            
+
             if (puhnroBox.Text != "" && !regex.IsMatch(puhnroBox.Text))
             {
                 MessageBox.Show("Puhelinnumeron on oltava numeroita. Tarkista puhelinnumero ja yritä uudelleen.");
@@ -60,7 +60,7 @@ namespace Mökkihöperö
 
             string ConnectionString = "server=127.0.0.1; database=vn;uid=root;pwd=VillageNewbies;";
 
-           try
+            try
             {
                 MySqlConnection connection = new MySqlConnection(ConnectionString);
                 connection.Open();
@@ -76,11 +76,11 @@ namespace Mökkihöperö
                 cmd.ExecuteNonQuery();
 
 
-                    MessageBox.Show("Asiakas lisätty onnistuneesti!");
-                    connection.Close();
-                    
-                    this.Close();
-                
+                MessageBox.Show("Asiakas lisätty onnistuneesti!");
+                connection.Close();
+
+                this.Close();
+
             }
             catch (Exception ex)
             {
