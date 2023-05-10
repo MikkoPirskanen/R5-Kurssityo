@@ -21,7 +21,11 @@ namespace Mökkihöperö
 
         private void button1_Click(object sender, EventArgs e)
         {
-            majoituksetDgv.Rows.Clear();
+
+            if (majoituksetDgv.Rows.Count > 1 ) {
+                majoituksetDgv.Rows.Clear();
+            }
+            
             DateTime startDate = startDatePicker.Value;
             DateTime endDate = endDatePicker.Value;
 
