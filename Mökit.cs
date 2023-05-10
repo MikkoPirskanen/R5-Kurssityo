@@ -427,187 +427,188 @@ namespace Mökkihöperö
             if (dataGridView1.SelectedRows.Count > 0)
             {
 
-             using (Form form = new Form())
-             {
-                form.Text = "Muokkaa mökkiä";
-                form.StartPosition = FormStartPosition.CenterScreen;
-
-                Label labelMokkiId = new Label();
-                labelMokkiId.Text = "Mökin ID:";
-                labelMokkiId.AutoSize = true;
-                labelMokkiId.Location = new Point(10, 10);
-
-                TextBox txtMokkiId = new TextBox();
-                txtMokkiId.Location = new Point(labelMokkiId.Right + 5, 10);
-                txtMokkiId.Width = 200;
-
-                Label labelAlueId = new Label();
-                labelAlueId.Text = "Alue ID:";
-                labelAlueId.AutoSize = true;
-                labelAlueId.Location = new Point(10, labelMokkiId.Bottom + 10);
-
-                TextBox txtAlueId = new TextBox();
-                txtAlueId.Location = new Point(labelAlueId.Right + 5, labelMokkiId.Bottom + 10);
-                txtAlueId.Width = 200;
-
-                Label labelPostinro = new Label();
-                labelPostinro.Text = "Postinumero:";
-                labelPostinro.AutoSize = true;
-                labelPostinro.Location = new Point(10, labelAlueId.Bottom + 10);
-
-                TextBox txtPostinro = new TextBox();
-                txtPostinro.Location = new Point(labelPostinro.Right + 5, labelAlueId.Bottom + 10);
-                txtPostinro.Width = 200;
-
-                Label labelMokkinimi = new Label();
-                labelMokkinimi.Text = "Mökin nimi:";
-                labelMokkinimi.AutoSize = true;
-                labelMokkinimi.Location = new Point(10, labelPostinro.Bottom + 10);
-
-                TextBox txtMokkinimi = new TextBox();
-                txtMokkinimi.Location = new Point(labelMokkinimi.Right + 5, labelPostinro.Bottom + 10);
-                txtMokkinimi.Width = 200;
-
-                Label labelKatuosoite = new Label();
-                labelKatuosoite.Text = "Katuosoite:";
-                labelKatuosoite.AutoSize = true;
-                labelKatuosoite.Location = new Point(10, labelMokkinimi.Bottom + 10);
-
-                TextBox txtKatuosoite = new TextBox();
-                txtKatuosoite.Location = new Point(labelKatuosoite.Right + 5, labelMokkinimi.Bottom + 10);
-                txtKatuosoite.Width = 200;
-
-                Label labelHinta = new Label();
-                labelHinta.Text = "Hinta:";
-                labelHinta.AutoSize = true;
-                labelHinta.Location = new Point(10, labelKatuosoite.Bottom + 10);
-
-                TextBox txtHinta = new TextBox();
-                txtHinta.Location = new Point(labelHinta.Right + 5, labelKatuosoite.Bottom + 10);
-                txtHinta.Width = 200;
-
-                Label labelKuvaus = new Label();
-                labelKuvaus.Text = "Kuvaus:";
-                labelKuvaus.AutoSize = true;
-                labelKuvaus.Location = new Point(10, labelHinta.Bottom + 10);
-
-                TextBox textBoxKuvaus = new TextBox();
-                textBoxKuvaus.Width = 200;
-                textBoxKuvaus.Location = new Point(labelKuvaus.Right + 5, labelHinta.Bottom + 10);
-
-                Label labelHenkilomaara = new Label();
-                labelHenkilomaara.Text = "Henkilömäärä:";
-                labelHenkilomaara.AutoSize = true;
-                labelHenkilomaara.Location = new Point(10, labelKuvaus.Bottom + 10);
-
-                TextBox txtHenkilomaara = new TextBox();
-                txtHenkilomaara.Location = new Point(labelHenkilomaara.Right + 5, labelKuvaus.Bottom + 10);
-                txtHenkilomaara.Width = 200;
-
-                Label labelVarustelu = new Label();
-                labelVarustelu.Text = "Varustelu:";
-                labelVarustelu.AutoSize = true;
-                labelVarustelu.Location = new Point(10, labelHenkilomaara.Bottom + 10);
-
-                TextBox txtVarustelu = new TextBox();
-                txtVarustelu.Location = new Point(labelVarustelu.Right + 5, labelHenkilomaara.Bottom + 10);
-                txtVarustelu.Width = 200;
-
-
-                // Mökiin tietojen tallennus
-                Button buttonLisaa = new Button();
-                buttonLisaa.Text = "Tallenna";
-                buttonLisaa.Location = new Point(textBoxKuvaus.Right - buttonLisaa.Width, textBoxKuvaus.Bottom + 10);
-                buttonLisaa.Click += (s, ea) =>
+                using (Form form = new Form())
                 {
-                    try
+                    form.Text = "Muokkaa mökkiä";
+                    form.StartPosition = FormStartPosition.CenterScreen;
+
+                    Label labelMokkiId = new Label();
+                    labelMokkiId.Text = "Mökin ID:";
+                    labelMokkiId.AutoSize = true;
+                    labelMokkiId.Location = new Point(10, 10);
+
+                    TextBox txtMokkiId = new TextBox();
+                    txtMokkiId.Location = new Point(labelMokkiId.Right + 5, 10);
+                    txtMokkiId.Width = 200;
+
+                    Label labelAlueId = new Label();
+                    labelAlueId.Text = "Alue ID:";
+                    labelAlueId.AutoSize = true;
+                    labelAlueId.Location = new Point(10, labelMokkiId.Bottom + 10);
+
+                    TextBox txtAlueId = new TextBox();
+                    txtAlueId.Location = new Point(labelAlueId.Right + 5, labelMokkiId.Bottom + 10);
+                    txtAlueId.Width = 200;
+
+                    Label labelPostinro = new Label();
+                    labelPostinro.Text = "Postinumero:";
+                    labelPostinro.AutoSize = true;
+                    labelPostinro.Location = new Point(10, labelAlueId.Bottom + 10);
+
+                    TextBox txtPostinro = new TextBox();
+                    txtPostinro.Location = new Point(labelPostinro.Right + 5, labelAlueId.Bottom + 10);
+                    txtPostinro.Width = 200;
+
+                    Label labelMokkinimi = new Label();
+                    labelMokkinimi.Text = "Mökin nimi:";
+                    labelMokkinimi.AutoSize = true;
+                    labelMokkinimi.Location = new Point(10, labelPostinro.Bottom + 10);
+
+                    TextBox txtMokkinimi = new TextBox();
+                    txtMokkinimi.Location = new Point(labelMokkinimi.Right + 5, labelPostinro.Bottom + 10);
+                    txtMokkinimi.Width = 200;
+
+                    Label labelKatuosoite = new Label();
+                    labelKatuosoite.Text = "Katuosoite:";
+                    labelKatuosoite.AutoSize = true;
+                    labelKatuosoite.Location = new Point(10, labelMokkinimi.Bottom + 10);
+
+                    TextBox txtKatuosoite = new TextBox();
+                    txtKatuosoite.Location = new Point(labelKatuosoite.Right + 5, labelMokkinimi.Bottom + 10);
+                    txtKatuosoite.Width = 200;
+
+                    Label labelHinta = new Label();
+                    labelHinta.Text = "Hinta:";
+                    labelHinta.AutoSize = true;
+                    labelHinta.Location = new Point(10, labelKatuosoite.Bottom + 10);
+
+                    TextBox txtHinta = new TextBox();
+                    txtHinta.Location = new Point(labelHinta.Right + 5, labelKatuosoite.Bottom + 10);
+                    txtHinta.Width = 200;
+
+                    Label labelKuvaus = new Label();
+                    labelKuvaus.Text = "Kuvaus:";
+                    labelKuvaus.AutoSize = true;
+                    labelKuvaus.Location = new Point(10, labelHinta.Bottom + 10);
+
+                    TextBox textBoxKuvaus = new TextBox();
+                    textBoxKuvaus.Width = 200;
+                    textBoxKuvaus.Location = new Point(labelKuvaus.Right + 5, labelHinta.Bottom + 10);
+
+                    Label labelHenkilomaara = new Label();
+                    labelHenkilomaara.Text = "Henkilömäärä:";
+                    labelHenkilomaara.AutoSize = true;
+                    labelHenkilomaara.Location = new Point(10, labelKuvaus.Bottom + 10);
+
+                    TextBox txtHenkilomaara = new TextBox();
+                    txtHenkilomaara.Location = new Point(labelHenkilomaara.Right + 5, labelKuvaus.Bottom + 10);
+                    txtHenkilomaara.Width = 200;
+
+                    Label labelVarustelu = new Label();
+                    labelVarustelu.Text = "Varustelu:";
+                    labelVarustelu.AutoSize = true;
+                    labelVarustelu.Location = new Point(10, labelHenkilomaara.Bottom + 10);
+
+                    TextBox txtVarustelu = new TextBox();
+                    txtVarustelu.Location = new Point(labelVarustelu.Right + 5, labelHenkilomaara.Bottom + 10);
+                    txtVarustelu.Width = 200;
+
+
+                    // Mökiin tietojen tallennus
+                    Button buttonLisaa = new Button();
+                    buttonLisaa.Text = "Tallenna";
+                    buttonLisaa.Location = new Point(textBoxKuvaus.Right - buttonLisaa.Width, textBoxKuvaus.Bottom + 10);
+                    buttonLisaa.Click += (s, ea) =>
                     {
-                        // Haetaan syötteet tekstikentistä:
-                        int mokkiId = int.Parse(txtMokkiId.Text);
-                        int alueId = int.Parse(txtAlueId.Text);
-                        string postinro = txtPostinro.Text;
-                        string mokkinimi = txtMokkinimi.Text;
-                        string katuosoite = txtKatuosoite.Text;
-                        double hinta = double.Parse(txtHinta.Text);
-                        string kuvaus = textBoxKuvaus.Text;
-                        int henkilomaara = int.Parse(txtHenkilomaara.Text);
-                        string varustelu = txtVarustelu.Text;
-                        // Päivitetään tietokantaan mökin tiedot
-                        // updateMokki(mokkiId, alueId, postinro, mokkinimi, katuosoite, hinta, kuvaus);
+                        try
+                        {
+                            // Haetaan syötteet tekstikentistä:
+                            int mokkiId = int.Parse(txtMokkiId.Text);
+                            int alueId = int.Parse(txtAlueId.Text);
+                            string postinro = txtPostinro.Text;
+                            string mokkinimi = txtMokkinimi.Text;
+                            string katuosoite = txtKatuosoite.Text;
+                            double hinta = double.Parse(txtHinta.Text);
+                            string kuvaus = textBoxKuvaus.Text;
+                            int henkilomaara = int.Parse(txtHenkilomaara.Text);
+                            string varustelu = txtVarustelu.Text;
+                            // Päivitetään tietokantaan mökin tiedot
+                            // updateMokki(mokkiId, alueId, postinro, mokkinimi, katuosoite, hinta, kuvaus);
 
-                        // Suljetaan ikkuna
-                        this.Close();
-                    }
-                    catch (FormatException ex)
+                            // Suljetaan ikkuna
+                            this.Close();
+                        }
+                        catch (FormatException ex)
+                        {
+                            MessageBox.Show("Syötteissä on virheellistä tietoa: " + ex.Message);
+                        }
+                    };
+
+
+
+                    this.Controls.Add(labelMokkinimi);
+                    this.Controls.Add(txtMokkinimi);
+                    this.Controls.Add(labelHinta);
+                    this.Controls.Add(txtHinta);
+                    this.Controls.Add(labelKuvaus);
+                    this.Controls.Add(textBoxKuvaus);
+                    this.Controls.Add(buttonLisaa);
+                    this.Controls.Add(labelVarustelu);
+                    this.Controls.Add(txtVarustelu);
+                    this.Controls.Add(labelHenkilomaara);
+                    this.Controls.Add(txtHenkilomaara);
+
+
+                    form.Controls.Add(labelMokkiId);
+                    form.Controls.Add(txtMokkiId);
+                    form.Controls.Add(labelAlueId);
+                    form.Controls.Add(txtAlueId);
+                    form.Controls.Add(labelPostinro);
+                    form.Controls.Add(txtPostinro);
+                    form.Controls.Add(labelMokkinimi);
+                    form.Controls.Add(txtMokkinimi);
+                    form.Controls.Add(labelKatuosoite);
+                    form.Controls.Add(txtKatuosoite);
+                    form.Controls.Add(labelHinta);
+                    form.Controls.Add(txtHinta);
+                    form.Controls.Add(labelKuvaus);
+                    form.Controls.Add(textBoxKuvaus);
+                    form.Controls.Add(buttonLisaa);
+
+                    // Haetaan tietokannasta valitun mökin tiedot
+                    string mokkiId = txtMokkiId.Text;
+                    string query = "SELECT alue_id, postinro, mokkinimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu FROM mokit WHERE mokki_id = " + mokkiId;
+
+                    using (SqlConnection connection = new SqlConnection(ConnectionString))
                     {
-                        MessageBox.Show("Syötteissä on virheellistä tietoa: " + ex.Message);
-                    }
-                };
+                        SqlCommand command = new SqlCommand(query, connection);
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
 
+                        if (reader.Read())
+                        {
+                            txtMokkiId.Text = reader["mokki_id"].ToString();
+                            txtAlueId.Text = reader["alue_id"].ToString();
+                            txtPostinro.Text = reader["postinro"].ToString();
+                            txtMokkinimi.Text = reader["mokkinimi"].ToString();
+                            txtKatuosoite.Text = reader["katuosoite"].ToString();
+                            txtHinta.Text = reader["hinta"].ToString();
+                            textBoxKuvaus.Text = reader["kuvaus"].ToString();
+                            txtHenkilomaara.Text = reader["henkilomaara"].ToString();
+                            txtVarustelu.Text = reader["varustelu"].ToString();
 
+                        }
 
-                this.Controls.Add(labelMokkinimi);
-                this.Controls.Add(txtMokkinimi);
-                this.Controls.Add(labelHinta);
-                this.Controls.Add(txtHinta);
-                this.Controls.Add(labelKuvaus);
-                this.Controls.Add(textBoxKuvaus);
-                this.Controls.Add(buttonLisaa);
-                this.Controls.Add(labelVarustelu);
-                this.Controls.Add(txtVarustelu);
-                this.Controls.Add(labelHenkilomaara);
-                this.Controls.Add(txtHenkilomaara);
-
-
-                form.Controls.Add(labelMokkiId);
-                form.Controls.Add(txtMokkiId);
-                form.Controls.Add(labelAlueId);
-                form.Controls.Add(txtAlueId);
-                form.Controls.Add(labelPostinro);
-                form.Controls.Add(txtPostinro);
-                form.Controls.Add(labelMokkinimi);
-                form.Controls.Add(txtMokkinimi);
-                form.Controls.Add(labelKatuosoite);
-                form.Controls.Add(txtKatuosoite);
-                form.Controls.Add(labelHinta);
-                form.Controls.Add(txtHinta);
-                form.Controls.Add(labelKuvaus);
-                form.Controls.Add(textBoxKuvaus);
-                form.Controls.Add(buttonLisaa);
-
-                // Haetaan tietokannasta valitun mökin tiedot
-                string mokkiId = txtMokkiId.Text;
-                string query = "SELECT alue_id, postinro, mokkinimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu FROM mokit WHERE mokki_id = " + mokkiId;
-
-                using (SqlConnection connection = new SqlConnection(ConnectionString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.Read())
-                    {
-                        txtMokkiId.Text = reader["mokki_id"].ToString();
-                        txtAlueId.Text = reader["alue_id"].ToString();
-                        txtPostinro.Text = reader["postinro"].ToString();
-                        txtMokkinimi.Text = reader["mokkinimi"].ToString();
-                        txtKatuosoite.Text = reader["katuosoite"].ToString();
-                        txtHinta.Text = reader["hinta"].ToString();
-                        textBoxKuvaus.Text = reader["kuvaus"].ToString();
-                        txtHenkilomaara.Text = reader["henkilomaara"].ToString();
-                        txtVarustelu.Text = reader["varustelu"].ToString();
-
+                        reader.Close();
                     }
 
-                    reader.Close();
+                    // Näytetään ikkuna
+                    form.ShowDialog();
+
                 }
 
-                // Näytetään ikkuna
-                form.ShowDialog();
-
-              }
-
-            } else
+            }
+            else
             {
                 MessageBox.Show("Valitse muokattava mökki ");
             }
