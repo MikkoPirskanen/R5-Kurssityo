@@ -141,6 +141,7 @@ namespace Mökkihöperö
                     // Aseta DataGridView näyttämään tietokannasta haetut tiedot
                     dataGridView1.DataSource = table;
                 }
+                connection.Close();
             }
         }
         private void ShowKuvausJaVarustelu()
@@ -164,6 +165,7 @@ namespace Mökkihöperö
                     // Aseta DataGridView näyttämään tietokannasta haetut tiedot
                     dataGridView1.DataSource = table;
                 }
+                connection.Close();
             }
         }
 
@@ -194,6 +196,7 @@ namespace Mökkihöperö
                     // Aseta DataGridView näyttämään tietokannasta haetut tiedot
                     dataGridView1.DataSource = table;
                 }
+                connection.Close();
             }
         }
         //
