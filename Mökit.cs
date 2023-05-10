@@ -48,7 +48,7 @@ namespace Mökkihöperö
 
         private void btnLisaaPalvelu_Click(object sender, EventArgs e)
         {
-
+            UusiPalvelu palvelu = new Uusipalvelu();
         }
         
         // Alueet näkymä
