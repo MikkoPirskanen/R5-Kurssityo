@@ -85,7 +85,6 @@ namespace Mökkihöperö
             DateTime varattuloppupvm = DateTime.Parse(dateTimePicker2.Text);
             int mokkix = Varaukset.selectedMokkiId;
 
-            label11.Text = mokkix.ToString();
 
 
 

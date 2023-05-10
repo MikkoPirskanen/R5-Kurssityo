@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UusiVaraus));
             label1 = new Label();
             dateTimePicker1 = new DateTimePicker();
             dateTimePicker2 = new DateTimePicker();
@@ -49,7 +50,6 @@
             etunimiBox = new TextBox();
             textBox1 = new TextBox();
             label10 = new Label();
-            label11 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -123,7 +123,9 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
             label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.ForeColor = Color.Gold;
             label6.Location = new Point(250, 525);
             label6.Name = "label6";
             label6.Size = new Size(142, 25);
@@ -133,7 +135,9 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = Color.Gold;
             label5.Location = new Point(250, 482);
             label5.Name = "label5";
             label5.Size = new Size(58, 25);
@@ -143,7 +147,9 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = Color.Gold;
             label4.Location = new Point(250, 434);
             label4.Name = "label4";
             label4.Size = new Size(81, 25);
@@ -153,7 +159,9 @@
             // label7
             // 
             label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
             label7.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.ForeColor = Color.Gold;
             label7.Location = new Point(250, 393);
             label7.Name = "label7";
             label7.Size = new Size(98, 25);
@@ -163,7 +171,9 @@
             // label8
             // 
             label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
             label8.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.ForeColor = Color.Gold;
             label8.Location = new Point(250, 349);
             label8.Name = "label8";
             label8.Size = new Size(90, 25);
@@ -173,7 +183,9 @@
             // label9
             // 
             label9.AutoSize = true;
+            label9.BackColor = Color.Transparent;
             label9.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.ForeColor = Color.Gold;
             label9.Location = new Point(250, 308);
             label9.Name = "label9";
             label9.Size = new Size(76, 25);
@@ -248,28 +260,21 @@
             // label10
             // 
             label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
             label10.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.ForeColor = Color.Gold;
             label10.Location = new Point(250, 264);
             label10.Name = "label10";
             label10.Size = new Size(100, 25);
             label10.TabIndex = 28;
             label10.Text = "Asiakas-ID";
             // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(745, 593);
-            label11.Name = "label11";
-            label11.Size = new Size(44, 15);
-            label11.TabIndex = 30;
-            label11.Text = "label11";
-            // 
             // UusiVaraus
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(984, 761);
-            Controls.Add(label11);
             Controls.Add(textBox1);
             Controls.Add(label10);
             Controls.Add(button1);
@@ -321,6 +326,5 @@
         private TextBox etunimiBox;
         private TextBox textBox1;
         private Label label10;
-        private Label label11;
     }
 }

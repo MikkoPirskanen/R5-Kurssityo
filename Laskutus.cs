@@ -67,11 +67,12 @@ namespace Mökkihöperö
 
         private void ExportToPdf(string textBox1Text)
         {
-            string outputPath = "Cf:\\temp\\output.pdf";
+            string outputPath = "C:\\temp\\output.pdf";
 
-            
 
-            try {
+
+            try
+            {
                 // Create a new PDF document
                 iTextSharp.text.Document document = new iTextSharp.text.Document();
 
@@ -92,12 +93,12 @@ namespace Mökkihöperö
                 }
                 MessageBox.Show("Lomake tulostettu: " + outputPath);
             }
-             catch
+            catch
             {
                 MessageBox.Show("Tiedostoa ei voitu luoda");
                 return;
             }
-            }
+        }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
@@ -107,6 +108,11 @@ namespace Mökkihöperö
         private void Laskutus_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Mökkihöperö
         public Asiakkaat()
         {
             InitializeComponent();
+
 
             // Luodaan yhteys tietokantaan
             MySqlConnection sqlConnection = new MySqlConnection(connectionString);
@@ -153,9 +155,9 @@ namespace Mökkihöperö
                         if (rivi.Cells[1].Value.ToString().Equals(hakusana))
 
                         {
-                          
-                            
-                            
+
+
+
                             dataGridView1.CurrentCell = dataGridView1.Rows[rivi.Index].Cells[0];
                             dataGridView1.Rows[rivi.Index].Selected = true;
                             dataGridView1.FirstDisplayedScrollingRowIndex = rivi.Index;
@@ -165,18 +167,23 @@ namespace Mökkihöperö
 
                     }
                 }
-                                catch
+                catch
                 {
                     MessageBox.Show("Ei löytynyt.");
                     return;
                 }
             }
-           
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

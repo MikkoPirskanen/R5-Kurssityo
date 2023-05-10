@@ -34,13 +34,16 @@
             textBox1 = new TextBox();
             printPreviewDialog1 = new PrintPreviewDialog();
             dokumenttiPrint = new System.Drawing.Printing.PrintDocument();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(379, 79);
+            label1.ForeColor = Color.Red;
+            label1.Location = new Point(379, 48);
             label1.Name = "label1";
             label1.Size = new Size(163, 50);
             label1.TabIndex = 0;
@@ -48,7 +51,7 @@
             // 
             // tulostusnappi
             // 
-            tulostusnappi.Location = new Point(420, 493);
+            tulostusnappi.Location = new Point(353, 562);
             tulostusnappi.Margin = new Padding(2);
             tulostusnappi.Name = "tulostusnappi";
             tulostusnappi.Size = new Size(92, 33);
@@ -59,7 +62,8 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(331, 148);
+            textBox1.BackColor = SystemColors.MenuBar;
+            textBox1.Location = new Point(334, 202);
             textBox1.Margin = new Padding(2);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
@@ -78,15 +82,30 @@
             printPreviewDialog1.Name = "printPreviewDialog1";
             printPreviewDialog1.Visible = false;
             // 
+            // button1
+            // 
+            button1.Location = new Point(485, 562);
+            button1.Margin = new Padding(2);
+            button1.Name = "button1";
+            button1.Size = new Size(92, 33);
+            button1.TabIndex = 6;
+            button1.Text = "Takaisin";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Laskutus
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonShadow;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(984, 629);
+            Controls.Add(button1);
             Controls.Add(textBox1);
             Controls.Add(tulostusnappi);
             Controls.Add(label1);
+            DoubleBuffered = true;
             Name = "Laskutus";
             Text = "Laskutus";
             Load += Laskutus_Load;
@@ -101,5 +120,6 @@
         private TextBox textBox1;
         private PrintPreviewDialog printPreviewDialog1;
         private System.Drawing.Printing.PrintDocument dokumenttiPrint;
+        private Button button1;
     }
 }

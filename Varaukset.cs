@@ -32,6 +32,7 @@ namespace Mökkihöperö
         string connectionString = "server=127.0.0.1; database=vn;uid=root;pwd=VillageNewbies;";
 
 
+
         public Varaukset()
         {
             InitializeComponent();
@@ -85,67 +86,63 @@ namespace Mökkihöperö
 
             // Hae valitun mökin tiedot
 
-            string selectedCabin = alueenMokit.SelectedItem.ToString();
-            MySqlCommand cmd = new MySqlCommand(
-                "SELECT * FROM mokki WHERE mokkinimi = @selectedCabin", connection);
-            cmd.Parameters.AddWithValue("@selectedCabin", selectedCabin);
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
-
-            dataGridView1.Columns.Add("mokkinimi", "Mökin nimi");
-            dataGridView1.Columns.Add("katuosoite", "Katuosoite");
-            dataGridView1.Columns.Add("hinta", "Hinta");
-            dataGridView1.Columns.Add("kuvaus", "Kuvaus");
-            dataGridView1.Columns.Add("henkilomaara", "Henkilömäärä");
-            dataGridView1.Columns.Add("varustelu", "Varustelu");
-
-
-            while (reader.Read())
+            if (alueenMokit.SelectedItem != null)
             {
-                 selectedMokkiId = reader.GetInt32("mokki_id");
-                string mokkiNimi = reader.GetString("mokkinimi");
-                string katuosoite = reader.GetString("katuosoite");
-                string hinta = reader.GetString("hinta");
-                string kuvaus = reader.GetString("kuvaus");
-                string henkilomaara = reader.GetString("henkilomaara");
-                string varustelu = reader.GetString("varustelu");
-                string[] row = new string[] { mokkiNimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu };
-                dataGridView1.Rows.Add(row);
+            
+                string selectedCabin = alueenMokit.SelectedItem.ToString();
+                MySqlCommand cmd = new MySqlCommand(
+                    "SELECT * FROM mokki WHERE mokkinimi = @selectedCabin", connection);
+                cmd.Parameters.AddWithValue("@selectedCabin", selectedCabin);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                dataGridView1.Rows.Clear();
+                dataGridView1.Columns.Clear();
+
+                dataGridView1.Columns.Add("mokkinimi", "Mökin nimi");
+                dataGridView1.Columns.Add("katuosoite", "Katuosoite");
+                dataGridView1.Columns.Add("hinta", "Hinta");
+                dataGridView1.Columns.Add("kuvaus", "Kuvaus");
+                dataGridView1.Columns.Add("henkilomaara", "Henkilömäärä");
+                dataGridView1.Columns.Add("varustelu", "Varustelu");
+
+
+                while (reader.Read())
+                {
+                    selectedMokkiId = reader.GetInt32("mokki_id");
+                    string mokkiNimi = reader.GetString("mokkinimi");
+                    string katuosoite = reader.GetString("katuosoite");
+                    string hinta = reader.GetString("hinta");
+                    string kuvaus = reader.GetString("kuvaus");
+                    string henkilomaara = reader.GetString("henkilomaara");
+                    string varustelu = reader.GetString("varustelu");
+                    string[] row = new string[] { mokkiNimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu };
+                    dataGridView1.Rows.Add(row);
+
+                }
+
+                reader.Close();
+
+
+
+                string query = "SELECT * FROM varaus WHERE mokki_mokki_id = @mokki_mokki_id AND varattu_alkupvm <= @varattu_alkupvm AND varattu_loppupvm >= @varattu_loppupvm";
+                MySqlCommand cmdx = new MySqlCommand(query, connection);
+                cmdx.Parameters.AddWithValue("@mokki_mokki_id", selectedMokkiId);
+                cmdx.Parameters.AddWithValue("@varattu_alkupvm", startDate.ToString("yyyy-MM-dd"));
+                cmdx.Parameters.AddWithValue("@varattu_loppupvm", endDate.ToString("yyyy-MM-dd"));
+
+                cmdx.ExecuteReader();
+
+
+                // Sulje lukija ja tietokantayhteys
+                reader.Close();
+                connection.Close();
 
             }
-
-            reader.Close();
-
-
-
-            string query = "SELECT * FROM varaus WHERE mokki_mokki_id = 2";
-            MySqlCommand cmdx = new MySqlCommand(query, connection);
-            cmdx.Parameters.AddWithValue("@mokki_mokki_id", selectedMokkiId);
-            cmdx.Parameters.AddWithValue("@varattu_alkupvm", startDate.ToString("yyyy-MM-dd"));
-            cmdx.Parameters.AddWithValue("@varattu_loppupvm", endDate.ToString("yyyy-MM-dd"));
-
-            cmdx.ExecuteReader();
-
-            // Oletetaan, että varauksen alku- ja loppupäivämäärät ovat tallennettu muuttujiin startDate ja endDate.
-
-            label1.Text = startDate.ToString("yyyy-MM-dd");
-
-
-
-
-
-
-            // Sulje lukija ja tietokantayhteys
-            reader.Close();
-            connection.Close();
-
-
+            else
+            {
+                MessageBox.Show("Valitse alue ja mökki ensin");
+            }
         }
-
-
-
 
 
         private void Varaukset_Load(object sender, EventArgs e)
@@ -160,19 +157,17 @@ namespace Mökkihöperö
             if (dataGridView1.SelectedCells.Count > 0)
             {
                 dataGridView1.SelectedCells[0].Selected = true;
-                selectedMokki = dataGridView1.SelectedCells[0].Value.ToString();
-
-
-                UusiVaraus uusiVaraus = new UusiVaraus();
-                uusiVaraus.Show();
+                if (dataGridView1.SelectedCells[0].Value != null && dataGridView1.SelectedCells[0].Value.ToString() != "")
+                {
+                    selectedMokki = dataGridView1.SelectedCells[0].Value.ToString();
+                    UusiVaraus uusiVaraus = new UusiVaraus();
+                    uusiVaraus.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Valitse mökki ensin");
+                }
             }
-            else
-            {
-                MessageBox.Show("Valitse mökki ensin");
-
-            }
-           
-
 
 
         }
@@ -186,6 +181,32 @@ namespace Mökkihöperö
         {
 
 
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+                selectedMokki = row.Cells["mokkinimi"].Value.ToString();
+
+                VarausTiedot varaustiedot = new VarausTiedot();
+                varaustiedot.Show();
+            }
+        }
+
+
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+           
 
 
         }

@@ -28,10 +28,12 @@ namespace Mökkihöperö
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Asiakkaat));
             lisääNappi = new Button();
             poistaNappi = new Button();
             hakukentta = new TextBox();
             dataGridView1 = new DataGridView();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -62,7 +64,7 @@ namespace Mökkihöperö
             // hakukentta
             // 
             hakukentta.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            hakukentta.Location = new Point(182, 189);
+            hakukentta.Location = new Point(431, 548);
             hakukentta.Margin = new Padding(3, 2, 3, 2);
             hakukentta.Name = "hakukentta";
             hakukentta.Size = new Size(244, 35);
@@ -71,7 +73,9 @@ namespace Mökkihöperö
             // 
             // dataGridView1
             // 
+            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
             dataGridView1.Location = new Point(182, 260);
             dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
@@ -81,16 +85,32 @@ namespace Mökkihöperö
             dataGridView1.TabIndex = 5;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(495, 654);
+            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 37);
+            button1.TabIndex = 6;
+            button1.Text = "Takaisin";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Asiakkaat
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonShadow;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(984, 761);
+            Controls.Add(button1);
             Controls.Add(dataGridView1);
             Controls.Add(hakukentta);
             Controls.Add(poistaNappi);
             Controls.Add(lisääNappi);
+            DoubleBuffered = true;
             Name = "Asiakkaat";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Asiakkaat";
@@ -105,5 +125,6 @@ namespace Mökkihöperö
         private Button poistaNappi;
         private TextBox hakukentta;
         private DataGridView dataGridView1;
+        private Button button1;
     }
 }
