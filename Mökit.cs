@@ -421,8 +421,11 @@ namespace Mökkihöperö
 
         private void btnMuokkaaMokki_Click(object sender, EventArgs e)
         {
-            using (Form form = new Form())
+            if (dataGridView1.SelectedRows.Count > 0)
             {
+
+             using (Form form = new Form())
+             {
                 form.Text = "Muokkaa mökkiä";
                 form.StartPosition = FormStartPosition.CenterScreen;
 
@@ -599,8 +602,11 @@ namespace Mökkihöperö
                 // Näytetään ikkuna
                 form.ShowDialog();
 
+              }
 
-
+            } else
+            {
+                MessageBox.Show("Valitse muokattava mökki ");
             }
         }
 
