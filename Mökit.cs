@@ -141,6 +141,7 @@ namespace Mökkihöperö
                     // Aseta DataGridView näyttämään tietokannasta haetut tiedot
                     dataGridView1.DataSource = table;
                 }
+                connection.Close();
             }
         }
         private void ShowKuvausJaVarustelu()
@@ -164,6 +165,7 @@ namespace Mökkihöperö
                     // Aseta DataGridView näyttämään tietokannasta haetut tiedot
                     dataGridView1.DataSource = table;
                 }
+                connection.Close();
             }
         }
 
@@ -194,6 +196,7 @@ namespace Mökkihöperö
                     // Aseta DataGridView näyttämään tietokannasta haetut tiedot
                     dataGridView1.DataSource = table;
                 }
+                connection.Close();
             }
         }
         //
@@ -421,8 +424,11 @@ namespace Mökkihöperö
 
         private void btnMuokkaaMokki_Click(object sender, EventArgs e)
         {
-            using (Form form = new Form())
+            if (dataGridView1.SelectedRows.Count > 0)
             {
+
+             using (Form form = new Form())
+             {
                 form.Text = "Muokkaa mökkiä";
                 form.StartPosition = FormStartPosition.CenterScreen;
 
@@ -599,8 +605,11 @@ namespace Mökkihöperö
                 // Näytetään ikkuna
                 form.ShowDialog();
 
+              }
 
-
+            } else
+            {
+                MessageBox.Show("Valitse muokattava mökki ");
             }
         }
 
