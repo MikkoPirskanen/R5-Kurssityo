@@ -458,7 +458,7 @@ namespace Mökkihöperö
 
 
 
-                int MokkiID = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                uint MokkiID = (uint)dataGridView1.CurrentRow.Cells[0].Value;
                 MuokkaaMökkiä muokkaamökkiä = new MuokkaaMökkiä();
                 muokkaamökkiä.Show();
 
