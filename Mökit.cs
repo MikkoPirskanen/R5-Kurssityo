@@ -48,7 +48,7 @@ namespace Mökkihöperö
 
         private void btnLisaaPalvelu_Click(object sender, EventArgs e)
         {
-            UusiPalvelu palvelu = new Uusipalvelu();
+            UusiPalvelu palvelu = new UusiPalvelu();
         }
         
         // Alueet näkymä
@@ -82,11 +82,7 @@ namespace Mökkihöperö
             ShowAlueenPalvelut();
         }
 
-        // Alueet näkymä
-        private void btnAlueet_Click(object sender, EventArgs e)
-        {
-            ShowAlueet();
-        }
+        
         // Näytä perustiedot
 
         private void ShowAlueet()
@@ -736,11 +732,7 @@ namespace Mökkihöperö
             Varaukset varaus = new Varaukset();
             varaus.Show();
         }
-        private void btnLisaaPalvelu_Click(object sender, EventArgs e)
-        {
-            UusiPalvelu palvelu = new UusiPalvelu();   
-            palvelu.Show(); 
-        }
+       
     }
 }
 
