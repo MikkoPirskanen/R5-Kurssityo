@@ -133,6 +133,7 @@
             button1.TabIndex = 10;
             button1.Text = "Takaisin";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
             // Varaukset
             // 

@@ -88,7 +88,7 @@ namespace Mökkihöperö
 
             if (alueenMokit.SelectedItem != null)
             {
-            
+
                 string selectedCabin = alueenMokit.SelectedItem.ToString();
                 MySqlCommand cmd = new MySqlCommand(
                     "SELECT * FROM mokki WHERE mokkinimi = @selectedCabin", connection);
@@ -206,9 +206,14 @@ namespace Mökkihöperö
 
         private void dataGridView1_Click(object sender, EventArgs e)
         {
-           
 
 
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
