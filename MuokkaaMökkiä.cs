@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Utilities.Collections;
 using System;
 using System.Collections.Generic;
@@ -22,9 +22,9 @@ namespace Mökkihöperö
 
 
 
-        List<uint> MokkiIdtal = new List<uint>();
+        List<int> MokkiIdtal = new List<int>();
         List<string> alueIDseuranta2 = new List<string>();
-        string connectionString = "server=127.0.0.1; database=vn;uid=root;pwd=VillageNewbies;";
+        string connectionString = "server=127.0.0.1; database=vn;uid=root;pwd=eemeli93;";
         public MuokkaaMökkiä()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace Mökkihöperö
 
         }
 
-        public void kommunikoi(uint MokkiID)
+        public void kommunikoi(int MokkiID)
         {
 
             näytäID.Text = MokkiID.ToString();
