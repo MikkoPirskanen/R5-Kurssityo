@@ -161,7 +161,7 @@ namespace Mökkihöperö
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             // Avaa yhteys tietokantaan
             connection.Open();// SQL-kysely mökkien kuvauksen ja varustelun hakemiseksi
-            string query = @"SELECT kuvaus, varustelu FROM mokki";
+            string query = @"SELECT mokkinimi, kuvaus, varustelu FROM mokki";
 
             // Luo SQL-komento ja yhdistä se tietokantayhteyteen
             MySqlCommand command = new MySqlCommand(query, connection);
