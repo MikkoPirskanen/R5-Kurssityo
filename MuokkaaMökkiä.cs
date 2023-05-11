@@ -22,9 +22,9 @@ namespace Mökkihöperö
 
 
 
-        List<int> MokkiIdtal = new List<int>();
+        List<uint> MokkiIdtal = new List<uint>();
         List<string> alueIDseuranta2 = new List<string>();
-        string connectionString = "server=127.0.0.1; database=vn;uid=root;pwd=VillageNewbies;";
+        string connectionString = "server=127.0.0.1; database=vn;uid=root;pwd=eemeli93;";
         public MuokkaaMökkiä()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace Mökkihöperö
 
         }
 
-        public void kommunikoi(int MokkiID)
+        public void kommunikoi(uint MokkiID)
         {
 
             näytäID.Text = MokkiID.ToString();
