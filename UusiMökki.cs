@@ -13,6 +13,9 @@ namespace Mökkihöperö
 {
     public partial class UusiMökki : Form
     {
+
+
+
         List<string> alueIDseuranta2 = new List<string>();
         string connectionString = "server=127.0.0.1; database=vn;uid=root;pwd=VillageNewbies;";
         public UusiMökki()
@@ -78,12 +81,12 @@ namespace Mökkihöperö
 
                 MySqlConnection connection = new MySqlConnection(connectionString);
                 connection.Open();
-                
+
                 double APhinta = double.Parse(valitseHinta.Text);
                 int postinro = int.Parse(valitsePostinro.Text);
 
                 MySqlCommand cmd = new MySqlCommand("INSERT INTO mokki (mokki_id, alue_id, postinro, mokkinimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu) VALUES (@mokki_id, @alue_id, @postinro, @mokkinimi, @katuosoite, @hinta, @kuvaus, @henkilomaara, @varustelu)");
-                
+
                 cmd.Connection = connection;
                 cmd.Parameters.AddWithValue("@mokki_id", idintrandomed);
                 cmd.Parameters.AddWithValue("@alue_id", alueIDseuranta2[valitseAlue2.SelectedIndex]);
@@ -94,11 +97,11 @@ namespace Mökkihöperö
                 cmd.Parameters.AddWithValue("@kuvaus", valitseKuvaus.Text);
                 cmd.Parameters.AddWithValue("@henkilomaara", valitseHlomaara.Text);
                 cmd.Parameters.AddWithValue("@varustelu", valitseVarustelu.Text);
-                
+
                 cmd.ExecuteNonQuery();
 
 
-                MessageBox.Show("Mökin lisätty onnistuneesti!");
+                MessageBox.Show("Mökki lisätty onnistuneesti!");
                 connection.Close();
 
                 this.Close();
@@ -205,6 +208,47 @@ namespace Mökkihöperö
             {
                 e.Handled = true;
             }
+        }
+
+        private void valitseNimi_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void valitseKuvaus_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void valitseVarustelu_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void valitsePostinro_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void valitseHlomaara_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
         }
     }
 }

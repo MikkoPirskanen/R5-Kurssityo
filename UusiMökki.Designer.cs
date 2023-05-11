@@ -62,6 +62,7 @@
             valitseNimi.Name = "valitseNimi";
             valitseNimi.Size = new Size(182, 31);
             valitseNimi.TabIndex = 4;
+            valitseNimi.TextChanged += valitseNimi_TextChanged;
             // 
             // valitseKuvaus
             // 
@@ -69,6 +70,7 @@
             valitseKuvaus.Name = "valitseKuvaus";
             valitseKuvaus.Size = new Size(473, 31);
             valitseKuvaus.TabIndex = 5;
+            valitseKuvaus.TextChanged += valitseKuvaus_TextChanged;
             // 
             // button1
             // 
@@ -96,6 +98,7 @@
             valitseVarustelu.Name = "valitseVarustelu";
             valitseVarustelu.Size = new Size(473, 31);
             valitseVarustelu.TabIndex = 12;
+            valitseVarustelu.TextChanged += valitseVarustelu_TextChanged;
             // 
             // valitsePostinro
             // 
@@ -104,6 +107,7 @@
             valitsePostinro.Name = "valitsePostinro";
             valitsePostinro.Size = new Size(182, 31);
             valitsePostinro.TabIndex = 13;
+            valitsePostinro.TextChanged += valitsePostinro_TextChanged;
             valitsePostinro.KeyPress += valitsePostinro_KeyPress;
             // 
             // valitseKatuosoite
@@ -122,6 +126,7 @@
             valitseHlomaara.Name = "valitseHlomaara";
             valitseHlomaara.Size = new Size(182, 31);
             valitseHlomaara.TabIndex = 15;
+            valitseHlomaara.TextChanged += valitseHlomaara_TextChanged;
             valitseHlomaara.KeyPress += valitseHlomaara_KeyPress;
             // 
             // label1
@@ -132,6 +137,7 @@
             label1.Size = new Size(47, 25);
             label1.TabIndex = 16;
             label1.Text = "Alue";
+            label1.Click += label1_Click;
             // 
             // Nimi
             // 
@@ -151,6 +157,7 @@
             label3.Size = new Size(68, 25);
             label3.TabIndex = 19;
             label3.Text = "Kuvaus";
+            label3.Click += label3_Click;
             // 
             // label4
             // 
@@ -170,6 +177,7 @@
             label5.Size = new Size(77, 25);
             label5.TabIndex = 23;
             label5.Text = "Postinro";
+            label5.Click += label5_Click;
             // 
             // label6
             // 
@@ -189,6 +197,7 @@
             label7.Size = new Size(89, 25);
             label7.TabIndex = 21;
             label7.Text = "Hlömäärä";
+            label7.Click += label7_Click;
             // 
             // label8
             // 
@@ -198,6 +207,7 @@
             label8.Size = new Size(84, 25);
             label8.TabIndex = 20;
             label8.Text = "Varustelu";
+            label8.Click += label8_Click;
             // 
             // UusiMökki
             // 
