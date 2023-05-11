@@ -24,7 +24,7 @@ namespace Mökkihöperö
 
         List<uint> MokkiIdtal = new List<uint>();
         List<string> alueIDseuranta2 = new List<string>();
-        string connectionString = "server=127.0.0.1; database=vn;uid=root;pwd=eemeli93;";
+        string connectionString = "server=127.0.0.1; database=vn;uid=root;pwd=VillageNewbies;";
         public MuokkaaMökkiä()
         {
             InitializeComponent();
