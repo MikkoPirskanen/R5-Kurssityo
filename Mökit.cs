@@ -17,6 +17,16 @@ namespace Mökkihöperö
         public Mokit()
         {
             InitializeComponent();
+
+            string tyhja = " ";
+            string Mökit = "Mökit";
+            string Palvelut = "Palvelut";
+            string Alueet = "Alueet";
+            comboBox1.Items.Add(tyhja);
+            comboBox1.Items.Add(Mökit);
+            comboBox1.Items.Add(Palvelut);
+            comboBox1.Items.Add(Alueet);
+
         }
 
         private void Mokit_Load(object sender, EventArgs e)
@@ -46,6 +56,18 @@ namespace Mökkihöperö
             asiakkaat.Show();
         }
 
+        private void btnLisaaPalvelu_Click(object sender, EventArgs e)
+        {
+            UusiPalvelu palvelu = new UusiPalvelu();
+            palvelu.Show();
+        }
+
+        // Alueet näkymä
+        private void btnAlueet_Click(object sender, EventArgs e)
+        {
+            ShowAlueet();
+        }
+
 
         // Näytä perustiedot-näkymä
         private void btnPerustiedot_Click(object sender, EventArgs e)
@@ -72,23 +94,32 @@ namespace Mökkihöperö
         }
 
 
-
         // Näytä perustiedot
+
+        private void ShowAlueet()
+        {
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+
+            string sqlQuery = @"SELECT * FROM alue";
+
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+
+            dataGridView1.DataSource = dataTable;
+        }
+
         private void ShowPerustiedot()
         {
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
 
+            string sqlQuery = @"SELECT M.mokki_id, A.nimi, M.mokkinimi, M.henkilomaara, M.hinta, M.alue_id FROM mokki M JOIN alue A ON A.alue_id = M.alue_id";
 
-
-
-            MySqlConnection sqlConnection = new MySqlConnection(ConnectionString);
-            sqlConnection.Open();
-
-
-            string sqlQuery = @"SELECT A.nimi, M.mokkinimi, M.katuosoite, M.henkilomaara, M.hinta, M.Kuvaus, M.varustelu FROM mokki M JOIN alue A ON A.alue_id = M.alue_id";
-
-
-
-            MySqlCommand cmd = new MySqlCommand(sqlQuery, sqlConnection);
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
 
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
             DataSet dataSet = new DataSet();
@@ -98,32 +129,28 @@ namespace Mökkihöperö
             dataGridView1.Columns[0].Width = 120;
             dataGridView1.Columns[1].Width = 120;
             dataGridView1.Columns[2].Width = 120;
-            dataGridView1.Columns[3].Width = 50;
-            dataGridView1.Columns[4].Width = 50;
-            dataGridView1.Columns[5].Width = 300;
-            dataGridView1.Columns[6].Width = 300;
+            dataGridView1.Columns[3].Width = 70;
+            dataGridView1.Columns[4].Width = 70;
+            dataGridView1.Columns[5].Width = 70;
 
-            dataGridView1.Columns[0].HeaderText = "Alue";
-            dataGridView1.Columns[1].HeaderText = "Mökin nimi";
-            dataGridView1.Columns[2].HeaderText = "Katuosoite";
+
+            dataGridView1.Columns[0].HeaderText = "Mökki ID";
+            dataGridView1.Columns[1].HeaderText = "Alue";
+            dataGridView1.Columns[2].HeaderText = "Mökin nimi";
             dataGridView1.Columns[3].HeaderText = "Hlö";
             dataGridView1.Columns[4].HeaderText = "Hinta";
-            dataGridView1.Columns[5].HeaderText = "Kuvaus";
-            dataGridView1.Columns[6].HeaderText = "Varustelu";
+            dataGridView1.Columns[5].HeaderText = "Alue ID";
 
 
-
-
-
-            sqlConnection.Close();
-
+            connection.Close();
         }
+
 
         private void ShowOsoitetiedot()
         {
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
-            string query = @"SELECT m.mokki_id, m.mokkinimi, m.katuosoite, m.hinta, m.kuvaus, m.henkilomaara, m.varustelu, a.nimi AS alue, p.toimipaikka AS postitoimipaikka
+            string query = @"SELECT m.mokki_id, m.mokkinimi, m.katuosoite, m.postinro, p.toimipaikka AS postitoimipaikka, a.nimi AS alue
                 FROM mokki m
                 JOIN alue a ON a.alue_id = m.alue_id
                 JOIN posti p ON p.postinro = m.postinro";
@@ -133,16 +160,13 @@ namespace Mökkihöperö
             table.Load(command.ExecuteReader());
             dataGridView1.DataSource = table;
 
-            dataGridView1.Columns["mokki_id"].HeaderText = "Mökin ID";
+            dataGridView1.Columns["mokki_id"].HeaderText = "Mökki ID";
             dataGridView1.Columns["mokkinimi"].HeaderText = "Mökin nimi";
             dataGridView1.Columns["katuosoite"].HeaderText = "Katuosoite";
-            dataGridView1.Columns["hinta"].HeaderText = "Hinta";
-            dataGridView1.Columns["kuvaus"].HeaderText = "Kuvaus";
-            dataGridView1.Columns["henkilomaara"].HeaderText = "Henkilömäärä";
-            dataGridView1.Columns["varustelu"].HeaderText = "Varustelu";
-            dataGridView1.Columns["alue"].HeaderText = "Alue";
-            dataGridView1.Columns["postitoimipaikka"].HeaderText = "Postitoimipaikka";
+            dataGridView1.Columns["postinro"].HeaderText = "Postinumero";
 
+            dataGridView1.Columns["postitoimipaikka"].HeaderText = "Postitoimipaikka";
+            dataGridView1.Columns["alue"].HeaderText = "Alue";
             connection.Close();
         }
         private void ShowKuvausJaVarustelu()
@@ -150,7 +174,7 @@ namespace Mökkihöperö
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             // Avaa yhteys tietokantaan
             connection.Open();// SQL-kysely mökkien kuvauksen ja varustelun hakemiseksi
-            string query = @"SELECT kuvaus, varustelu FROM mokki";
+            string query = @"SELECT mokki_id, mokkinimi, kuvaus, varustelu FROM mokki";
 
             // Luo SQL-komento ja yhdistä se tietokantayhteyteen
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -161,6 +185,11 @@ namespace Mökkihöperö
 
             // Aseta DataGridView näyttämään tietokannasta haetut tiedot
             dataGridView1.DataSource = table;
+
+            dataGridView1.Columns[0].Width = 120;
+            dataGridView1.Columns[1].Width = 120;
+            dataGridView1.Columns[2].Width = 400;
+            dataGridView1.Columns[3].Width = 400;
 
             connection.Close();
         }
@@ -201,6 +230,20 @@ namespace Mökkihöperö
         private void btnHaku_Click(object sender, EventArgs e)
         {
             string searchText = textBox1.Text;
+
+            if (comboBox1.SelectedIndex == 0)
+            {
+
+            } else if (comboBox1.SelectedIndex == 1)
+            {
+                HaeMokkia();
+            } else if (comboBox1.SelectedIndex == 2){ 
+
+                HaePalvelua();
+            } else if (comboBox1.SelectedIndex == 3){
+                HaeAluetta();
+            }
+
 
             foreach (Control control in Controls)
             {
@@ -252,7 +295,95 @@ namespace Mökkihöperö
             }
         }
 
+        private void HaeMokkia()
+        {
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
 
+            string searchText = textBox1.Text;
+            string sqlQuery = @"SELECT mokki_id, mokkinimi, henkilomaara, hinta, alue_id FROM mokki WHERE mokkinimi = @mokkinimi";
+
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+            cmd.Parameters.AddWithValue("@mokkinimi", textBox1.Text);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet, "mokit");
+
+            dataGridView1.DataSource = dataSet.Tables["mokit"];
+            dataGridView1.Columns[0].Width = 120;
+            dataGridView1.Columns[1].Width = 120;
+            dataGridView1.Columns[2].Width = 120;
+            dataGridView1.Columns[3].Width = 70;
+            dataGridView1.Columns[4].Width = 70;
+
+
+            dataGridView1.Columns[0].HeaderText = "Mökki ID";
+            dataGridView1.Columns[1].HeaderText = "Mökin nimi";
+            dataGridView1.Columns[2].HeaderText = "Hlö";
+            dataGridView1.Columns[3].HeaderText = "Hinta";
+            dataGridView1.Columns[4].HeaderText = "Alue ID";
+
+
+            connection.Close();
+        }
+
+        private void HaePalvelua()
+        {
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+
+            string searchText = textBox1.Text;
+            string sqlQuery = @"SELECT nimi, hinta + alv, kuvaus, alue_id, palvelu_id FROM palvelu WHERE nimi = @nimi";
+
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+            cmd.Parameters.AddWithValue("@nimi", textBox1.Text);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet, "palvelut");
+
+            dataGridView1.DataSource = dataSet.Tables["palvelut"];
+            dataGridView1.Columns[0].Width = 120;
+            dataGridView1.Columns[1].Width = 120;
+            dataGridView1.Columns[2].Width = 120;
+            dataGridView1.Columns[3].Width = 70;
+            dataGridView1.Columns[4].Width = 70;
+
+
+            dataGridView1.Columns[0].HeaderText = "Palvelu";
+            dataGridView1.Columns[1].HeaderText = "Hinta";
+            dataGridView1.Columns[2].HeaderText = "Kuvaus";
+            dataGridView1.Columns[3].HeaderText = "Alue";
+            dataGridView1.Columns[4].HeaderText = "ID";
+
+
+            connection.Close();
+        }
+
+        private void HaeAluetta()
+        {
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+
+            string searchText = textBox1.Text;
+            string sqlQuery = @"SELECT nimi, alue_id FROM alue WHERE nimi = @nimi";
+
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+            cmd.Parameters.AddWithValue("@nimi", textBox1.Text);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet, "alueet");
+
+            dataGridView1.DataSource = dataSet.Tables["alueet"];
+            dataGridView1.Columns[0].Width = 120;
+            dataGridView1.Columns[1].Width = 120;
+
+
+            dataGridView1.Columns[0].HeaderText = "Nimi";
+            dataGridView1.Columns[1].HeaderText = "ID";
+
+
+            connection.Close();
+        }
 
         // Mökin poistaminen
         private void btnPoistaMokki_Click(object sender, EventArgs e)
@@ -270,17 +401,15 @@ namespace Mökkihöperö
                     DialogResult result = MessageBox.Show("Haluatko varmasti poistaa valitun mökin?", "Vahvista poisto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        using (SqlConnection connection = new SqlConnection(ConnectionString))
+                        using (MySqlConnection connection = new MySqlConnection(ConnectionString))
                         {
                             connection.Open();
 
                             // Poistetaan mökki taulusta
                             string deleteMokkiQuery = "DELETE FROM mokki WHERE mokki_id = @mokki_id";
-                            SqlCommand deleteMokkiCommand = new SqlCommand(deleteMokkiQuery, connection);
+                            MySqlCommand deleteMokkiCommand = new MySqlCommand(deleteMokkiQuery, connection);
                             deleteMokkiCommand.Parameters.AddWithValue("@mokki_id", mokkiId);
                             deleteMokkiCommand.ExecuteNonQuery();
-
-
 
                             // Päivitetään näkymä
                             dataGridView1.DataSource = haeMokit();
@@ -300,109 +429,13 @@ namespace Mökkihöperö
 
 
 
-
         // Mökkien hallintaa: mökin lisäys
 
 
         private void btnLisaaMokki_Click(object sender, EventArgs e)
         {
-            // Avaa pop-up-ikkuna tiedon syöttämistä varten
-            var formPopup = new Form();
-            var alueLabel = new Label() { Text = "Alueen nimi:" };
-            var alueDropdown = new ComboBox() { DataSource = GetAlueet(), DisplayMember = "nimi", ValueMember = "alue_id" };
-            var postiLabel = new Label() { Text = "Postinumero ja -toimipaikka:" };
-            var postiTextbox = new TextBox();
-            var mokkiNimiLabel = new Label() { Text = "Mökin nimi:" };
-            var mokkiNimiTextbox = new TextBox();
-            var katuosoiteLabel = new Label() { Text = "Katuosoite:" };
-            var katuosoiteTextbox = new TextBox();
-            var hintaLabel = new Label() { Text = "Hinta per yö:" };
-            var hintaTextbox = new TextBox();
-            var kuvausLabel = new Label() { Text = "Kuvaus:" };
-            var kuvausTextbox = new TextBox();
-            var henkilomaaraLabel = new Label() { Text = "Henkilömäärä:" };
-            var henkilomaaraTextbox = new TextBox();
-            var varusteluLabel = new Label() { Text = "Varustelu:" };
-            var varusteluTextbox = new TextBox();
-            var lisaaButton = new Button() { Text = "Lisää" };
-            var peruutaButton = new Button() { Text = "Peruuta" };
-
-            formPopup.Controls.Add(alueLabel);
-            formPopup.Controls.Add(alueDropdown);
-            formPopup.Controls.Add(postiLabel);
-            formPopup.Controls.Add(postiTextbox);
-            formPopup.Controls.Add(mokkiNimiLabel);
-            formPopup.Controls.Add(mokkiNimiTextbox);
-            formPopup.Controls.Add(katuosoiteLabel);
-            formPopup.Controls.Add(katuosoiteTextbox);
-            formPopup.Controls.Add(hintaLabel);
-            formPopup.Controls.Add(hintaTextbox);
-            formPopup.Controls.Add(kuvausLabel);
-            formPopup.Controls.Add(kuvausTextbox);
-            formPopup.Controls.Add(henkilomaaraLabel);
-            formPopup.Controls.Add(henkilomaaraTextbox);
-            formPopup.Controls.Add(varusteluLabel);
-            formPopup.Controls.Add(varusteluTextbox);
-            formPopup.Controls.Add(lisaaButton);
-            formPopup.Controls.Add(peruutaButton);
-
-            alueLabel.Location = new System.Drawing.Point(20, 20);
-            alueDropdown.Location = new System.Drawing.Point(130, 20);
-            postiLabel.Location = new System.Drawing.Point(20, 50);
-            postiTextbox.Location = new System.Drawing.Point(200, 50);
-            mokkiNimiLabel.Location = new System.Drawing.Point(20, 80);
-            mokkiNimiTextbox.Location = new System.Drawing.Point(200, 80);
-            katuosoiteLabel.Location = new System.Drawing.Point(20, 110);
-            katuosoiteTextbox.Location = new System.Drawing.Point(200, 110);
-            hintaLabel.Location = new System.Drawing.Point(20, 140);
-            hintaTextbox.Location = new System.Drawing.Point(200, 140);
-            kuvausLabel.Location = new System.Drawing.Point(20, 170);
-            kuvausTextbox.Location = new System.Drawing.Point(200, 170);
-            henkilomaaraLabel.Location = new System.Drawing.Point(20, 200);
-            henkilomaaraTextbox.Location = new System.Drawing.Point(200, 200);
-            varusteluLabel.Location = new System.Drawing.Point(20, 230);
-            varusteluTextbox.Location = new System.Drawing.Point(200, 230);
-            lisaaButton.Location = new System.Drawing.Point(20, 280);
-            peruutaButton.Location = new System.Drawing.Point(100, 280);
-
-
-
-            lisaaButton.Click += (object s, EventArgs ea) =>
-            {
-                try
-                {
-                    using (SqlConnection connection = new SqlConnection(ConnectionString))
-                    {
-                        connection.Open();
-                        SqlCommand cmd = new SqlCommand("INSERT INTO Mokit (alue_id, postinro, postitmp, nimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu) VALUES (@alue_id, @postinro, @postitmp, @nimi, @katuosoite, @hinta, @kuvaus, @henkilomaara, @varustelu)", connection);
-                        cmd.Parameters.AddWithValue("@alue_id", alueDropdown.SelectedValue);
-                        cmd.Parameters.AddWithValue("@postinro", postiTextbox.Text);
-                        cmd.Parameters.AddWithValue("@postitmp", postiTextbox.Text);
-                        cmd.Parameters.AddWithValue("@nimi", mokkiNimiTextbox.Text);
-                        cmd.Parameters.AddWithValue("@katuosoite", katuosoiteTextbox.Text);
-                        cmd.Parameters.AddWithValue("@hinta", hintaTextbox.Text);
-                        cmd.Parameters.AddWithValue("@kuvaus", kuvausTextbox.Text);
-                        cmd.Parameters.AddWithValue("@henkilomaara", henkilomaaraTextbox.Text);
-                        cmd.Parameters.AddWithValue("@varustelu", varusteluTextbox.Text);
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Mökki lisätty onnistuneesti!");
-                        formPopup.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Virhe lisätessä mökkiä tietokantaan: " + ex.Message);
-                }
-            };
-
-            peruutaButton.Click += (object s, EventArgs ea) =>
-            {
-                formPopup.Close();
-            };
-
-            formPopup.ShowDialog();
-
+            UusiMökki mökki = new UusiMökki();
+            mökki.Show();
         }
         private DataTable GetAlueet()
         {
@@ -418,190 +451,18 @@ namespace Mökkihöperö
         }
         // Mökin muokkaus
 
-        private void btnMuokkaaMokki_Click(object sender, EventArgs e)
+      private void btnMuokkaaMokki_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
 
-                using (Form form = new Form())
-                {
-                    form.Text = "Muokkaa mökkiä";
-                    form.StartPosition = FormStartPosition.CenterScreen;
-
-                    Label labelMokkiId = new Label();
-                    labelMokkiId.Text = "Mökin ID:";
-                    labelMokkiId.AutoSize = true;
-                    labelMokkiId.Location = new Point(10, 10);
-
-                    TextBox txtMokkiId = new TextBox();
-                    txtMokkiId.Location = new Point(labelMokkiId.Right + 5, 10);
-                    txtMokkiId.Width = 200;
-
-                    Label labelAlueId = new Label();
-                    labelAlueId.Text = "Alue ID:";
-                    labelAlueId.AutoSize = true;
-                    labelAlueId.Location = new Point(10, labelMokkiId.Bottom + 10);
-
-                    TextBox txtAlueId = new TextBox();
-                    txtAlueId.Location = new Point(labelAlueId.Right + 5, labelMokkiId.Bottom + 10);
-                    txtAlueId.Width = 200;
-
-                    Label labelPostinro = new Label();
-                    labelPostinro.Text = "Postinumero:";
-                    labelPostinro.AutoSize = true;
-                    labelPostinro.Location = new Point(10, labelAlueId.Bottom + 10);
-
-                    TextBox txtPostinro = new TextBox();
-                    txtPostinro.Location = new Point(labelPostinro.Right + 5, labelAlueId.Bottom + 10);
-                    txtPostinro.Width = 200;
-
-                    Label labelMokkinimi = new Label();
-                    labelMokkinimi.Text = "Mökin nimi:";
-                    labelMokkinimi.AutoSize = true;
-                    labelMokkinimi.Location = new Point(10, labelPostinro.Bottom + 10);
-
-                    TextBox txtMokkinimi = new TextBox();
-                    txtMokkinimi.Location = new Point(labelMokkinimi.Right + 5, labelPostinro.Bottom + 10);
-                    txtMokkinimi.Width = 200;
-
-                    Label labelKatuosoite = new Label();
-                    labelKatuosoite.Text = "Katuosoite:";
-                    labelKatuosoite.AutoSize = true;
-                    labelKatuosoite.Location = new Point(10, labelMokkinimi.Bottom + 10);
-
-                    TextBox txtKatuosoite = new TextBox();
-                    txtKatuosoite.Location = new Point(labelKatuosoite.Right + 5, labelMokkinimi.Bottom + 10);
-                    txtKatuosoite.Width = 200;
-
-                    Label labelHinta = new Label();
-                    labelHinta.Text = "Hinta:";
-                    labelHinta.AutoSize = true;
-                    labelHinta.Location = new Point(10, labelKatuosoite.Bottom + 10);
-
-                    TextBox txtHinta = new TextBox();
-                    txtHinta.Location = new Point(labelHinta.Right + 5, labelKatuosoite.Bottom + 10);
-                    txtHinta.Width = 200;
-
-                    Label labelKuvaus = new Label();
-                    labelKuvaus.Text = "Kuvaus:";
-                    labelKuvaus.AutoSize = true;
-                    labelKuvaus.Location = new Point(10, labelHinta.Bottom + 10);
-
-                    TextBox textBoxKuvaus = new TextBox();
-                    textBoxKuvaus.Width = 200;
-                    textBoxKuvaus.Location = new Point(labelKuvaus.Right + 5, labelHinta.Bottom + 10);
-
-                    Label labelHenkilomaara = new Label();
-                    labelHenkilomaara.Text = "Henkilömäärä:";
-                    labelHenkilomaara.AutoSize = true;
-                    labelHenkilomaara.Location = new Point(10, labelKuvaus.Bottom + 10);
-
-                    TextBox txtHenkilomaara = new TextBox();
-                    txtHenkilomaara.Location = new Point(labelHenkilomaara.Right + 5, labelKuvaus.Bottom + 10);
-                    txtHenkilomaara.Width = 200;
-
-                    Label labelVarustelu = new Label();
-                    labelVarustelu.Text = "Varustelu:";
-                    labelVarustelu.AutoSize = true;
-                    labelVarustelu.Location = new Point(10, labelHenkilomaara.Bottom + 10);
-
-                    TextBox txtVarustelu = new TextBox();
-                    txtVarustelu.Location = new Point(labelVarustelu.Right + 5, labelHenkilomaara.Bottom + 10);
-                    txtVarustelu.Width = 200;
 
 
-                    // Mökiin tietojen tallennus
-                    Button buttonLisaa = new Button();
-                    buttonLisaa.Text = "Tallenna";
-                    buttonLisaa.Location = new Point(textBoxKuvaus.Right - buttonLisaa.Width, textBoxKuvaus.Bottom + 10);
-                    buttonLisaa.Click += (s, ea) =>
-                    {
-                        try
-                        {
-                            // Haetaan syötteet tekstikentistä:
-                            int mokkiId = int.Parse(txtMokkiId.Text);
-                            int alueId = int.Parse(txtAlueId.Text);
-                            string postinro = txtPostinro.Text;
-                            string mokkinimi = txtMokkinimi.Text;
-                            string katuosoite = txtKatuosoite.Text;
-                            double hinta = double.Parse(txtHinta.Text);
-                            string kuvaus = textBoxKuvaus.Text;
-                            int henkilomaara = int.Parse(txtHenkilomaara.Text);
-                            string varustelu = txtVarustelu.Text;
-                            // Päivitetään tietokantaan mökin tiedot
-                            // updateMokki(mokkiId, alueId, postinro, mokkinimi, katuosoite, hinta, kuvaus);
+                int MokkiID = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                MuokkaaMökkiä muokkaamökkiä = new MuokkaaMökkiä();
+                muokkaamökkiä.Show();
 
-                            // Suljetaan ikkuna
-                            this.Close();
-                        }
-                        catch (FormatException ex)
-                        {
-                            MessageBox.Show("Syötteissä on virheellistä tietoa: " + ex.Message);
-                        }
-                    };
-
-
-
-                    this.Controls.Add(labelMokkinimi);
-                    this.Controls.Add(txtMokkinimi);
-                    this.Controls.Add(labelHinta);
-                    this.Controls.Add(txtHinta);
-                    this.Controls.Add(labelKuvaus);
-                    this.Controls.Add(textBoxKuvaus);
-                    this.Controls.Add(buttonLisaa);
-                    this.Controls.Add(labelVarustelu);
-                    this.Controls.Add(txtVarustelu);
-                    this.Controls.Add(labelHenkilomaara);
-                    this.Controls.Add(txtHenkilomaara);
-
-
-                    form.Controls.Add(labelMokkiId);
-                    form.Controls.Add(txtMokkiId);
-                    form.Controls.Add(labelAlueId);
-                    form.Controls.Add(txtAlueId);
-                    form.Controls.Add(labelPostinro);
-                    form.Controls.Add(txtPostinro);
-                    form.Controls.Add(labelMokkinimi);
-                    form.Controls.Add(txtMokkinimi);
-                    form.Controls.Add(labelKatuosoite);
-                    form.Controls.Add(txtKatuosoite);
-                    form.Controls.Add(labelHinta);
-                    form.Controls.Add(txtHinta);
-                    form.Controls.Add(labelKuvaus);
-                    form.Controls.Add(textBoxKuvaus);
-                    form.Controls.Add(buttonLisaa);
-
-                    // Haetaan tietokannasta valitun mökin tiedot
-                    string mokkiId = txtMokkiId.Text;
-                    string query = "SELECT alue_id, postinro, mokkinimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu FROM mokit WHERE mokki_id = " + mokkiId;
-
-                    using (SqlConnection connection = new SqlConnection(ConnectionString))
-                    {
-                        SqlCommand command = new SqlCommand(query, connection);
-                        connection.Open();
-                        SqlDataReader reader = command.ExecuteReader();
-
-                        if (reader.Read())
-                        {
-                            txtMokkiId.Text = reader["mokki_id"].ToString();
-                            txtAlueId.Text = reader["alue_id"].ToString();
-                            txtPostinro.Text = reader["postinro"].ToString();
-                            txtMokkinimi.Text = reader["mokkinimi"].ToString();
-                            txtKatuosoite.Text = reader["katuosoite"].ToString();
-                            txtHinta.Text = reader["hinta"].ToString();
-                            textBoxKuvaus.Text = reader["kuvaus"].ToString();
-                            txtHenkilomaara.Text = reader["henkilomaara"].ToString();
-                            txtVarustelu.Text = reader["varustelu"].ToString();
-
-                        }
-
-                        reader.Close();
-                    }
-
-                    // Näytetään ikkuna
-                    form.ShowDialog();
-
-                }
+                muokkaamökkiä.kommunikoi(MokkiID);
 
             }
             else
@@ -609,6 +470,7 @@ namespace Mökkihöperö
                 MessageBox.Show("Valitse muokattava mökki ");
             }
         }
+
 
 
 
@@ -718,7 +580,6 @@ namespace Mökkihöperö
                 }
             }
         }
-
         private void BtnPoistaAlue_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -732,8 +593,8 @@ namespace Mökkihöperö
                 {
                     string sql = $"DELETE FROM alue WHERE alue_id = {alueId}";
 
-                    using (SqlConnection connection = new SqlConnection(ConnectionString))
-                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+                    using (MySqlCommand command = new MySqlCommand(sql, connection))
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
@@ -815,9 +676,18 @@ namespace Mökkihöperö
             Varaukset varaus = new Varaukset();
             varaus.Show();
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBox1_DropDown(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
-
 
 
 

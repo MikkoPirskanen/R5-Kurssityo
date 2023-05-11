@@ -45,20 +45,23 @@ namespace Mökkihöperö
             btnAsiakkaat = new Button();
             btnRaportointi = new Button();
             btnLaskutus = new Button();
+            btnAlueet = new Button();
+            btnLisaaPalvelu = new Button();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(37, 33);
+            textBox1.Location = new Point(12, 10);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(225, 23);
+            textBox1.Size = new Size(225, 31);
             textBox1.TabIndex = 0;
             textBox1.Text = "Hakukenttä";
             // 
             // btnHaku
             // 
-            btnHaku.Location = new Point(268, 33);
+            btnHaku.Location = new Point(243, 10);
             btnHaku.Name = "btnHaku";
             btnHaku.Size = new Size(94, 29);
             btnHaku.TabIndex = 1;
@@ -68,9 +71,9 @@ namespace Mökkihöperö
             // 
             // btnPerustiedot
             // 
-            btnPerustiedot.Location = new Point(451, 33);
+            btnPerustiedot.Location = new Point(903, 47);
             btnPerustiedot.Name = "btnPerustiedot";
-            btnPerustiedot.Size = new Size(94, 29);
+            btnPerustiedot.Size = new Size(122, 29);
             btnPerustiedot.TabIndex = 2;
             btnPerustiedot.Text = "Perustiedot";
             btnPerustiedot.UseVisualStyleBackColor = true;
@@ -78,7 +81,7 @@ namespace Mökkihöperö
             // 
             // btnOsoitetiedot
             // 
-            btnOsoitetiedot.Location = new Point(551, 33);
+            btnOsoitetiedot.Location = new Point(767, 47);
             btnOsoitetiedot.Name = "btnOsoitetiedot";
             btnOsoitetiedot.Size = new Size(130, 29);
             btnOsoitetiedot.TabIndex = 3;
@@ -88,7 +91,7 @@ namespace Mökkihöperö
             // 
             // btnKuvausJaVarustelu
             // 
-            btnKuvausJaVarustelu.Location = new Point(687, 33);
+            btnKuvausJaVarustelu.Location = new Point(767, 12);
             btnKuvausJaVarustelu.Name = "btnKuvausJaVarustelu";
             btnKuvausJaVarustelu.Size = new Size(196, 29);
             btnKuvausJaVarustelu.TabIndex = 4;
@@ -99,10 +102,11 @@ namespace Mökkihöperö
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 68);
+            dataGridView1.Location = new Point(12, 97);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1101, 494);
             dataGridView1.TabIndex = 5;
             // 
@@ -118,7 +122,7 @@ namespace Mökkihöperö
             // 
             // btnLisaaMokki
             // 
-            btnLisaaMokki.Location = new Point(12, 568);
+            btnLisaaMokki.Location = new Point(12, 610);
             btnLisaaMokki.Name = "btnLisaaMokki";
             btnLisaaMokki.Size = new Size(128, 29);
             btnLisaaMokki.TabIndex = 9;
@@ -128,7 +132,7 @@ namespace Mökkihöperö
             // 
             // btnMuokkaaMokki
             // 
-            btnMuokkaaMokki.Location = new Point(146, 568);
+            btnMuokkaaMokki.Location = new Point(146, 610);
             btnMuokkaaMokki.Name = "btnMuokkaaMokki";
             btnMuokkaaMokki.Size = new Size(166, 29);
             btnMuokkaaMokki.TabIndex = 10;
@@ -138,7 +142,7 @@ namespace Mökkihöperö
             // 
             // btnPoistaMokki
             // 
-            btnPoistaMokki.Location = new Point(318, 568);
+            btnPoistaMokki.Location = new Point(318, 610);
             btnPoistaMokki.Name = "btnPoistaMokki";
             btnPoistaMokki.Size = new Size(134, 29);
             btnPoistaMokki.TabIndex = 11;
@@ -148,7 +152,7 @@ namespace Mökkihöperö
             // 
             // btnLisaaAlue
             // 
-            btnLisaaAlue.Location = new Point(669, 568);
+            btnLisaaAlue.Location = new Point(669, 610);
             btnLisaaAlue.Name = "btnLisaaAlue";
             btnLisaaAlue.Size = new Size(120, 29);
             btnLisaaAlue.TabIndex = 12;
@@ -158,7 +162,7 @@ namespace Mökkihöperö
             // 
             // btnMuokkaaAluetta
             // 
-            btnMuokkaaAluetta.Location = new Point(795, 568);
+            btnMuokkaaAluetta.Location = new Point(795, 610);
             btnMuokkaaAluetta.Name = "btnMuokkaaAluetta";
             btnMuokkaaAluetta.Size = new Size(140, 29);
             btnMuokkaaAluetta.TabIndex = 13;
@@ -168,7 +172,7 @@ namespace Mökkihöperö
             // 
             // btnPoistaAlue
             // 
-            btnPoistaAlue.Location = new Point(941, 568);
+            btnPoistaAlue.Location = new Point(941, 610);
             btnPoistaAlue.Name = "btnPoistaAlue";
             btnPoistaAlue.Size = new Size(104, 29);
             btnPoistaAlue.TabIndex = 14;
@@ -178,7 +182,7 @@ namespace Mökkihöperö
             // 
             // btnAlueenPalvelut
             // 
-            btnAlueenPalvelut.Location = new Point(889, 33);
+            btnAlueenPalvelut.Location = new Point(969, 12);
             btnAlueenPalvelut.Name = "btnAlueenPalvelut";
             btnAlueenPalvelut.Size = new Size(156, 29);
             btnAlueenPalvelut.TabIndex = 15;
@@ -216,9 +220,42 @@ namespace Mökkihöperö
             btnLaskutus.UseVisualStyleBackColor = true;
             btnLaskutus.Click += BtnLaskutus_Click;
             // 
+            // btnAlueet
+            // 
+            btnAlueet.Location = new Point(1031, 47);
+            btnAlueet.Name = "btnAlueet";
+            btnAlueet.Size = new Size(94, 29);
+            btnAlueet.TabIndex = 19;
+            btnAlueet.Text = "Alueet";
+            btnAlueet.UseVisualStyleBackColor = true;
+            btnAlueet.Click += btnAlueet_Click;
+            // 
+            // btnLisaaPalvelu
+            // 
+            btnLisaaPalvelu.Location = new Point(1231, 192);
+            btnLisaaPalvelu.Name = "btnLisaaPalvelu";
+            btnLisaaPalvelu.Size = new Size(217, 29);
+            btnLisaaPalvelu.TabIndex = 20;
+            btnLisaaPalvelu.Text = "Lisää Palvelu";
+            btnLisaaPalvelu.UseVisualStyleBackColor = true;
+            btnLisaaPalvelu.Click += btnLisaaPalvelu_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(12, 52);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(182, 33);
+            comboBox1.TabIndex = 21;
+            comboBox1.DropDown += comboBox1_DropDown;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
             // Mokit
             // 
             ClientSize = new Size(1528, 684);
+            Controls.Add(comboBox1);
+            Controls.Add(btnLisaaPalvelu);
+            Controls.Add(btnAlueet);
             Controls.Add(btnLaskutus);
             Controls.Add(btnRaportointi);
             Controls.Add(btnAsiakkaat);
@@ -260,6 +297,9 @@ namespace Mökkihöperö
         private Button btnAsiakkaat;
         private Button btnRaportointi;
         private Button btnLaskutus;
+        private Button btnAlueet;
+        private Button btnLisaaPalvelu;
+        private ComboBox comboBox1;
     }
 }
 #endregion
