@@ -37,7 +37,7 @@ namespace Mökkihöperö
         {
 
             näytäID.Text = MokkiID.ToString();
-            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
             string sqlQuery = @"SELECT * FROM mokki WHERE mokki_id = @mokki_id";
