@@ -137,7 +137,7 @@ namespace Mökkihöperö
         {
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
-            string query = @"SELECT m.mokkinimi, m.katuosoite, m.postinro, a.nimi AS alue, p.toimipaikka AS postitoimipaikka
+            string query = @"SELECT m.mokkinimi, m.katuosoite, m.postinro, p.toimipaikka AS postitoimipaikka, a.nimi AS alue
                 FROM mokki m
                 JOIN alue a ON a.alue_id = m.alue_id
                 JOIN posti p ON p.postinro = m.postinro";
@@ -151,9 +151,9 @@ namespace Mökkihöperö
             dataGridView1.Columns["mokkinimi"].HeaderText = "Mökin nimi";
             dataGridView1.Columns["katuosoite"].HeaderText = "Katuosoite";
             dataGridView1.Columns["postinro"].HeaderText = "Postinumero";
-            dataGridView1.Columns["alue"].HeaderText = "Alue";
+            
             dataGridView1.Columns["postitoimipaikka"].HeaderText = "Postitoimipaikka";
-
+            dataGridView1.Columns["alue"].HeaderText = "Alue";
             connection.Close();
         }
         private void ShowKuvausJaVarustelu()
