@@ -323,103 +323,8 @@ namespace Mökkihöperö
 
         private void btnLisaaMokki_Click(object sender, EventArgs e)
         {
-            // Avaa pop-up-ikkuna tiedon syöttämistä varten
-            var formPopup = new Form();
-            var alueLabel = new Label() { Text = "Alueen nimi:" };
-            var alueDropdown = new ComboBox() { DataSource = GetAlueet(), DisplayMember = "nimi", ValueMember = "alue_id" };
-            var postiLabel = new Label() { Text = "Postinumero:" };
-            var postiTextbox = new TextBox();
-            var mokkiNimiLabel = new Label() { Text = "Mökin nimi:" };
-            var mokkiNimiTextbox = new TextBox();
-            var katuosoiteLabel = new Label() { Text = "Katuosoite:" };
-            var katuosoiteTextbox = new TextBox();
-            var hintaLabel = new Label() { Text = "Hinta per yö:" };
-            var hintaTextbox = new TextBox();
-            var kuvausLabel = new Label() { Text = "Kuvaus:" };
-            var kuvausTextbox = new TextBox();
-            var henkilomaaraLabel = new Label() { Text = "Henkilömäärä:" };
-            var henkilomaaraTextbox = new TextBox();
-            var varusteluLabel = new Label() { Text = "Varustelu:" };
-            var varusteluTextbox = new TextBox();
-            var lisaaButton = new Button() { Text = "Lisää" };
-            var peruutaButton = new Button() { Text = "Peruuta" };
-
-            formPopup.Controls.Add(alueLabel);
-            formPopup.Controls.Add(alueDropdown);
-            formPopup.Controls.Add(postiLabel);
-            formPopup.Controls.Add(postiTextbox);
-            formPopup.Controls.Add(mokkiNimiLabel);
-            formPopup.Controls.Add(mokkiNimiTextbox);
-            formPopup.Controls.Add(katuosoiteLabel);
-            formPopup.Controls.Add(katuosoiteTextbox);
-            formPopup.Controls.Add(hintaLabel);
-            formPopup.Controls.Add(hintaTextbox);
-            formPopup.Controls.Add(kuvausLabel);
-            formPopup.Controls.Add(kuvausTextbox);
-            formPopup.Controls.Add(henkilomaaraLabel);
-            formPopup.Controls.Add(henkilomaaraTextbox);
-            formPopup.Controls.Add(varusteluLabel);
-            formPopup.Controls.Add(varusteluTextbox);
-            formPopup.Controls.Add(lisaaButton);
-            formPopup.Controls.Add(peruutaButton);
-
-            alueLabel.Location = new System.Drawing.Point(20, 20);
-            alueDropdown.Location = new System.Drawing.Point(130, 20);
-            postiLabel.Location = new System.Drawing.Point(20, 50);
-            postiTextbox.Location = new System.Drawing.Point(200, 50);
-            mokkiNimiLabel.Location = new System.Drawing.Point(20, 80);
-            mokkiNimiTextbox.Location = new System.Drawing.Point(200, 80);
-            katuosoiteLabel.Location = new System.Drawing.Point(20, 110);
-            katuosoiteTextbox.Location = new System.Drawing.Point(200, 110);
-            hintaLabel.Location = new System.Drawing.Point(20, 140);
-            hintaTextbox.Location = new System.Drawing.Point(200, 140);
-            kuvausLabel.Location = new System.Drawing.Point(20, 170);
-            kuvausTextbox.Location = new System.Drawing.Point(200, 170);
-            henkilomaaraLabel.Location = new System.Drawing.Point(20, 200);
-            henkilomaaraTextbox.Location = new System.Drawing.Point(200, 200);
-            varusteluLabel.Location = new System.Drawing.Point(20, 230);
-            varusteluTextbox.Location = new System.Drawing.Point(200, 230);
-            lisaaButton.Location = new System.Drawing.Point(20, 280);
-            peruutaButton.Location = new System.Drawing.Point(100, 280);
-
-
-
-            lisaaButton.Click += (object s, EventArgs ea) =>
-            {
-                try
-                {
-                    using (MySqlConnection connection = new MySqlConnection(ConnectionString))
-                    {
-                        connection.Open();
-                        MySqlCommand cmd = new MySqlCommand("INSERT INTO Mokit (mokki_id, alue_id, postinro, nimi, katuosoite, hinta, kuvaus, henkilomaara, varustelu) VALUES (@mokki_id, @alue_id, @postinro, @nimi, @katuosoite, @hinta, @kuvaus, @henkilomaara, @varustelu)", connection);
-                        cmd.Parameters.AddWithValue("@mokki_id", null); // Set to null to allow the database to auto-generate the ID
-                        cmd.Parameters.AddWithValue("@alue_id", alueDropdown.SelectedValue);
-                        cmd.Parameters.AddWithValue("@postinro", postiTextbox.Text);
-                        cmd.Parameters.AddWithValue("@nimi", mokkiNimiTextbox.Text);
-                        cmd.Parameters.AddWithValue("@katuosoite", katuosoiteTextbox.Text);
-                        cmd.Parameters.AddWithValue("@hinta", hintaTextbox.Text);
-                        cmd.Parameters.AddWithValue("@kuvaus", kuvausTextbox.Text);
-                        cmd.Parameters.AddWithValue("@henkilomaara", henkilomaaraTextbox.Text);
-                        cmd.Parameters.AddWithValue("@varustelu", varusteluTextbox.Text);
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Mökki lisätty onnistuneesti!");
-                        formPopup.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Virhe lisätessä mökkiä tietokantaan: " + ex.Message);
-                }
-            };
-
-            peruutaButton.Click += (object s, EventArgs ea) =>
-            {
-                formPopup.Close();
-            };
-
-            formPopup.ShowDialog();
-
+            UusiMökki mökki = new UusiMökki();
+            mökki.Show();
         }
         private DataTable GetAlueet()
         {
@@ -830,6 +735,11 @@ namespace Mökkihöperö
         {
             Varaukset varaus = new Varaukset();
             varaus.Show();
+        }
+        private void btnLisaaPalvelu_Click(object sender, EventArgs e)
+        {
+            UusiPalvelu palvelu = new UusiPalvelu();   
+            palvelu.Show(); 
         }
     }
 }
