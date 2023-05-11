@@ -106,7 +106,7 @@ namespace Mökkihöperö
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
-            string sqlQuery = @"SELECT A.nimi, M.mokkinimi, M.henkilomaara, M.hinta, M.mokki_id, M.alue_id FROM mokki M JOIN alue A ON A.alue_id = M.alue_id";
+            string sqlQuery = @"SELECT M.mokki_id, A.nimi, M.mokkinimi, M.henkilomaara, M.hinta, M.mokki_id, M.alue_id FROM mokki M JOIN alue A ON A.alue_id = M.alue_id";
 
             MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
 
@@ -121,12 +121,15 @@ namespace Mökkihöperö
             dataGridView1.Columns[3].Width = 70;
             dataGridView1.Columns[4].Width = 70;
             dataGridView1.Columns[5].Width = 70;
-            dataGridView1.Columns[0].HeaderText = "Alue";
-            dataGridView1.Columns[1].HeaderText = "Mökin nimi";
-            dataGridView1.Columns[2].HeaderText = "Hlö";
-            dataGridView1.Columns[3].HeaderText = "Hinta";
-            dataGridView1.Columns[4].HeaderText = "Mökki ID";
-            dataGridView1.Columns[5].HeaderText = "Alue ID";
+            dataGridView1.Columns[6].Width = 70;
+
+            dataGridView1.Columns[0].HeaderText = "Mökki ID";
+            dataGridView1.Columns[1].HeaderText = "Alue";
+            dataGridView1.Columns[2].HeaderText = "Mökin nimi";
+            dataGridView1.Columns[3].HeaderText = "Hlö";
+            dataGridView1.Columns[4].HeaderText = "Hinta";
+            dataGridView1.Columns[5].HeaderText = "Mökki ID";
+            dataGridView1.Columns[6].HeaderText = "Alue ID";
 
 
             connection.Close();
@@ -137,7 +140,7 @@ namespace Mökkihöperö
         {
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
-            string query = @"SELECT m.mokkinimi, m.katuosoite, m.postinro, p.toimipaikka AS postitoimipaikka, a.nimi AS alue
+            string query = @"SELECT m.mokki_id, m.mokkinimi, m.katuosoite, m.postinro, p.toimipaikka AS postitoimipaikka, a.nimi AS alue
                 FROM mokki m
                 JOIN alue a ON a.alue_id = m.alue_id
                 JOIN posti p ON p.postinro = m.postinro";
@@ -147,7 +150,7 @@ namespace Mökkihöperö
             table.Load(command.ExecuteReader());
             dataGridView1.DataSource = table;
 
-            
+            dataGridView1.Columns["mokki_id"].HeaderText = "Mökki ID";
             dataGridView1.Columns["mokkinimi"].HeaderText = "Mökin nimi";
             dataGridView1.Columns["katuosoite"].HeaderText = "Katuosoite";
             dataGridView1.Columns["postinro"].HeaderText = "Postinumero";
@@ -161,7 +164,7 @@ namespace Mökkihöperö
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             // Avaa yhteys tietokantaan
             connection.Open();// SQL-kysely mökkien kuvauksen ja varustelun hakemiseksi
-            string query = @"SELECT mokkinimi, kuvaus, varustelu FROM mokki";
+            string query = @"SELECT mokki_id, mokkinimi, kuvaus, varustelu FROM mokki";
 
             // Luo SQL-komento ja yhdistä se tietokantayhteyteen
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -172,6 +175,11 @@ namespace Mökkihöperö
 
             // Aseta DataGridView näyttämään tietokannasta haetut tiedot
             dataGridView1.DataSource = table;
+
+            dataGridView1.Columns[0].Width = 120;
+            dataGridView1.Columns[1].Width = 120;
+            dataGridView1.Columns[2].Width = 400;
+            dataGridView1.Columns[3].Width = 400;
 
             connection.Close();
         }
