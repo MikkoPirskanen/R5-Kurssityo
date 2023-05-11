@@ -45,20 +45,22 @@ namespace Mökkihöperö
             btnAsiakkaat = new Button();
             btnRaportointi = new Button();
             btnLaskutus = new Button();
+            btnAlueet = new Button();
+            btnLisaaPalvelu = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(37, 33);
+            textBox1.Location = new Point(12, 33);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(225, 23);
+            textBox1.Size = new Size(225, 27);
             textBox1.TabIndex = 0;
             textBox1.Text = "Hakukenttä";
             // 
             // btnHaku
             // 
-            btnHaku.Location = new Point(268, 33);
+            btnHaku.Location = new Point(243, 33);
             btnHaku.Name = "btnHaku";
             btnHaku.Size = new Size(94, 29);
             btnHaku.TabIndex = 1;
@@ -68,7 +70,7 @@ namespace Mökkihöperö
             // 
             // btnPerustiedot
             // 
-            btnPerustiedot.Location = new Point(451, 33);
+            btnPerustiedot.Location = new Point(419, 33);
             btnPerustiedot.Name = "btnPerustiedot";
             btnPerustiedot.Size = new Size(94, 29);
             btnPerustiedot.TabIndex = 2;
@@ -78,7 +80,7 @@ namespace Mökkihöperö
             // 
             // btnOsoitetiedot
             // 
-            btnOsoitetiedot.Location = new Point(551, 33);
+            btnOsoitetiedot.Location = new Point(519, 33);
             btnOsoitetiedot.Name = "btnOsoitetiedot";
             btnOsoitetiedot.Size = new Size(130, 29);
             btnOsoitetiedot.TabIndex = 3;
@@ -88,7 +90,7 @@ namespace Mökkihöperö
             // 
             // btnKuvausJaVarustelu
             // 
-            btnKuvausJaVarustelu.Location = new Point(687, 33);
+            btnKuvausJaVarustelu.Location = new Point(655, 33);
             btnKuvausJaVarustelu.Name = "btnKuvausJaVarustelu";
             btnKuvausJaVarustelu.Size = new Size(196, 29);
             btnKuvausJaVarustelu.TabIndex = 4;
@@ -178,7 +180,7 @@ namespace Mökkihöperö
             // 
             // btnAlueenPalvelut
             // 
-            btnAlueenPalvelut.Location = new Point(889, 33);
+            btnAlueenPalvelut.Location = new Point(857, 33);
             btnAlueenPalvelut.Name = "btnAlueenPalvelut";
             btnAlueenPalvelut.Size = new Size(156, 29);
             btnAlueenPalvelut.TabIndex = 15;
@@ -216,9 +218,31 @@ namespace Mökkihöperö
             btnLaskutus.UseVisualStyleBackColor = true;
             btnLaskutus.Click += BtnLaskutus_Click;
             // 
+            // btnAlueet
+            // 
+            btnAlueet.Location = new Point(1019, 33);
+            btnAlueet.Name = "btnAlueet";
+            btnAlueet.Size = new Size(94, 29);
+            btnAlueet.TabIndex = 19;
+            btnAlueet.Text = "Alueet";
+            btnAlueet.UseVisualStyleBackColor = true;
+            btnAlueet.Click += btnAlueet_Click;
+            // 
+            // button1
+            // 
+            btnLisaaPalvelu.Location = new Point(1231, 192);
+            btnLisaaPalvelu.Name = "btnLisaaPalvelu";
+            btnLisaaPalvelu.Size = new Size(217, 29);
+            btnLisaaPalvelu.TabIndex = 20;
+            btnLisaaPalvelu.Text = "Lisää Palvelu";
+            btnLisaaPalvelu.UseVisualStyleBackColor = true;
+            btnLisaaPalvelu.Click += btnLisaaPalvelu_Click;
+            // 
             // Mokit
             // 
             ClientSize = new Size(1528, 684);
+            Controls.Add(btnLisaaPalvelu);
+            Controls.Add(btnAlueet);
             Controls.Add(btnLaskutus);
             Controls.Add(btnRaportointi);
             Controls.Add(btnAsiakkaat);
@@ -260,6 +284,8 @@ namespace Mökkihöperö
         private Button btnAsiakkaat;
         private Button btnRaportointi;
         private Button btnLaskutus;
+        private Button btnAlueet;
+        private Button btnLisaaPalvelu;
     }
 }
 #endregion
