@@ -12,7 +12,7 @@ namespace Mökkihöperö
     public partial class Mokit : Form
     {
         // Muuta tähän tietokannan yhteysasetukset
-        private const string ConnectionString = "server=127.0.0.1; database=vn;uid=root;pwd=eemeli93;";
+        private const string ConnectionString = "server=127.0.0.1; database=vn;uid=root;pwd=VillageNewbies;";
 
         public Mokit()
         {
