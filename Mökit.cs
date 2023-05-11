@@ -106,7 +106,7 @@ namespace Mökkihöperö
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
-            string sqlQuery = @"SELECT M.mokki_id, A.nimi, M.mokkinimi, M.henkilomaara, M.hinta, M.mokki_id, M.alue_id FROM mokki M JOIN alue A ON A.alue_id = M.alue_id";
+            string sqlQuery = @"SELECT M.mokki_id, A.nimi, M.mokkinimi, M.henkilomaara, M.hinta, M.alue_id FROM mokki M JOIN alue A ON A.alue_id = M.alue_id";
 
             MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
 
@@ -121,15 +121,14 @@ namespace Mökkihöperö
             dataGridView1.Columns[3].Width = 70;
             dataGridView1.Columns[4].Width = 70;
             dataGridView1.Columns[5].Width = 70;
-            dataGridView1.Columns[6].Width = 70;
+            
 
             dataGridView1.Columns[0].HeaderText = "Mökki ID";
             dataGridView1.Columns[1].HeaderText = "Alue";
             dataGridView1.Columns[2].HeaderText = "Mökin nimi";
             dataGridView1.Columns[3].HeaderText = "Hlö";
             dataGridView1.Columns[4].HeaderText = "Hinta";
-            dataGridView1.Columns[5].HeaderText = "Mökki ID";
-            dataGridView1.Columns[6].HeaderText = "Alue ID";
+            dataGridView1.Columns[5].HeaderText = "Alue ID";
 
 
             connection.Close();
