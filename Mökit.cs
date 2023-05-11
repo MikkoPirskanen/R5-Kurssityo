@@ -451,14 +451,14 @@ namespace Mökkihöperö
         }
         // Mökin muokkaus
 
-        private void btnMuokkaaMokki_Click(object sender, EventArgs e)
+      private void btnMuokkaaMokki_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
 
 
 
-                uint MokkiID = (uint)dataGridView1.CurrentRow.Cells[0].Value;
+                int MokkiID = (int)dataGridView1.CurrentRow.Cells[0].Value;
                 MuokkaaMökkiä muokkaamökkiä = new MuokkaaMökkiä();
                 muokkaamökkiä.Show();
 
