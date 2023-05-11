@@ -424,23 +424,36 @@ namespace Mökkihöperö
                 // Luo kontrollit popup-ikkunaan
                 var label = new Label();
                 label.Text = "Anna uuden alueen nimi:";
-                label.Location = new Point(10, 10);
+                label.Location = new Point(10, 50);
+                label.AutoSize = true;
+
                 var textBox = new TextBox();
-                textBox.Location = new Point(10, 30);
+                textBox.Location = new Point(10, 80);
+                textBox.Width = 200;
+
                 var okButton = new Button();
                 okButton.Text = "OK";
                 okButton.DialogResult = DialogResult.OK;
-                okButton.Location = new Point(10, 60);
+                okButton.Location = new Point(50, 130);
+
                 var cancelButton = new Button();
                 cancelButton.Text = "Peruuta";
                 cancelButton.DialogResult = DialogResult.Cancel;
-                cancelButton.Location = new Point(80, 60);
+                cancelButton.Location = new Point(150, 130);
+
+                // Laske popup-ikkunan koko ja sijainti
+                int popupWidth = 250;
+                int popupHeight = 200;
+                int screenX = Screen.PrimaryScreen.WorkingArea.Width / 2 - popupWidth / 2;
+                int screenY = Screen.PrimaryScreen.WorkingArea.Height / 2 - popupHeight / 2;
 
                 // Lisää kontrollit popup-ikkunaan
                 lisaaAluePopup.Text = "Lisää uusi alue";
                 lisaaAluePopup.AcceptButton = okButton;
                 lisaaAluePopup.CancelButton = cancelButton;
-                lisaaAluePopup.ClientSize = new Size(200, 100);
+                lisaaAluePopup.ClientSize = new Size(popupWidth, popupHeight);
+                lisaaAluePopup.StartPosition = FormStartPosition.Manual;
+                lisaaAluePopup.Location = new Point(screenX, screenY);
                 lisaaAluePopup.Controls.Add(label);
                 lisaaAluePopup.Controls.Add(textBox);
                 lisaaAluePopup.Controls.Add(okButton);
