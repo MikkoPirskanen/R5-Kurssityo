@@ -342,21 +342,17 @@ namespace Mökkihöperö
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-
-
-
-                int MokkiID = (int)dataGridView1.CurrentRow.Cells[0].Value;
-                MuokkaaMökkiä muokkaamökkiä = new MuokkaaMökkiä();
-                muokkaamökkiä.Show();
-
-                muokkaamökkiä.kommunikoi(MokkiID);
-
+                uint MokkiID = (uint)dataGridView1.CurrentRow.Cells[0].Value;
+                MuokkaaMökkiä muokkaaMökkiä = new MuokkaaMökkiä();
+                muokkaaMökkiä.kommunikoi(MokkiID);
+                muokkaaMökkiä.Show();
             }
             else
             {
-                MessageBox.Show("Valitse muokattava mökki ");
+                MessageBox.Show("Valitse muokattava mökki.");
             }
         }
+
 
 
 
