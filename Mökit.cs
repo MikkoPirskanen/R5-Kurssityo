@@ -17,6 +17,16 @@ namespace Mökkihöperö
         public Mokit()
         {
             InitializeComponent();
+
+            string tyhja = " ";
+            string Mökit = "Mökit";
+            string Palvelut = "Palvelut";
+            string Alueet = "Alueet";
+            comboBox1.Items.Add(tyhja);
+            comboBox1.Items.Add(Mökit);
+            comboBox1.Items.Add(Palvelut);
+            comboBox1.Items.Add(Alueet);
+
         }
 
         private void Mokit_Load(object sender, EventArgs e)
@@ -49,8 +59,9 @@ namespace Mökkihöperö
         private void btnLisaaPalvelu_Click(object sender, EventArgs e)
         {
             UusiPalvelu palvelu = new UusiPalvelu();
+            palvelu.Show();
         }
-        
+
         // Alueet näkymä
         private void btnAlueet_Click(object sender, EventArgs e)
         {
@@ -82,7 +93,7 @@ namespace Mökkihöperö
             ShowAlueenPalvelut();
         }
 
-        
+
         // Näytä perustiedot
 
         private void ShowAlueet()
@@ -121,7 +132,7 @@ namespace Mökkihöperö
             dataGridView1.Columns[3].Width = 70;
             dataGridView1.Columns[4].Width = 70;
             dataGridView1.Columns[5].Width = 70;
-            
+
 
             dataGridView1.Columns[0].HeaderText = "Mökki ID";
             dataGridView1.Columns[1].HeaderText = "Alue";
@@ -153,7 +164,7 @@ namespace Mökkihöperö
             dataGridView1.Columns["mokkinimi"].HeaderText = "Mökin nimi";
             dataGridView1.Columns["katuosoite"].HeaderText = "Katuosoite";
             dataGridView1.Columns["postinro"].HeaderText = "Postinumero";
-            
+
             dataGridView1.Columns["postitoimipaikka"].HeaderText = "Postitoimipaikka";
             dataGridView1.Columns["alue"].HeaderText = "Alue";
             connection.Close();
@@ -220,6 +231,20 @@ namespace Mökkihöperö
         {
             string searchText = textBox1.Text;
 
+            if (comboBox1.SelectedIndex == 0)
+            {
+
+            } else if (comboBox1.SelectedIndex == 1)
+            {
+                HaeMokkia();
+            } else if (comboBox1.SelectedIndex == 2){ 
+
+                HaePalvelua();
+            } else if (comboBox1.SelectedIndex == 3){
+                HaeAluetta();
+            }
+
+
             foreach (Control control in Controls)
             {
                 if (control is TextBox)
@@ -270,7 +295,95 @@ namespace Mökkihöperö
             }
         }
 
+        private void HaeMokkia()
+        {
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
 
+            string searchText = textBox1.Text;
+            string sqlQuery = @"SELECT mokki_id, mokkinimi, henkilomaara, hinta, alue_id FROM mokki WHERE mokkinimi = @mokkinimi";
+
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+            cmd.Parameters.AddWithValue("@mokkinimi", textBox1.Text);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet, "mokit");
+
+            dataGridView1.DataSource = dataSet.Tables["mokit"];
+            dataGridView1.Columns[0].Width = 120;
+            dataGridView1.Columns[1].Width = 120;
+            dataGridView1.Columns[2].Width = 120;
+            dataGridView1.Columns[3].Width = 70;
+            dataGridView1.Columns[4].Width = 70;
+
+
+            dataGridView1.Columns[0].HeaderText = "Mökki ID";
+            dataGridView1.Columns[1].HeaderText = "Mökin nimi";
+            dataGridView1.Columns[2].HeaderText = "Hlö";
+            dataGridView1.Columns[3].HeaderText = "Hinta";
+            dataGridView1.Columns[4].HeaderText = "Alue ID";
+
+
+            connection.Close();
+        }
+
+        private void HaePalvelua()
+        {
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+
+            string searchText = textBox1.Text;
+            string sqlQuery = @"SELECT nimi, hinta + alv, kuvaus, alue_id, palvelu_id FROM palvelu WHERE nimi = @nimi";
+
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+            cmd.Parameters.AddWithValue("@nimi", textBox1.Text);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet, "palvelut");
+
+            dataGridView1.DataSource = dataSet.Tables["palvelut"];
+            dataGridView1.Columns[0].Width = 120;
+            dataGridView1.Columns[1].Width = 120;
+            dataGridView1.Columns[2].Width = 120;
+            dataGridView1.Columns[3].Width = 70;
+            dataGridView1.Columns[4].Width = 70;
+
+
+            dataGridView1.Columns[0].HeaderText = "Palvelu";
+            dataGridView1.Columns[1].HeaderText = "Hinta";
+            dataGridView1.Columns[2].HeaderText = "Kuvaus";
+            dataGridView1.Columns[3].HeaderText = "Alue";
+            dataGridView1.Columns[4].HeaderText = "ID";
+
+
+            connection.Close();
+        }
+
+        private void HaeAluetta()
+        {
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+
+            string searchText = textBox1.Text;
+            string sqlQuery = @"SELECT nimi, alue_id FROM alue WHERE nimi = @nimi";
+
+            MySqlCommand cmd = new MySqlCommand(sqlQuery, connection);
+            cmd.Parameters.AddWithValue("@nimi", textBox1.Text);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
+            DataSet dataSet = new DataSet();
+            dataAdapter.Fill(dataSet, "alueet");
+
+            dataGridView1.DataSource = dataSet.Tables["alueet"];
+            dataGridView1.Columns[0].Width = 120;
+            dataGridView1.Columns[1].Width = 120;
+
+
+            dataGridView1.Columns[0].HeaderText = "Nimi";
+            dataGridView1.Columns[1].HeaderText = "ID";
+
+
+            connection.Close();
+        }
 
         // Mökin poistaminen
         private void btnPoistaMokki_Click(object sender, EventArgs e)
@@ -342,14 +455,19 @@ namespace Mökkihöperö
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                uint MokkiID = (uint)dataGridView1.CurrentRow.Cells[0].Value;
-                MuokkaaMökkiä muokkaaMökkiä = new MuokkaaMökkiä();
-                muokkaaMökkiä.kommunikoi(MokkiID);
-                muokkaaMökkiä.Show();
+
+
+
+                int MokkiID = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                MuokkaaMökkiä muokkaamökkiä = new MuokkaaMökkiä();
+                muokkaamökkiä.Show();
+
+                muokkaamökkiä.kommunikoi(MokkiID);
+
             }
             else
             {
-                MessageBox.Show("Valitse muokattava mökki.");
+                MessageBox.Show("Valitse muokattava mökki ");
             }
         }
 
@@ -424,36 +542,23 @@ namespace Mökkihöperö
                 // Luo kontrollit popup-ikkunaan
                 var label = new Label();
                 label.Text = "Anna uuden alueen nimi:";
-                label.Location = new Point(10, 50);
-                label.AutoSize = true;
-
+                label.Location = new Point(10, 10);
                 var textBox = new TextBox();
-                textBox.Location = new Point(10, 80);
-                textBox.Width = 200;
-
+                textBox.Location = new Point(10, 30);
                 var okButton = new Button();
                 okButton.Text = "OK";
                 okButton.DialogResult = DialogResult.OK;
-                okButton.Location = new Point(50, 130);
-
+                okButton.Location = new Point(10, 60);
                 var cancelButton = new Button();
                 cancelButton.Text = "Peruuta";
                 cancelButton.DialogResult = DialogResult.Cancel;
-                cancelButton.Location = new Point(150, 130);
-
-                // Laske popup-ikkunan koko ja sijainti
-                int popupWidth = 250;
-                int popupHeight = 200;
-                int screenX = Screen.PrimaryScreen.WorkingArea.Width / 2 - popupWidth / 2;
-                int screenY = Screen.PrimaryScreen.WorkingArea.Height / 2 - popupHeight / 2;
+                cancelButton.Location = new Point(80, 60);
 
                 // Lisää kontrollit popup-ikkunaan
                 lisaaAluePopup.Text = "Lisää uusi alue";
                 lisaaAluePopup.AcceptButton = okButton;
                 lisaaAluePopup.CancelButton = cancelButton;
-                lisaaAluePopup.ClientSize = new Size(popupWidth, popupHeight);
-                lisaaAluePopup.StartPosition = FormStartPosition.Manual;
-                lisaaAluePopup.Location = new Point(screenX, screenY);
+                lisaaAluePopup.ClientSize = new Size(200, 100);
                 lisaaAluePopup.Controls.Add(label);
                 lisaaAluePopup.Controls.Add(textBox);
                 lisaaAluePopup.Controls.Add(okButton);
@@ -571,7 +676,16 @@ namespace Mökkihöperö
             Varaukset varaus = new Varaukset();
             varaus.Show();
         }
-       
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBox1_DropDown(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
 
